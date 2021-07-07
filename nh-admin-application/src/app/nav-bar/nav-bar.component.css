@@ -3,7 +3,7 @@
     
     overflow: hidden;
     background-color: #636569;
-    padding: 45px 10px; /* Large padding which will shrink on scroll (using JS) */
+    padding: 10px 10px; /* Large padding which will shrink on scroll (using JS) */
     transition: 0.4s; /* Adds a transition effect when the padding is decreased */
     position:fixed; /* Sticky/fixed navbar */
     width: 100%;
@@ -37,8 +37,8 @@
   }
 
 /* Style the active/current link */
-.nav-bar a.active {
-    background-color: dodgerblue;
+.activebutton {
+    background-color: rgb(51, 51, 51);
     color: white;
   }
 
@@ -48,7 +48,12 @@
     position:relative;
     margin-top: 90px;
 }
-  
+
+#container
+{
+  margin-top:200px;
+}
+
 
 /* Add responsiveness - on screens less than 580px wide, display the navbar vertically instead of horizontally */
 @media screen and (max-width: 650px) {

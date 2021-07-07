@@ -4,7 +4,11 @@
 <nav class="nav-bar">
     <a href="https://www.nh.org.au/" id="logo">Northern Health</a>
     <div id="navbar-items">
-        <a href="#">Overview</a>
-        <a href="#">Patients</a>
+        <a routerLink="/overview" routerLinkActive="activebutton">Overview</a>
+        <a routerLink="/patients" routerLinkActive="activebutton">Patients</a>
     </div>
 </nav>
+<div id="container">
+    <router-outlet></router-outlet>
+</div>
+
