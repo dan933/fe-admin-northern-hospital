@@ -6,8 +6,11 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { OverviewComponent } from './overview/overview.component';
 import { Router, RouterModule } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
 import { PatientsComponent } from './patients/patients.component';
+import { DataService } from './services/data.service';
+
+//for CRUD http requests
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -20,6 +23,7 @@ import { PatientsComponent } from './patients/patients.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot([
       {path:'overview', component:OverviewComponent},
@@ -27,7 +31,7 @@ import { PatientsComponent } from './patients/patients.component';
       {path:'', redirectTo:'overview', pathMatch:'full'}
     ])
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

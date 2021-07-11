@@ -1,0 +1,25 @@
+table, td, th {
+    border: 1px solid black;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top:270px;
+  }
+
+  @media screen and (max-width: 650px) {
+
+    table {
+        margin-top:250px;
+      }
+
+  }
+
+   /* Add responsiveness - on screens less than 580px wide, display the navbar vertically instead of horizontally */
+@media screen and (max-width: 550px) {
+  table {
+    margin-top:270px;
+  }
+
+}

@@ -1,18 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { DataService } from '../services/data.service';
+import { overview } from '../models/overview.model';
+
 
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css']
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent /*implements OnInit*/{
 
-  constructor() { }
-
-  ngOnInit(): void {
+  
+  constructor(private dataService : DataService) {
+    
   }
 
-  //let overview = "http://localhost:3000/api/patients/overview/all?page=0&size=201";
+  records:overview[] = []
+  
 
+  ngOnInit() {    
+    this.dataService.getOverview().subscribe((data:any) => {
+      this.records = data.patients
+      console.log(data)
+    })
+    
+    
+  }
+  
 }
