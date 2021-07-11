@@ -1,25 +1,19 @@
-table, td, th {
-    border: 1px solid black;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top:270px;
-  }
+table {
+  width:100%
+}
+.mat-column-patienthospitalnumber, .mat-column-surname,.mat-column-firstname,.mat-column-question_id,.mat-column-painmeasure,.mat-column-d1
+{
+  padding-right:25px;
+}
 
-  @media screen and (max-width: 650px) {
+th
+{
+  font-weight: bold;
+  color:black;
+  font-size:25px;
+}
 
-    table {
-        margin-top:250px;
-      }
-
-  }
-
-   /* Add responsiveness - on screens less than 580px wide, display the navbar vertically instead of horizontally */
-@media screen and (max-width: 550px) {
-  table {
-    margin-top:270px;
-  }
-
+td
+{
+  font-size: 25px;
 }

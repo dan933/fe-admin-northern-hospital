@@ -12,28 +12,6 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class DataService {
-// overviews:overview[] = [
-//   {
-//     patientHospitalNumber:1,
-//     surName:'Albert',
-//     firtName:'Daniel',
-//     question_id:1,
-//     painMeasure:100,
-//     d1:20,
-//     d2:30
-//   },
-//   {
-//     patientHospitalNumber:1,
-//     surName:'Albert',
-//     firtName:'Daniel',
-//     question_id:1,
-//     painMeasure:100,
-//     d1:20,
-//     d2:30
-//   }
-// ]
-
-
 
  constructor(private http:HttpClient) { }
 

@@ -11,6 +11,11 @@ import { DataService } from './services/data.service';
 
 //for CRUD http requests
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+//angular materials
+import { MatTableModule } from '@angular/material/table' 
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 
@@ -25,11 +30,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    MatTableModule,
+    MatToolbarModule,
     RouterModule.forRoot([
       {path:'overview', component:OverviewComponent},
       {path:'patients', component:PatientsComponent},
       {path:'', redirectTo:'overview', pathMatch:'full'}
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

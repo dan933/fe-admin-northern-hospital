@@ -1,14 +1,26 @@
 <!-- source https://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_menu -->
 <!-- source https://www.w3schools.com/howto/howto_js_navbar_shrink_scroll.asp -->
 
-<nav class="nav-bar">
+<!-- <nav class="nav-bar">
     <a href="https://www.nh.org.au/" id="logo">Northern Health</a>
     <div id="navbar-items">
         <a routerLink="/overview" routerLinkActive="activebutton">Overview</a>
         <a routerLink="/patients" routerLinkActive="activebutton">Patients</a>
     </div>
-</nav>
-<div id="container">
+</nav> -->
+
+
+<mat-toolbar class="nav-bar">
+    <mat-toolbar-row>
+    <a href="https://www.nh.org.au/" id="logo">Northern Health</a>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <a routerLink="/overview" routerLinkActive="activebutton">Overview</a>
+        <a routerLink="/patients" routerLinkActive="activebutton">Patients</a>
+    </mat-toolbar-row>
+</mat-toolbar>
+    
     <router-outlet></router-outlet>
-</div>
+    
+
 

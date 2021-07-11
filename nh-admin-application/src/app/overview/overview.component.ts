@@ -4,28 +4,28 @@ import { DataService } from '../services/data.service';
 import { overview } from '../models/overview.model';
 
 
+
+
+
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css']
 })
 export class OverviewComponent /*implements OnInit*/{
-
-  
+ 
   constructor(private dataService : DataService) {
     
   }
-
-  records:overview[] = []
-  
+  dataSource:overview[]=[]
+  displayedColumns:string[] = ['patienthospitalnumber','surname', 'firstname','question_id','painmeasure','d1','d2'];
 
   ngOnInit() {    
     this.dataService.getOverview().subscribe((data:any) => {
-      this.records = data.patients
-      console.log(data)
+      this.dataSource = data.patients
+      console.log(data.patients)
     })
-    
-    
+
   }
   
 }
