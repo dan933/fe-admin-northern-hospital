@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
+//routing
 import { AppRoutingModule } from './app-routing.module';
+
+//Components
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { OverviewComponent } from './overview/overview.component';
-import { Router, RouterModule } from '@angular/router';
 import { PatientsComponent } from './patients/patients.component';
+
+//data service
 import { DataService } from './services/data.service';
 
 //for CRUD http requests
@@ -16,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //angular materials
 import { MatTableModule } from '@angular/material/table' 
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -24,7 +31,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     AppComponent,
     NavBarComponent,
     OverviewComponent,
-    PatientsComponent  
+    PatientsComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,13 +39,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     AppRoutingModule,
     MatTableModule,
     MatToolbarModule,
-    RouterModule.forRoot([
-      {path:'overview', component:OverviewComponent},
-      {path:'patients', component:PatientsComponent},
-      {path:'', redirectTo:'overview', pathMatch:'full'}
-    ]),
+    MatPaginatorModule,
     BrowserAnimationsModule
   ],
+  exports:[MatToolbarModule],
   providers: [DataService],
   bootstrap: [AppComponent]
 })

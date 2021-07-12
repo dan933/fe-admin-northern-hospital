@@ -1,8 +1,10 @@
+
 table {
   width:100%
 }
 .mat-column-patienthospitalnumber, .mat-column-surname,.mat-column-firstname,.mat-column-question_id,.mat-column-painmeasure,.mat-column-d1
 {
+  min-width: 129.008;
   padding-right:25px;
 }
 
