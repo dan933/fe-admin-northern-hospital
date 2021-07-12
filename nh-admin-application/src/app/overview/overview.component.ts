@@ -17,7 +17,7 @@ export class OverviewComponent /*implements OnInit*/{
   constructor(private dataService : DataService) {
     
   }
-  dataSource:overview[]=[]
+  dataSource:overview[]=[];
   displayedColumns:string[] = ['patienthospitalnumber','surname', 'firstname','question_id','painmeasure','d1','d2'];
 
   ngOnInit() {    
