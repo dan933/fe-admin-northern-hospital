@@ -2,6 +2,17 @@
 table {
   width:100%
 }
+
+mat-label
+{
+  font-size:15px;
+}
+
+#table-div
+{
+  margin: 15px;
+}
+
 .mat-column-patienthospitalnumber, .mat-column-surname,.mat-column-firstname,.mat-column-question_id,.mat-column-painmeasure,.mat-column-d1
 {
   min-width: 129.008;

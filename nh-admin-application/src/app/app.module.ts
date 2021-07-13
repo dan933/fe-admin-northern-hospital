@@ -23,6 +23,12 @@ import { MatTableModule } from '@angular/material/table'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
+//Pagination
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -40,9 +46,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatTableModule,
     MatToolbarModule,
     MatPaginatorModule,
-    BrowserAnimationsModule
+    NgxPaginationModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  exports:[MatToolbarModule],
+  exports:[MatToolbarModule,MatFormFieldModule],
   providers: [DataService],
   bootstrap: [AppComponent]
 })
