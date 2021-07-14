@@ -1,59 +1,95 @@
 <!-- source: https://www.youtube.com/watch?v=2OHbjep_WjQ&t=639s&ab_channel=freeCodeCamp.org -->
-<div id="table-div">
-  <mat-form-field appearance="standard" [style.width.%]="100">
-    <mat-label>Search</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Search for patient" #input>
-  </mat-form-field>
-
+<div id="table-div" >
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->    
       <!-- Position Column -->
       <ng-container matColumnDef="patienthospitalnumber">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <th mat-header-cell *matHeaderCellDef class="table-headers"> ID<br>
+          <mat-form-field class="header-filter" appearance="outline">
+            <mat-label>filter</mat-label>
+            <input matInput (keyup)="applyIdFilter($event)" placeholder="ID" #input autocomplete="off">
+          </mat-form-field>                
+        </th>
         <td mat-cell *matCellDef="let element"> {{element.patienthospitalnumber}} </td>
       </ng-container>
     
       <!-- Name Column -->
       <ng-container matColumnDef="surname">
-        <th mat-header-cell *matHeaderCellDef> Surname </th>
+        <th mat-header-cell *matHeaderCellDef class="table-headers"> Surname <br>
+          <mat-form-field class="header-filter" appearance="outline">
+            <mat-label>filter</mat-label>
+            <input matInput (keyup)="applySurnameFilter($event)" placeholder="Surname" #input>
+          </mat-form-field> </th>
         <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
       </ng-container>
     
       <!-- Weight Column -->
       <ng-container matColumnDef="firstname">
-        <th mat-header-cell *matHeaderCellDef> Firstname </th>
+        <th mat-header-cell *matHeaderCellDef class="table-headers"> Firstname <br>
+          <mat-form-field class="header-filter" appearance="outline">
+            <mat-label>filter</mat-label>
+            <input matInput (keyup)="applyFirstnameFilter($event)" placeholder="Firstname" #input autocomplete="off">
+          </mat-form-field>
+         </th>
         <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
       </ng-container>
     
       <!-- Symbol Column -->
       <ng-container matColumnDef="question_id">
-        <th mat-header-cell *matHeaderCellDef> Questionare </th>
+        <th mat-header-cell *matHeaderCellDef class="table-headers"> Questionare <br>
+          <mat-form-field class="header-filter" appearance="outline">
+            <mat-label>filter</mat-label>
+            <input matInput (keyup)="applyQuestionIdFilter($event)" placeholder="quizz ID" #input autocomplete="off">
+          </mat-form-field>
+        </th>
         <td mat-cell *matCellDef="let element"> {{element.question_id}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="painmeasure">
-          <th mat-header-cell *matHeaderCellDef> Pain Measure </th>
+          <th mat-header-cell *matHeaderCellDef class="table-headers"> Pain Measure<br>
+            <mat-form-field class="header-filter" appearance="outline">
+              <mat-label>filter</mat-label>
+              <input matInput (keyup)="applyPainmeasureFilter($event)" placeholder="Pain Measure" #input autocomplete="off">
+            </mat-form-field>
+          </th>
           <td mat-cell *matCellDef="let element"> {{element.painmeasure}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
       <ng-container matColumnDef="d1">
-          <th mat-header-cell *matHeaderCellDef> D1 </th>
+          <th mat-header-cell *matHeaderCellDef class="table-headers"> D1 <br>
+            <mat-form-field class="header-filter" appearance="outline">
+              <mat-label>filter</mat-label>
+              <input matInput (keyup)="applyD1Filter($event)" placeholder="D1" #input autocomplete="off">
+            </mat-form-field>
+          </th>
           <td mat-cell *matCellDef="let element"> {{element.d1}} </td>
         </ng-container>
 
         <ng-container matColumnDef="d2">
-          <th mat-header-cell *matHeaderCellDef> D2 </th>
+          <th mat-header-cell *matHeaderCellDef class="table-headers"> D2 <br>
+            <mat-form-field class="header-filter" appearance="outline">
+              <mat-label>filter</mat-label>
+              <input matInput (keyup)="applyD2Filter($event)" placeholder="D2" #input autocomplete="off">
+            </mat-form-field>
+          </th>
           <td mat-cell *matCellDef="let element"> {{element.d2}} </td>
         </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [length]="numberOfRecords" #paginator firstPage [pageSizeOptions]="[10, 50, 100]">
+    <mat-paginator
+      [length]="numberOfRecords"
+      [pageIndex]="pageNumber"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[20, 50, 100]"
+      (page) = pageChange($event)
+      >
     </mat-paginator>
+    <div style="height: 200px;"></div>
 
 </div>

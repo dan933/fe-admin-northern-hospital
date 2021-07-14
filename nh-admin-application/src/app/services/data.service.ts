@@ -17,9 +17,10 @@ export class DataService {
 
  constructor(private http:HttpClient) { }
 
-   getOverview(page:number, size:number){
-    let output:any = this.http.get(`${url}/patients/overview/all?page=${page}&size=${size}`)
+   getOverview(searchPatienthospitalnumber:string,searchSurname:string,searchFirstName:string,searchQuestionId:string,searchPainMeasure:string,searchd1:string,searchd2:string,page:number, size:number){
+    let output:any = this.http.get(`${url}/overview?searchPatienthospitalnumber=${searchPatienthospitalnumber}&searchSurname=${searchSurname}&searchFirstName=${searchFirstName}&searchQuestionId=${searchQuestionId}&searchPainMeasure=${searchPainMeasure}&searchd1=${searchd1}&searchd2=${searchd2}&page=${page}&size=${size}`)
     return output
     
   }
 }
+//http://localhost:3000/api/overview?searchPatienthospitalnumber=&searchSurname=&searchFirstName=&searchQuestionId=&searchPainMeasure=&searchd1=&searchd2=&size=30
