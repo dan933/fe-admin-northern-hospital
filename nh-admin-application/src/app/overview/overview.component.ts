@@ -51,7 +51,8 @@ export class OverviewComponent implements OnInit{
   pageChange(PageEvent:any) {
     this.pageSize = PageEvent.pageSize
     this.pageNumber = PageEvent.pageIndex
-    this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize).subscribe((data:any) => {
+    this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+    .subscribe((data:any) => {
       this.ELEMENT_DATA = data.patients
       this.dataSource = data.patients
       this.numberOfRecords = data.totalItems
@@ -60,15 +61,17 @@ export class OverviewComponent implements OnInit{
   
   //Todo if have time
     //Pagination similar to the NBA website
+    //e.g select which page you want
 
-  applyFilter(event:Event) {
-    let filterValue = (event.target as HTMLInputElement).value;
+  // applyFilter(event:Event) {
+  //   let filterValue = (event.target as HTMLInputElement).value;
 
-    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  //   this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
 
   applyIdFilter(event:Event) {
+    this.pageNumber = 0
     this.searchPatienthospitalnumber = (event.target as HTMLInputElement).value;
     this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
@@ -80,6 +83,7 @@ export class OverviewComponent implements OnInit{
   }
 
   applySurnameFilter(event:Event) {
+    this.pageNumber = 0
     this.searchSurname = (event.target as HTMLInputElement).value;
     this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
@@ -91,6 +95,7 @@ export class OverviewComponent implements OnInit{
   }
 
   applyFirstnameFilter(event:Event) {
+    this.pageNumber = 0
     this.searchFirstName = (event.target as HTMLInputElement).value;
     this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
@@ -102,6 +107,7 @@ export class OverviewComponent implements OnInit{
   }
 
   applyQuestionIdFilter(event:Event) {
+    this.pageNumber = 0
     this.searchQuestionId = (event.target as HTMLInputElement).value;
     this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
@@ -114,6 +120,7 @@ export class OverviewComponent implements OnInit{
   }
 
   applyPainmeasureFilter(event:Event) {
+    this.pageNumber = 0
     this.searchPainMeasure = (event.target as HTMLInputElement).value;
     this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
@@ -124,6 +131,7 @@ export class OverviewComponent implements OnInit{
   }
 
   applyD1Filter(event:Event) {
+    this.pageNumber = 0
     this.searchd1 = (event.target as HTMLInputElement).value;
     this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
@@ -134,6 +142,7 @@ export class OverviewComponent implements OnInit{
   }
 
   applyD2Filter(event:Event) {
+    this.pageNumber = 0
     this.searchd2 = (event.target as HTMLInputElement).value;
     this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
@@ -142,9 +151,6 @@ export class OverviewComponent implements OnInit{
       this.numberOfRecords = data.totalItems
     })     
   }
-
-
-
 
 
 }
