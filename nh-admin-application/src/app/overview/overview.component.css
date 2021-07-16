@@ -1,24 +1,10 @@
-
 table {
   width:100%;
 }
 
-.table-headers
-{
-  padding-top: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
 .header-filter
 {
-  width:100px;
-  padding-top: 5px;
-}
-
-mat-label
-{
-  font-size:15px;
+  padding:5px;
 }
 
 #table-div
@@ -26,17 +12,11 @@ mat-label
   margin: 15px;
 }
 
-.mat-column-patienthospitalnumber, .mat-column-surname,.mat-column-firstname,.mat-column-question_id,.mat-column-painmeasure,.mat-column-d1,.mat-column-d2
-{
-  min-width: 80px;
-}
-
 th
 {
   font-weight: bold;
   color:black;
-  font-size:17px;
-  
+  font-size:25px;
 }
 
 td
@@ -44,13 +24,14 @@ td
   font-size: 25px;
 }
 
-.mat-form-field
+.mat-paginator
 {
-  width: 110px;
-  height: 100px;
+  font-size:20px;
+  color: black;
+  
 }
 
-.mat-form-field input
+.mat-paginator ::ng-deep .mat-select-value, ::ng-deep .mat-option-text
 {
-  font-size: medium;
+  font-size: 20px;
 }

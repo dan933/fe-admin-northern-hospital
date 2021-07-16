@@ -27,8 +27,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 
-//Pagination
+//Pagination and sorting
 import { NgxPaginationModule } from 'ngx-pagination';
+import {MatSortModule} from '@angular/material/sort';
 
 
 
@@ -49,7 +50,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgxPaginationModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSortModule
   ],
   exports:[MatToolbarModule,MatFormFieldModule],
   providers: [DataService],
