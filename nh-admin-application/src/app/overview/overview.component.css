@@ -2,22 +2,24 @@ table {
   width:100%;
 }
 
-.header-filter
+ .mat-header-cell
 {
-  padding:5px;
+  border: 1px solid transparent;
 }
 
-#table-div
+.header-filter
 {
-  margin: 15px;
+  margin-bottom: -25px;
 }
 
 th
 {
+  padding-top:2px;
   font-weight: bold;
   color:black;
   font-size:25px;
 }
+
 
 td
 {
@@ -35,3 +37,4 @@ td
 {
   font-size: 20px;
 }
+

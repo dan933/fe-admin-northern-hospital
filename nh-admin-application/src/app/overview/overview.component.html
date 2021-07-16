@@ -11,103 +11,104 @@
     
       <!-- surname Column -->
       <ng-container matColumnDef="surname">
-        <th mat-header-cell *matHeaderCellDef class="table-headers"> Surname</th>
+        <th mat-sort-header *matHeaderCellDef class="table-headers"> Surname</th>
         <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
       </ng-container>
     
       <!-- firstname Column -->
       <ng-container matColumnDef="firstname">
-        <th mat-header-cell *matHeaderCellDef class="table-headers"> Firstname </th>
+        <th mat-sort-header *matHeaderCellDef class="table-headers"> Firstname </th>
         <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
       </ng-container>
     
       <!-- question_id Column -->
       <ng-container matColumnDef="question_id">
-        <th mat-header-cell *matHeaderCellDef class="table-headers"> Questionare</th>
+        <th mat-sort-header *matHeaderCellDef class="table-headers"> Questionare</th>
         <td mat-cell *matCellDef="let element"> {{element.question_id}} </td>
       </ng-container>
 
       <!-- painmeasure Column -->
       <ng-container matColumnDef="painmeasure">
-          <th mat-header-cell *matHeaderCellDef class="table-headers"> Pain Measure</th>
+          <th mat-sort-header *matHeaderCellDef class="table-headers"> Pain Measure</th>
           <td mat-cell *matCellDef="let element"> {{element.painmeasure}} </td>
         </ng-container>
 
         <!-- d1 Column -->
       <ng-container matColumnDef="d1">
-          <th mat-header-cell *matHeaderCellDef class="table-headers"> D1</th>
+          <th mat-sort-header *matHeaderCellDef class="table-headers"> D1</th>
           <td mat-cell *matCellDef="let element"> {{element.d1}} </td>
         </ng-container>
 
         <!-- d2 column -->
         <ng-container matColumnDef="d2">
-          <th mat-header-cell *matHeaderCellDef class="table-headers"> D2</th>
+          <th mat-sort-header *matHeaderCellDef class="table-headers"> D2</th>
           <td mat-cell *matCellDef="let element"> {{element.d2}} </td>
         </ng-container>
-
-        <!-- Filter row -->
+        
+          <!-- Filter row -->
         <ng-container matColumnDef="patienthospitalnumber-filter">
-          <th mat-header-cell *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
             <mat-form-field class="header-filter" appearance="outline">              
               <mat-label>filter</mat-label>
-              <input matInput (keyup)="applyIdFilter($event)" placeholder="ID" #input autocomplete="off">
+              <input type="number" matInput (keyup)="applyIdFilter($event)" placeholder="ID" #input autocomplete="off">
             </mat-form-field>
           </th>
         </ng-container>
 
         <ng-container matColumnDef="surname-filter">
-          <th mat-header-cell *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
             <mat-form-field class="header-filter" appearance="outline">
               <mat-label>filter</mat-label>
-              <input matInput (keyup)="applySurnameFilter($event)" placeholder="Surname" #input>
+              <input type="text" matInput (keyup)="applySurnameFilter($event)" placeholder="Surname" #input>
             </mat-form-field>
           </th>
         </ng-container>
 
         <ng-container matColumnDef="firstname-filter">
-          <th mat-header-cell *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
             <mat-form-field class="header-filter" appearance="outline">
               <mat-label>filter</mat-label>
-              <input matInput (keyup)="applyFirstnameFilter($event)" placeholder="Surname" #input>
+              <input type="text" matInput (keyup)="applyFirstnameFilter($event)" placeholder="Surname" #input>
             </mat-form-field>
           </th>
         </ng-container>
 
         <ng-container matColumnDef="question_id-filter">
-          <th mat-header-cell *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
             <mat-form-field class="header-filter" appearance="outline">
               <mat-label>filter</mat-label>
-              <input matInput (keyup)="applyQuestionIdFilter($event)" placeholder="quizz ID" #input autocomplete="off">
+              <input type="number" matInput (keyup)="applyQuestionIdFilter($event)" placeholder="quizz ID" #input autocomplete="off">
             </mat-form-field>
           </th>
         </ng-container>
 
         <ng-container matColumnDef="painmeasure-filter">
-          <th mat-header-cell *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
             <mat-form-field class="header-filter" appearance="outline">
               <mat-label>filter</mat-label>
-              <input matInput (keyup)="applyPainmeasureFilter($event)" placeholder="Pain Measure" #input autocomplete="off">
+              <input matInput type="number" (keyup)="applyPainmeasureFilter($event)" placeholder="Pain Measure" #input autocomplete="off">
             </mat-form-field>
           </th>
         </ng-container>
 
         <ng-container matColumnDef="d1-filter">
-          <th mat-header-cell *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
             <mat-form-field class="header-filter" appearance="outline">
               <mat-label>filter</mat-label>
-              <input matInput (keyup)="applyD1Filter($event)" placeholder="D1" #input autocomplete="off">
+              <input type="number" matInput (keyup)="applyD1Filter($event)" placeholder="D1" #input autocomplete="off">
             </mat-form-field>
           </th>
         </ng-container>
 
         <ng-container matColumnDef="d2-filter">
-          <th mat-header-cell *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">          
             <mat-form-field class="header-filter" appearance="outline">
               <mat-label>filter</mat-label>
-              <input matInput (keyup)="applyD2Filter($event)" placeholder="D2" #input autocomplete="off">
+              <input type="number" matInput (keyup)="applyD2Filter($event)" placeholder="D2" #input autocomplete="off">
             </mat-form-field>
           </th>
         </ng-container>
+        
 
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
@@ -124,7 +125,7 @@
       (page) = pageChange($event)
       showFirstLastButtons
       #paginator
-      >
+    >
     </mat-paginator>
     <div style="height: 200px;"></div>
 
@@ -133,10 +134,7 @@
 
 
 
-<!-- sorting options potential fixes
-find an alternative sort animation
-find a way to position the arrow
-Position the filter boxes on the first row
-Remove headers from the table and place in a fixed position 
+<!-- 
+  problem need to add a border top line or remove the header bottom line
 
 solution https://stackoverflow.com/questions/60260534/how-to-add-filter-row-inside-material-table/64746552-->
