@@ -48,64 +48,55 @@
           <!-- Filter row -->
         <ng-container matColumnDef="patienthospitalnumber-filter">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
-            <mat-form-field class="header-filter" appearance="outline">              
-              <mat-label>filter</mat-label>
-              <input type="number" matInput (keyup)="applyIdFilter($event)" placeholder="ID" #input autocomplete="off">
-            </mat-form-field>
+            
+              <input type="number"  (keyup)="applyIdFilter($event)" placeholder="filter" #input autocomplete="off">
+           
           </th>
         </ng-container>
 
         <ng-container matColumnDef="surname-filter">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
-            <mat-form-field class="header-filter" appearance="outline">
-              <mat-label>filter</mat-label>
-              <input type="text" matInput (keyup)="applySurnameFilter($event)" placeholder="Surname" #input>
-            </mat-form-field>
+            
+              <input type="text"  (keyup)="applySurnameFilter($event)" placeholder="filter" #input>
+            
           </th>
         </ng-container>
 
         <ng-container matColumnDef="firstname-filter">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
-            <mat-form-field class="header-filter" appearance="outline">
-              <mat-label>filter</mat-label>
-              <input type="text" matInput (keyup)="applyFirstnameFilter($event)" placeholder="Surname" #input>
-            </mat-form-field>
+            
+              <input type="text"  (keyup)="applyFirstnameFilter($event)" placeholder="filter" #input>
+          
           </th>
         </ng-container>
 
         <ng-container matColumnDef="question_id-filter">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
-            <mat-form-field class="header-filter" appearance="outline">
-              <mat-label>filter</mat-label>
-              <input type="number" matInput (keyup)="applyQuestionIdFilter($event)" placeholder="quizz ID" #input autocomplete="off">
-            </mat-form-field>
+            
+              <input type="number" (keyup)="applyQuestionIdFilter($event)" placeholder="filter" #input autocomplete="off">
+            
           </th>
         </ng-container>
 
         <ng-container matColumnDef="painmeasure-filter">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
-            <mat-form-field class="header-filter" appearance="outline">
-              <mat-label>filter</mat-label>
-              <input matInput type="number" (keyup)="applyPainmeasureFilter($event)" placeholder="Pain Measure" #input autocomplete="off">
-            </mat-form-field>
+            
+              <input  type="number" (keyup)="applyPainmeasureFilter($event)" placeholder="filter" #input autocomplete="off">
+            
           </th>
         </ng-container>
 
         <ng-container matColumnDef="d1-filter">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
-            <mat-form-field class="header-filter" appearance="outline">
-              <mat-label>filter</mat-label>
-              <input type="number" matInput (keyup)="applyD1Filter($event)" placeholder="D1" #input autocomplete="off">
-            </mat-form-field>
+           
+              <input type="number" (keyup)="applyD1Filter($event)" placeholder="filter" #input autocomplete="off">
+            
           </th>
         </ng-container>
 
         <ng-container matColumnDef="d2-filter">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">          
-            <mat-form-field class="header-filter" appearance="outline">
-              <mat-label>filter</mat-label>
-              <input type="number" matInput (keyup)="applyD2Filter($event)" placeholder="D2" #input autocomplete="off">
-            </mat-form-field>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+              <input type="number" (keyup)="applyD2Filter($event)" placeholder="filter" #input autocomplete="off">
           </th>
         </ng-container>
         
