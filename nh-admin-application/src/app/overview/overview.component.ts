@@ -31,6 +31,8 @@ export class OverviewComponent implements OnInit{
   searchd2 = ""
   pageSize = 20
   pageNumber = 0
+  sort = 'patienthospitalnumber'
+  ascDesc = 'true'
 
 
   dataSource:overview[] = []
@@ -46,7 +48,7 @@ export class OverviewComponent implements OnInit{
 
   //When component first loads
   ngOnInit() {  
-  this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+  this.dataService.getOverview(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
       this.dataSource = data.patients
       this.numberOfRecords = data.totalItems
@@ -58,7 +60,7 @@ export class OverviewComponent implements OnInit{
     this.pageSize = PageEvent.pageSize
     this.pageNumber = PageEvent.pageIndex
 
-    this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+    this.dataService.getOverview(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
     .subscribe((data:any) => {
       this.dataSource = data.patients
       this.numberOfRecords = data.totalItems
@@ -69,31 +71,100 @@ export class OverviewComponent implements OnInit{
     //Pagination similar to the NBA website
     //e.g select which page you want
 
+    // sortData(sort: Sort) {
+    //   const data = this.dataSource.slice();
+    //   if (!sort.active || sort.direction === '') {
+    //     this.dataSource = data;
+    //     return;
+    //   }
+    //   this.dataSource = data.sort((a, b) => {
+    //     const isAsc = sort.direction === 'asc';
+    //     switch (sort.active) {
+    //       case 'patienthospitalnumber': return compare(a.patienthospitalnumber, b.patienthospitalnumber, isAsc);
+    //       case 'surname': return compare(a.surname, b.surname, isAsc);
+    //       case 'firstname': return compare(a.firstname, b.firstname, isAsc);
+    //       case 'question_id': return compare(a.question_id, b.question_id, isAsc);
+    //       case 'painmeasure': return compare(a.painmeasure, b.painmeasure, isAsc);
+    //       case 'd1': return compare(a.d1, b.d1, isAsc);
+    //       case 'd2': return compare(a.d2, b.d2, isAsc);
+    //       default: return 0;
+    //     }
+    //   })
+    // }
+
     sortData(sort: Sort) {
       const data = this.dataSource.slice();
       if (!sort.active || sort.direction === '') {
-        this.dataSource = data;
+        this.dataService.getOverview('patienthospitalnumber','true',this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+        .subscribe((data:any) => {
+        this.dataSource = data.patients
+        this.numberOfRecords = data.totalItems
+    })
         return;
       }
       this.dataSource = data.sort((a, b) => {
         const isAsc = sort.direction === 'asc';
         switch (sort.active) {
-          case 'patienthospitalnumber': return compare(a.patienthospitalnumber, b.patienthospitalnumber, isAsc);
-          case 'surname': return compare(a.surname, b.surname, isAsc);
-          case 'firstname': return compare(a.firstname, b.firstname, isAsc);
-          case 'question_id': return compare(a.question_id, b.question_id, isAsc);
-          case 'painmeasure': return compare(a.painmeasure, b.painmeasure, isAsc);
-          case 'd1': return compare(a.d1, b.d1, isAsc);
-          case 'd2': return compare(a.d2, b.d2, isAsc);
+          case 'patienthospitalnumber': 
+            return this.dataService.getOverview('patienthospitalnumber',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+            this.ascDesc = String(isAsc)
+            this.dataSource = data.patients
+            this.numberOfRecords = data.totalItems
+            });
+          case 'surname': 
+            return this.dataService.getOverview('surname',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+            this.ascDesc = String(isAsc)
+            this.dataSource = data.patients
+            this.numberOfRecords = data.totalItems
+            });
+          case 'firstname': 
+            return this.dataService.getOverview('firstname',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+            this.ascDesc = String(isAsc)
+            this.dataSource = data.patients
+            this.numberOfRecords = data.totalItems
+            });
+          case 'question_id': 
+            return this.dataService.getOverview('question_id',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+            this.ascDesc = String(isAsc)
+            this.dataSource = data.patients
+            this.numberOfRecords = data.totalItems
+            });
+          case 'painmeasure':
+            return this.dataService.getOverview('painmeasure',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+            this.ascDesc = String(isAsc)
+            this.dataSource = data.patients
+            this.numberOfRecords = data.totalItems
+            });
+          case 'd1':
+            return this.dataService.getOverview('d1',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+            this.ascDesc = String(isAsc)
+            this.dataSource = data.patients
+            this.numberOfRecords = data.totalItems
+            });          
+          case 'd2':
+            return this.dataService.getOverview('d2',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+            this.ascDesc = String(isAsc)
+            this.dataSource = data.patients
+            this.numberOfRecords = data.totalItems
+            });    
           default: return 0;
         }
       })
     }
 
+  //TODO Create one function to work with all input fields
+
   applyIdFilter(event:Event) {
     this.pageNumber = 0
     this.searchPatienthospitalnumber = (event.target as HTMLInputElement).value;
-    this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+    this.dataService.getOverview(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
       this.dataSource = data.patients
       this.numberOfRecords = data.totalItems
@@ -104,7 +175,7 @@ export class OverviewComponent implements OnInit{
   applySurnameFilter(event:Event) {
     this.pageNumber = 0
     this.searchSurname = (event.target as HTMLInputElement).value;
-    this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+    this.dataService.getOverview(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
       this.dataSource = data.patients
       this.numberOfRecords = data.totalItems
@@ -115,7 +186,7 @@ export class OverviewComponent implements OnInit{
   applyFirstnameFilter(event:Event) {
     this.pageNumber = 0
     this.searchFirstName = (event.target as HTMLInputElement).value;
-    this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+    this.dataService.getOverview(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
       this.dataSource = data.patients
       this.numberOfRecords = data.totalItems
@@ -126,19 +197,17 @@ export class OverviewComponent implements OnInit{
   applyQuestionIdFilter(event:Event) {
     this.pageNumber = 0
     this.searchQuestionId = (event.target as HTMLInputElement).value;
-    this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+    this.dataService.getOverview(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
       this.dataSource = data.patients
       this.numberOfRecords = data.totalItems
-    })
-    console.log(this.searchQuestionId)
-     
+    })     
   }
 
   applyPainmeasureFilter(event:Event) {
     this.pageNumber = 0
     this.searchPainMeasure = (event.target as HTMLInputElement).value;
-    this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+    this.dataService.getOverview(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
       this.dataSource = data.patients
       this.numberOfRecords = data.totalItems
@@ -148,7 +217,7 @@ export class OverviewComponent implements OnInit{
   applyD1Filter(event:Event) {
     this.pageNumber = 0
     this.searchd1 = (event.target as HTMLInputElement).value;
-    this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+    this.dataService.getOverview(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
       this.dataSource = data.patients
       this.numberOfRecords = data.totalItems
@@ -158,7 +227,7 @@ export class OverviewComponent implements OnInit{
   applyD2Filter(event:Event) {
     this.pageNumber = 0
     this.searchd2 = (event.target as HTMLInputElement).value;
-    this.dataService.getOverview(this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+    this.dataService.getOverview(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
       this.dataSource = data.patients
       this.numberOfRecords = data.totalItems
