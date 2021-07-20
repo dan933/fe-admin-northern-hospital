@@ -30,6 +30,7 @@ import { MatInputModule } from '@angular/material/input';
 //Pagination and sorting
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatSortModule} from '@angular/material/sort';
+import { PatientOverviewComponent } from './patient-overview/patient-overview.component';
 
 
 
@@ -39,6 +40,7 @@ import {MatSortModule} from '@angular/material/sort';
     NavBarComponent,
     OverviewComponent,
     PatientsComponent,
+    PatientOverviewComponent,
   ],
   imports: [
     BrowserModule,

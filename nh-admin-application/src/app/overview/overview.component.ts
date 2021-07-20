@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginatorIntl, MatPaginator, PageEvent} from '@angular/material/paginator';
 import {Subject} from 'rxjs';
 import {Sort} from '@angular/material/sort';
+import { Router } from '@angular/router';
 
 //source https://material.angular.io/components/paginator/examples
 
@@ -17,7 +18,9 @@ import {Sort} from '@angular/material/sort';
 })
 export class OverviewComponent implements OnInit{
  
-  constructor(private dataService : DataService) {
+  constructor(
+    private router:Router,
+    private dataService : DataService ) {
     
   }
   
@@ -29,7 +32,7 @@ export class OverviewComponent implements OnInit{
   searchPainMeasure = ""
   searchd1 = ""
   searchd2 = ""
-  pageSize = 20
+  pageSize = 10
   pageNumber = 0
   sort = 'patienthospitalnumber'
   ascDesc = 'true'
@@ -158,6 +161,12 @@ export class OverviewComponent implements OnInit{
         }
       })
     }
+
+  getPatientOverview(id:any)
+  {
+    console.log(id)
+    this.router.navigate([`/overview/${id}`]);
+  }
 
   //TODO Create one function to work with all input fields
 

@@ -2,6 +2,16 @@ table {
   width:100%;
 }
 
+tr.overview-rows
+{
+  cursor:pointer;
+}
+
+tr.overview-rows:hover
+{
+  background-color: lightgray;
+}
+
  .mat-header-cell
 {
   border: 1px solid transparent;
