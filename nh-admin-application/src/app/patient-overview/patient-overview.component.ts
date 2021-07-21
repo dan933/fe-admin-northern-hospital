@@ -18,7 +18,16 @@ export class PatientOverviewComponent implements OnInit {
     this.id = params.id)
   }
 
+  dataSource:any[] = []
+
+
   ngOnInit(): void {
+    this.dataService.getAnxiety(this.id)
+    .subscribe((data:any) => {
+      this.dataSource = data    
+      console.log(this.dataSource)  
+    })
+    
   }
 
 }
