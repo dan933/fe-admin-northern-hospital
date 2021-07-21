@@ -52,9 +52,14 @@ export class OverviewComponent implements OnInit{
   //When component first loads
   ngOnInit() {  
   this.dataService.getOverview(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-  .subscribe((data:any) => {
+  .subscribe(
+    (data:any) => {
       this.dataSource = data.patients
-      this.numberOfRecords = data.totalItems
+      this.numberOfRecords = data.totalItems    
+    },
+    (error:any) => {
+      console.log(error)
+      alert('api is down')
     })
     
   } 
