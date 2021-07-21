@@ -31,3 +31,4 @@ export class PatientOverviewComponent implements OnInit {
   }
 
 }
+// https://swimlane.gitbook.io/ngx-charts/

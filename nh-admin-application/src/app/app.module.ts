@@ -32,6 +32,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {MatSortModule} from '@angular/material/sort';
 import { PatientOverviewComponent } from './patient-overview/patient-overview.component';
 
+//Charts ngx
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 
 
 @NgModule({
@@ -53,7 +56,8 @@ import { PatientOverviewComponent } from './patient-overview/patient-overview.co
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    NgxChartsModule
   ],
   exports:[MatToolbarModule,MatFormFieldModule],
   providers: [DataService],
