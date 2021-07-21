@@ -11,8 +11,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { OverviewComponent } from './overview/overview.component';
 import { PatientsComponent } from './patients/patients.component';
 
-//data service
+//data and chart services
 import { DataService } from './services/data.service';
+import { ChartService } from './services/chart.service';
 
 //for CRUD http requests
 import { HttpClientModule } from '@angular/common/http';
@@ -60,7 +61,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     NgxChartsModule
   ],
   exports:[MatToolbarModule,MatFormFieldModule],
-  providers: [DataService],
+  providers: [DataService, ChartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

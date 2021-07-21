@@ -164,7 +164,6 @@ export class OverviewComponent implements OnInit{
 
   getPatientOverview(id:any)
   {
-    console.log(id)
     this.router.navigate([`/overview/${id}`]);
   }
 

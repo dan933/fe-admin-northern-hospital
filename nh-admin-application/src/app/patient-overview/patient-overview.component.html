@@ -1,2 +1,17 @@
 <p>patient-overview works!</p>
 <p>{{id}}</p>
+<div style="width: 800px; height: 700px;">
+<ngx-charts-line-chart
+  [scheme]="colorScheme"
+  [legend]="legend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxis]="xAxis"
+  [yAxis]="yAxis"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  [timeline]="timeline"
+  [results]="multi"
+  >
+</ngx-charts-line-chart>
+</div>
