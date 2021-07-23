@@ -12,26 +12,6 @@ export class PatientOverviewComponent implements OnInit {
 
   id:string=""
 
-  //chart params
-  multi:any[] = [];
-  view: any[] = [700,300];
-
-  // chart options
-  legend: boolean = true;
-  showLabels: boolean = true;
-  animations: boolean = true;
-  xAxis: boolean = true;
-  yAxis: boolean = true;
-  showYAxisLabel: boolean = false;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Population';
-  timeline: boolean = true;
-
-  colorScheme = {
-    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
-  };
-
   constructor(
     private dataService : DataService,
     private chartService: ChartService,
@@ -42,11 +22,11 @@ export class PatientOverviewComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.dataService.getAnxiety(this.id)
-    .subscribe((data:any) => {
-      this.multi = this.chartService.ngxFormat(data)
-      console.log(this.multi)
-    })
+    // this.dataService.getAnxiety(this.id)
+    // .subscribe((data:any) => {
+    //   this.multi = this.chartService.ngxFormat(data)
+    //   console.log(this.multi)
+    // })
     
   }
 }
