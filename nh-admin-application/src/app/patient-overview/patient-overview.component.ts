@@ -3,6 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { ChartService } from '../services/chart.service';
 
+
+//Wijmo Chart
+
+
 @Component({
   selector: 'app-patient-overview',
   templateUrl: './patient-overview.component.html',
@@ -11,6 +15,7 @@ import { ChartService } from '../services/chart.service';
 export class PatientOverviewComponent implements OnInit {
 
   id:string=""
+  
 
   constructor(
     private dataService : DataService,

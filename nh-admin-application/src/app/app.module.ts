@@ -33,6 +33,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {MatSortModule} from '@angular/material/sort';
 import { PatientOverviewComponent } from './patient-overview/patient-overview.component';
 
+//charts
+
+
 
 @NgModule({
   declarations: [
