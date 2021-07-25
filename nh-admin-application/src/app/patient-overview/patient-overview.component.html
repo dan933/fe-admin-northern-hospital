@@ -2,12 +2,22 @@
     <h1>URN: {{id}}<br>{{name[0].firstname}} {{name[0].surname}} Summary</h1>
 </div>
 
-<!-- navbar for questionare/pain/fluid levels -->
-<nav style="margin-left:30px">
-    <button mat-raised-button>Anxiety Depression Questionare</button>
-</nav>
+<mat-toolbar-row>
+    <button mat-raised-button (click)="togglefun()">anxietydepressionchart</button>
+</mat-toolbar-row>
+<app-anxiety-depression-chart *ngIf="toggle"></app-anxiety-depression-chart>
+
+<router-outlet></router-outlet>
 
 
-<div style="width:30%; height:30%; padding-left: 100px;">
-    <div echarts [options]="chartOption" class="demo-chart"></div>
-</div>
+<!-- <mat-toolbar class="nav-bar">
+    <mat-toolbar-row>
+    <a mat-button href="https://www.nh.org.au/" id="logo">Northern Health</a>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <button mat-button  routerLink="/overview" routerLinkActive="activebutton">Overview</button>
+        <button mat-button routerLink="/patients" routerLinkActive="activebutton">Patients</button>
+    </mat-toolbar-row>
+</mat-toolbar>
+    
+<router-outlet></router-outlet> -->

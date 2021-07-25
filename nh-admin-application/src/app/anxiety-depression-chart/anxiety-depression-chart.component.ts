@@ -8,15 +8,14 @@ import { EChartsOption } from 'echarts';
 
 
 @Component({
-  selector: 'app-patient-overview',
-  templateUrl: './patient-overview.component.html',
-  styleUrls: ['./patient-overview.component.scss']
+  selector: 'app-anxiety-depression-chart',
+  templateUrl: './anxiety-depression-chart.component.html',
+  styleUrls: ['./anxiety-depression-chart.component.scss']
 })
-export class PatientOverviewComponent implements OnInit {
+export class AnxietyDepressionChartComponent implements OnInit {
 
   id:string=""
   name:any[]=[]
-  toggle:boolean = true;
   
   chartOption: EChartsOption = {}
 
@@ -30,11 +29,10 @@ export class PatientOverviewComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.dataService.getAnxiety(this.id)
-    // .subscribe((data:any) => {
-    //   this.multi = this.chartService.ngxFormat(data)
-    //   console.log(this.multi)
-    // })
+    this.dataService.getAnxiety(this.id)
+    .subscribe((data:any) => {
+      this.chartOption = this.chartService.echartsFormat(data)
+    })
 
     this.dataService.getPatientName(this.id)
     .subscribe((data:any) => {
@@ -44,9 +42,4 @@ export class PatientOverviewComponent implements OnInit {
     
   }
 
-  togglefun(){
-    this.toggle = !this.toggle
-
-  }
 }
-// https://swimlane.gitbook.io/ngx-charts/

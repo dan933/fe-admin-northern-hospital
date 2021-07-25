@@ -79,26 +79,6 @@ export class OverviewComponent implements OnInit{
     //Pagination similar to the NBA website
     //e.g select which page you want
 
-    // sortData(sort: Sort) {
-    //   const data = this.dataSource.slice();
-    //   if (!sort.active || sort.direction === '') {
-    //     this.dataSource = data;
-    //     return;
-    //   }
-    //   this.dataSource = data.sort((a, b) => {
-    //     const isAsc = sort.direction === 'asc';
-    //     switch (sort.active) {
-    //       case 'patienthospitalnumber': return compare(a.patienthospitalnumber, b.patienthospitalnumber, isAsc);
-    //       case 'surname': return compare(a.surname, b.surname, isAsc);
-    //       case 'firstname': return compare(a.firstname, b.firstname, isAsc);
-    //       case 'question_id': return compare(a.question_id, b.question_id, isAsc);
-    //       case 'painmeasure': return compare(a.painmeasure, b.painmeasure, isAsc);
-    //       case 'd1': return compare(a.d1, b.d1, isAsc);
-    //       case 'd2': return compare(a.d2, b.d2, isAsc);
-    //       default: return 0;
-    //     }
-    //   })
-    // }
 
     sortData(sort: Sort) {
       const data = this.dataSource.slice();

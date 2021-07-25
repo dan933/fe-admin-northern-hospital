@@ -36,6 +36,7 @@ import { PatientOverviewComponent } from './patient-overview/patient-overview.co
 
 //charts
 import { NgxEchartsModule } from 'ngx-echarts';
+import { AnxietyDepressionChartComponent } from './anxiety-depression-chart/anxiety-depression-chart.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
     TopNavBarComponent,
     OverviewComponent,
     PatientOverviewComponent,
-    PatientsComponent
+    PatientsComponent,
+    AnxietyDepressionChartComponent,
   ],
   imports: [
     BrowserModule,
