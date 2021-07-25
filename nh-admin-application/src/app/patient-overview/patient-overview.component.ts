@@ -10,7 +10,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-patient-overview',
   templateUrl: './patient-overview.component.html',
-  styleUrls: ['./patient-overview.component.css']
+  styleUrls: ['./patient-overview.component.scss']
 })
 export class PatientOverviewComponent implements OnInit {
 

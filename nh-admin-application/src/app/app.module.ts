@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
 //routing
 import { AppRoutingModule } from './app-routing.module';
 
 //Components
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { TopNavBarComponent } from './top-nav-bar/top-nav-bar.component';
 import { OverviewComponent } from './overview/overview.component';
 import { PatientsComponent } from './patients/patients.component';
 
@@ -26,6 +25,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 
 //Pagination and sorting
@@ -36,15 +36,13 @@ import { PatientOverviewComponent } from './patient-overview/patient-overview.co
 //charts
 import { NgxEchartsModule } from 'ngx-echarts';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
+    TopNavBarComponent,
     OverviewComponent,
-    PatientsComponent,
     PatientOverviewComponent,
+    PatientsComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +55,9 @@ import { NgxEchartsModule } from 'ngx-echarts';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
     MatSortModule,
+    FlexLayoutModule,
     NgxEchartsModule.forRoot({
       /**
        * This will import all modules from echarts.
@@ -67,7 +67,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
       echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
     })
   ],
-  exports:[MatToolbarModule,MatFormFieldModule],
+  exports:[MatToolbarModule,MatFormFieldModule, MatButtonModule],
   providers: [DataService, ChartService],
   bootstrap: [AppComponent]
 })

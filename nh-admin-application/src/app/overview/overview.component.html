@@ -1,131 +1,131 @@
 <!-- source: https://www.youtube.com/watch?v=2OHbjep_WjQ&t=639s&ab_channel=freeCodeCamp.org -->
 <div id="table-div">
-  <table mat-table [dataSource]="dataSource" matSort (matSortChange)=sortData($event) class="mat-elevation-z8">
-
- <!-- Table Columns -->
-      <!-- patienthospitalnumber Column -->
-      <ng-container matColumnDef="patienthospitalnumber">
-        <th mat-sort-header mat-header-cell *matHeaderCellDef class="table-headers">ID</th>
-        <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.patienthospitalnumber}} </td>
-      </ng-container>
-    
-      <!-- surname Column -->
-      <ng-container matColumnDef="surname">
-        <th mat-sort-header *matHeaderCellDef class="table-headers"> Surname</th>
-        <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.surname}}</td>
-      </ng-container>
-    
-      <!-- firstname Column -->
-      <ng-container matColumnDef="firstname">
-        <th mat-sort-header *matHeaderCellDef class="table-headers"> Firstname </th>
-        <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.firstname}} </td>
-      </ng-container>
-    
-      <!-- question_id Column -->
-      <ng-container matColumnDef="question_id">
-        <th mat-sort-header *matHeaderCellDef class="table-headers"> Questionare</th>
-        <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.question_id}} </td>
-      </ng-container>
-
-      <!-- painmeasure Column -->
-      <ng-container matColumnDef="painmeasure">
-          <th mat-sort-header *matHeaderCellDef class="table-headers"> Pain Measure</th>
-          <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.painmeasure}} </td>
-        </ng-container>
-
-        <!-- d1 Column -->
-      <ng-container matColumnDef="d1">
-          <th mat-sort-header *matHeaderCellDef class="table-headers"> D1</th>
-          <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.d1}} </td>
-        </ng-container>
-
-        <!-- d2 column -->
-        <ng-container matColumnDef="d2">
-          <th mat-sort-header *matHeaderCellDef class="table-headers"> D2</th>
-          <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.d2}} </td>
-        </ng-container>
-        
-          <!-- Filter row -->
-        <ng-container matColumnDef="patienthospitalnumber-filter">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
-            
-              <input type="number"  (keyup)="applyIdFilter($event)" placeholder="filter" #input autocomplete="off">
-           
-          </th>
-        </ng-container>
-
-        <ng-container matColumnDef="surname-filter">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
-            
-              <input type="text"  (keyup)="applySurnameFilter($event)" placeholder="filter" #input>
-            
-          </th>
-        </ng-container>
-
-        <ng-container matColumnDef="firstname-filter">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
-            
-              <input type="text"  (keyup)="applyFirstnameFilter($event)" placeholder="filter" #input>
-          
-          </th>
-        </ng-container>
-
-        <ng-container matColumnDef="question_id-filter">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
-            
-              <input type="number" (keyup)="applyQuestionIdFilter($event)" placeholder="filter" #input autocomplete="off">
-            
-          </th>
-        </ng-container>
-
-        <ng-container matColumnDef="painmeasure-filter">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
-            
-              <input  type="number" (keyup)="applyPainmeasureFilter($event)" placeholder="filter" #input autocomplete="off">
-            
-          </th>
-        </ng-container>
-
-        <ng-container matColumnDef="d1-filter">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
-           
-              <input type="number" (keyup)="applyD1Filter($event)" placeholder="filter" #input autocomplete="off">
-            
-          </th>
-        </ng-container>
-
-        <ng-container matColumnDef="d2-filter">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
-              <input type="number" (keyup)="applyD2Filter($event)" placeholder="filter" #input autocomplete="off">
-          </th>
-        </ng-container>
-        
-
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
-      <tr mat-header-row *matHeaderRowDef="displayedColumnFilters; sticky:true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="overview-rows"></tr>
-    </table>
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)=sortData($event) class="mat-elevation-z8">
   
-    <mat-paginator
-      [length]="numberOfRecords"
-      [pageIndex]="pageNumber"
-      [pageSize]="pageSize"
-      [pageSizeOptions]="[10, 50, 100]"
-      [length]="10"
-      (page) = pageChange($event)
-      showFirstLastButtons
-      #paginator
-    >
-    </mat-paginator>
-    <div style="height: 200px;"></div>
-
-</div>
-
-
-
-
-<!-- 
-  problem need to add a border top line or remove the header bottom line
-
-solution https://stackoverflow.com/questions/60260534/how-to-add-filter-row-inside-material-table/64746552-->
+   <!-- Table Columns -->
+        <!-- patienthospitalnumber Column -->
+        <ng-container matColumnDef="patienthospitalnumber">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef class="table-headers">ID</th>
+          <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.patienthospitalnumber}} </td>
+        </ng-container>
+      
+        <!-- surname Column -->
+        <ng-container matColumnDef="surname">
+          <th mat-sort-header *matHeaderCellDef class="table-headers"> Surname</th>
+          <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.surname}}</td>
+        </ng-container>
+      
+        <!-- firstname Column -->
+        <ng-container matColumnDef="firstname">
+          <th mat-sort-header *matHeaderCellDef class="table-headers"> Firstname </th>
+          <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.firstname}} </td>
+        </ng-container>
+      
+        <!-- question_id Column -->
+        <ng-container matColumnDef="question_id">
+          <th mat-sort-header *matHeaderCellDef class="table-headers"> Questionare</th>
+          <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.question_id}} </td>
+        </ng-container>
+  
+        <!-- painmeasure Column -->
+        <ng-container matColumnDef="painmeasure">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> Pain Measure</th>
+            <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.painmeasure}} </td>
+          </ng-container>
+  
+          <!-- d1 Column -->
+        <ng-container matColumnDef="d1">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> D1</th>
+            <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.d1}} </td>
+          </ng-container>
+  
+          <!-- d2 column -->
+          <ng-container matColumnDef="d2">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> D2</th>
+            <td mat-cell *matCellDef="let element" (click)= "getPatientOverview(element.patienthospitalnumber)"> {{element.d2}} </td>
+          </ng-container>
+          
+            <!-- Filter row -->
+          <ng-container matColumnDef="patienthospitalnumber-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
+              
+                <input type="number"  (keyup)="applyIdFilter($event)" placeholder="filter" #input autocomplete="off">
+             
+            </th>
+          </ng-container>
+  
+          <ng-container matColumnDef="surname-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
+              
+                <input type="text"  (keyup)="applySurnameFilter($event)" placeholder="filter" #input>
+              
+            </th>
+          </ng-container>
+  
+          <ng-container matColumnDef="firstname-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
+              
+                <input type="text"  (keyup)="applyFirstnameFilter($event)" placeholder="filter" #input>
+            
+            </th>
+          </ng-container>
+  
+          <ng-container matColumnDef="question_id-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
+              
+                <input type="number" (keyup)="applyQuestionIdFilter($event)" placeholder="filter" #input autocomplete="off">
+              
+            </th>
+          </ng-container>
+  
+          <ng-container matColumnDef="painmeasure-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
+              
+                <input  type="number" (keyup)="applyPainmeasureFilter($event)" placeholder="filter" #input autocomplete="off">
+              
+            </th>
+          </ng-container>
+  
+          <ng-container matColumnDef="d1-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
+             
+                <input type="number" (keyup)="applyD1Filter($event)" placeholder="filter" #input autocomplete="off">
+              
+            </th>
+          </ng-container>
+  
+          <ng-container matColumnDef="d2-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+                <input type="number" (keyup)="applyD2Filter($event)" placeholder="filter" #input autocomplete="off">
+            </th>
+          </ng-container>
+          
+  
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnFilters; sticky:true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="overview-rows"></tr>
+      </table>
+    
+      <mat-paginator
+        [length]="numberOfRecords"
+        [pageIndex]="pageNumber"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[10, 50, 100]"
+        [length]="10"
+        (page) = pageChange($event)
+        showFirstLastButtons
+        #paginator
+      >
+      </mat-paginator>
+      <div style="height: 200px;"></div>
+  
+  </div>
+  
+  
+  
+  
+  <!-- 
+    problem need to add a border top line or remove the header bottom line
+  
+  solution https://stackoverflow.com/questions/60260534/how-to-add-filter-row-inside-material-table/64746552-->
