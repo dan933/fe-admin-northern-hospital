@@ -7,10 +7,7 @@ import { PatientsComponent } from './patients/patients.component';
 const routes: Routes = [
   {path:'overview/:id', component:PatientOverviewComponent},
   {path:'overview', component:OverviewComponent},
-  
   {path:'patients', component:PatientsComponent},
- 
-
   {path:'', redirectTo:'overview', pathMatch:'full'}
 ];
 

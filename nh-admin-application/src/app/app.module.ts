@@ -34,6 +34,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { PatientOverviewComponent } from './patient-overview/patient-overview.component';
 
 //charts
+import { NgxEchartsModule } from 'ngx-echarts';
 
 
 
@@ -56,7 +57,15 @@ import { PatientOverviewComponent } from './patient-overview/patient-overview.co
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    NgxEchartsModule.forRoot({
+      /**
+       * This will import all modules from echarts.
+       * If you only need custom modules,
+       * please refer to [Custom Build] section.
+       */
+      echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
+    })
   ],
   exports:[MatToolbarModule,MatFormFieldModule],
   providers: [DataService, ChartService],

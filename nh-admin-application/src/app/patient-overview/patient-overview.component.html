@@ -1,2 +1,10 @@
-<p>patient-overview works!</p>
-<p>{{id}}</p>
+<div style="padding: 30px; font-weight: bolder;">
+    <h1>URN: {{id}}<br>{{name[0].firstname}} {{name[0].surname}} Summary</h1>
+</div>
+
+<!-- navbar for questionare/pain/fluid levels -->
+
+
+<div style="width:30%; height:30%; padding-left: 100px;">
+    <div echarts [options]="chartOption" class="demo-chart"></div>
+</div>

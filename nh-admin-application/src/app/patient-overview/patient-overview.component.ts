@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { ChartService } from '../services/chart.service';
 
-
-//Wijmo Chart
+//echarts
+import { EChartsOption } from 'echarts';
 
 
 @Component({
@@ -15,7 +15,9 @@ import { ChartService } from '../services/chart.service';
 export class PatientOverviewComponent implements OnInit {
 
   id:string=""
+  name:any[]=[]
   
+  chartOption: EChartsOption = {}
 
   constructor(
     private dataService : DataService,
@@ -32,6 +34,17 @@ export class PatientOverviewComponent implements OnInit {
     //   this.multi = this.chartService.ngxFormat(data)
     //   console.log(this.multi)
     // })
+
+    this.dataService.getAnxiety(this.id)
+    .subscribe((data:any) => {
+      this.chartOption = this.chartService.echartsFormat(data)
+    })
+
+    this.dataService.getPatientName(this.id)
+    .subscribe((data:any) => {
+      this.name = data
+      console.log(this.name)
+    })
     
   }
 }
