@@ -26,6 +26,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 //Pagination and sorting
@@ -57,6 +58,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     MatInputModule,
     MatButtonModule,
     MatSortModule,
+    MatMenuModule,
     FlexLayoutModule,
     NgxEchartsModule.forRoot({
       /**
