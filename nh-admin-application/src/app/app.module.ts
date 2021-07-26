@@ -32,20 +32,21 @@ import {MatMenuModule} from '@angular/material/menu';
 //Pagination and sorting
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatSortModule} from '@angular/material/sort';
-import { PatientOverviewComponent } from './patient-overview/patient-overview.component';
 
 //charts
 import { NgxEchartsModule } from 'ngx-echarts';
 import { AnxietyDepressionChartComponent } from './anxiety-depression-chart/anxiety-depression-chart.component';
+import { PatientOverviewNavBarComponent } from './patient-overview-nav-bar/patient-overview-nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopNavBarComponent,
     OverviewComponent,
-    PatientOverviewComponent,
+
     PatientsComponent,
     AnxietyDepressionChartComponent,
+    PatientOverviewNavBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +63,7 @@ import { AnxietyDepressionChartComponent } from './anxiety-depression-chart/anxi
     MatSortModule,
     MatMenuModule,
     FlexLayoutModule,
+    
     NgxEchartsModule.forRoot({
       /**
        * This will import all modules from echarts.
@@ -71,7 +73,7 @@ import { AnxietyDepressionChartComponent } from './anxiety-depression-chart/anxi
       echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
     })
   ],
-  exports:[MatToolbarModule,MatFormFieldModule, MatButtonModule],
+  exports:[MatToolbarModule,MatFormFieldModule, MatButtonModule,MatMenuModule],
   providers: [DataService, ChartService],
   bootstrap: [AppComponent]
 })

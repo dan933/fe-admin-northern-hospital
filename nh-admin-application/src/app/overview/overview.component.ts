@@ -149,7 +149,7 @@ export class OverviewComponent implements OnInit{
 
   getPatientOverview(id:any)
   {
-    this.router.navigate([`/overview/${id}`]);
+    this.router.navigate([`/overview/anxietydepressionchart/${id}`]);
   }
 
   //TODO Create one function to work with all input fields

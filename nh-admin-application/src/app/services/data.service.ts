@@ -20,8 +20,8 @@ export class DataService {
   }
 
 //anxiety and depression endpoints
-  getAnxiety(id:string){
-    let output:any = this.http.get(`${url}/anxietydepression/find/questionare_date/true/id/${id}?startDate=2020-06-18T00:50:12.000Z&select=d1`)
+  getAnxiety(id:string,select:string){
+    let output:any = this.http.get(`${url}/anxietydepression/find/questionare_date/true/id/${id}?startDate=2020-06-18T00:50:12.000Z&select=${select}`)
     return output
   }
 

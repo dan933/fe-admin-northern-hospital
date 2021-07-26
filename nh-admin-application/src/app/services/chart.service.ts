@@ -59,7 +59,12 @@ export class ChartService {
         text:`Question ${name.toUpperCase()} Results`,
         left: 'center'
       },
-      
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'none'
+        }
+    },
       xAxis: {
         type: 'category',
         data: xData,
@@ -94,7 +99,7 @@ export class ChartService {
             yAxisIndex: 0,
             filterMode: 'none'
         }
-    ]
+      ],
     };
     return output;
   }
