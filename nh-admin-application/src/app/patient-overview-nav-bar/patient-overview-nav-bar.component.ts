@@ -23,7 +23,6 @@ export class PatientOverviewNavBarComponent implements OnInit {
     this.dataService.getPatientName(this.id)
     .subscribe((data:any) => {
       this.name = data
-      console.log(this.name)
     })
   }
 

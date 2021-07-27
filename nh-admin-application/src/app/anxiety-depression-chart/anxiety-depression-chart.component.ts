@@ -67,18 +67,22 @@ export class AnxietyDepressionChartComponent implements OnInit {
     .subscribe((data:any) => {
       this.dFourOptions = this.chartService.echartsFormat(data);
     })
+
     this.dataService.getAnxiety(this.id,"d5")
     .subscribe((data:any) => {
       this.dFiveOptions = this.chartService.echartsFormat(data);
     })
+
     this.dataService.getAnxiety(this.id,"d6")
     .subscribe((data:any) => {
       this.dSixOptions = this.chartService.echartsFormat(data);
     })
+
     this.dataService.getAnxiety(this.id,"d7")
     .subscribe((data:any) => {
       this.dSevenOptions = this.chartService.echartsFormat(data);
     })
+    
     this.dataService.getAnxiety(this.id,"d8")
     .subscribe((data:any) => {
       this.dEightOptions = this.chartService.echartsFormat(data);
@@ -89,11 +93,48 @@ export class AnxietyDepressionChartComponent implements OnInit {
       this.name = data    
     })
 
+    this.dataService.getAnxiety(this.id,"a1")
+    .subscribe((data:any) => {
+      this.aOneOptions = this.chartService.echartsFormat(data);
+    })
+
+    this.dataService.getAnxiety(this.id,"a2")
+    .subscribe((data:any) => {
+      this.aTwoOptions = this.chartService.echartsFormat(data);
+    })
+
+    this.dataService.getAnxiety(this.id,"a3")
+    .subscribe((data:any) => {
+      this.aThreeOptions = this.chartService.echartsFormat(data);
+    })
     
-    
+    this.dataService.getAnxiety(this.id,"a4")
+    .subscribe((data:any) => {
+      this.aFourOptions = this.chartService.echartsFormat(data);
+    })
+
+    this.dataService.getAnxiety(this.id,"a5")
+    .subscribe((data:any) => {
+      this.aFiveOptions = this.chartService.echartsFormat(data);
+    })
+
+    this.dataService.getAnxiety(this.id,"a6")
+    .subscribe((data:any) => {
+      this.aSixOptions = this.chartService.echartsFormat(data);
+    })
+
+    this.dataService.getAnxiety(this.id,"a7")
+    .subscribe((data:any) => {
+      this.aSevenOptions = this.chartService.echartsFormat(data);
+    })
+
+    this.dataService.getAnxiety(this.id,"a8")
+    .subscribe((data:any) => {
+      this.aEightOptions = this.chartService.echartsFormat(data);
+    })    
   }
 
 }
 
-//TODO make endpoint get all questions d1 to a8 then filter and pass to charts format function 
+//TODO make api endpoint get all questions d1 to a8 then filter and pass to charts format function 
 //for now ask api to getAnxiety for each question
