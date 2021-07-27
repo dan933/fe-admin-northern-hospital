@@ -2,9 +2,6 @@ import { stringify } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-//echarts
-import { EChartsOption } from 'echarts';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -50,7 +47,7 @@ export class ChartService {
       xData.push(date)
     }
 
-    let output:EChartsOption = 
+    let output:any = 
     {
       title: {
         text:`Question ${column.toUpperCase()} Results`,
