@@ -12,51 +12,48 @@ export class ChartService {
 
   constructor() { }
 
-  // ngxFormat(input:any[])
-  // {
-  //   let name = Object.keys(input[0])[0]
-  //   let dateValue = Object.keys(input[0])[1]
-  //   let output:any = [
-  //     {
-  //       "name": name,
-  //       "series":[]
-  //     }
-  //   ];
-  //   let dateConvert:string = ""
+  //source https://stackoverflow.com/questions/2086744/javascript-function-to-convert-date-yyyy-mm-dd-to-dd-mm-yy
+  formatDate(input:string){
+    input = input.slice(0,10)
+    let datePart:any = input.match(/\d+/g)
+    let year = datePart[0]
+    let month = datePart[1]
+    let day = datePart[2]
+  
+    return `${day}-${month}-${year}`  
+  }
 
-  //   for (let row of input)
-  //   {
-  //     dateConvert = row[dateValue]
-  //     dateConvert = dateConvert.slice(0,10)
-  //     output[0].series.push({"name": new Date(dateConvert), "value":row[name]}) 
-  //   }
-  //   return output;    
-  // }
+  echartsFormat(input:any,column:string){
 
-  echartsFormat(input:any){
-
+    // X and Y Axis Initialisation
     let xData = []
     let yData = []
 
-    let name = Object.keys(input[0])[0]
-    let dateValue = Object.keys(input[0])[1]
+    //Date Column
+    let questionareDate:string = 'questionare_date';
 
-    let dateConvert:any = ''
+    //preperation for date conversion
+    let date = ''
 
-    for (let row of input)
-    {
+    
+    //value for ydata
+    for (let row in input)
+    { 
 
-      dateConvert = row[dateValue]
-      dateConvert = dateConvert.slice(0,10)
+      date = this.formatDate(input[row][questionareDate])
       
-      xData.push(dateConvert);
-      yData.push(row[name]);
+
+      //add Y Axis Data
+      yData.push(input[row][column]);
+      
+      //add X Axis Data aka Dates
+      xData.push(date)
     }
 
     let output:EChartsOption = 
     {
       title: {
-        text:`Question ${name.toUpperCase()} Results`,
+        text:`Question ${column.toUpperCase()} Results`,
         left: 'center'
       },
       tooltip: {
