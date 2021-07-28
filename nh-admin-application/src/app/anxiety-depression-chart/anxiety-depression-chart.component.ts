@@ -38,7 +38,7 @@ export class AnxietyDepressionChartComponent implements OnInit {
   aEightOptions:EChartsOption = {}
 
 
-  constructor(
+  constructor(    
     private dataService : DataService,
     private chartService: ChartService,
     private route: ActivatedRoute) { 
