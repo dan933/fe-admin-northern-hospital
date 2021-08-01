@@ -8,6 +8,7 @@ import { EChartsOption } from 'echarts';
 
 //Date range picker
 import {FormGroup, FormControl} from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
 
 
 @Component({
@@ -16,10 +17,13 @@ import {FormGroup, FormControl} from '@angular/forms';
   styleUrls: ['./anxiety-depression-chart.component.scss']
 })
 export class AnxietyDepressionChartComponent implements OnInit {
+  
+  today = new Date(Date.now())
+  lastYear = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000)
 
   range = new FormGroup({
-    start: new FormControl(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)),
-    end: new FormControl(new Date(Date.now()))
+    start: new FormControl(this.lastYear),
+    end: new FormControl(this.today)
   });
 
   //Patient summary heading
@@ -51,12 +55,13 @@ export class AnxietyDepressionChartComponent implements OnInit {
     private chartService: ChartService,
     private route: ActivatedRoute) { 
     this.route.params.subscribe( params => 
-    this.id = params.id)
+    this.id = params.id
+    )
   }
 
 
   ngOnInit(): void {
-    this.dataService.getAnxiety(this.id)
+    this.dataService.getAnxiety(this.id,this.lastYear,this.today)
     .subscribe((data:any) => {
       this.dOneOptions = this.chartService.echartsFormat(data,'d1');
       this.dTwoOptions = this.chartService.echartsFormat(data,'d2');
@@ -79,6 +84,33 @@ export class AnxietyDepressionChartComponent implements OnInit {
     this.dataService.getPatientName(this.id)
       .subscribe((data:any) => {
       this.name = data    
+    })
+  }
+
+  // source https://stackoverflow.com/questions/63823557/angular-material-datepickerrange-get-value-on-change
+  saveDate(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement){
+
+    console.log(typeof(dateRangeEnd.value),dateRangeStart.value)
+
+    this.dataService.getAnxiety(this.id,dateRangeStart.value,dateRangeEnd.value)
+    .subscribe((data:any) => {
+      console.log(data)
+      this.dOneOptions = this.chartService.echartsFormat(data,'d1');
+      this.dTwoOptions = this.chartService.echartsFormat(data,'d2');
+      this.dThreeOptions = this.chartService.echartsFormat(data,'d3');
+      this.dFourOptions = this.chartService.echartsFormat(data,'d4');
+      this.dFiveOptions = this.chartService.echartsFormat(data,'d5');
+      this.dSixOptions = this.chartService.echartsFormat(data,'d6');
+      this.dSevenOptions = this.chartService.echartsFormat(data,'d7');
+      this.dEightOptions = this.chartService.echartsFormat(data,'d8');
+      this.aOneOptions = this.chartService.echartsFormat(data,'a1');
+      this.aTwoOptions = this.chartService.echartsFormat(data,'a2');
+      this.aThreeOptions = this.chartService.echartsFormat(data,'a3');
+      this.aFourOptions = this.chartService.echartsFormat(data,'a4');
+      this.aFiveOptions = this.chartService.echartsFormat(data,'a5');
+      this.aSixOptions = this.chartService.echartsFormat(data,'a6');
+      this.aSevenOptions = this.chartService.echartsFormat(data,'a7');
+      this.aEightOptions = this.chartService.echartsFormat(data,'a8');
     })
   }
 
