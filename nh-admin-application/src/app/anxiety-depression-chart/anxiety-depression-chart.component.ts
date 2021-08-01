@@ -6,6 +6,9 @@ import { ChartService } from '../services/chart.service';
 //echarts
 import { EChartsOption } from 'echarts';
 
+//Date range picker
+import {FormGroup, FormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-anxiety-depression-chart',
@@ -13,6 +16,11 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./anxiety-depression-chart.component.scss']
 })
 export class AnxietyDepressionChartComponent implements OnInit {
+
+  range = new FormGroup({
+    start: new FormControl(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)),
+    end: new FormControl(new Date(Date.now()))
+  });
 
   //Patient summary heading
   id:string=""

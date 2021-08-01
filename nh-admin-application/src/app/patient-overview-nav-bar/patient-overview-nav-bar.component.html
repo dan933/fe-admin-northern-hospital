@@ -1,13 +1,13 @@
 
-<div style="padding: 30px; font-weight: bolder;">
+<div style="padding-top: 30px; padding-left: 35px; padding-right: 35px; font-weight: bolder;">
     <h1>URN: {{id}}<br>{{name[0].firstname}} {{name[0].surname}} Summary</h1>
 
-<mat-toolbar style="margin: 10px;">
-  <button mat-button [matMenuTriggerFor]="menu" style="margin-left:20px;">Anxiety Depression</button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/overview/anxietydepressionchart/{{id}}" routerLinkActive="activebutton" >Anxiety Depression Charts</button>
-    <button mat-menu-item>Anxiety Depression Table</button>
-  </mat-menu>
-</mat-toolbar>
+  <mat-toolbar>
+    <button mat-button [matMenuTriggerFor]="menu" style="margin-left:20px;">Anxiety Depression</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/overview/anxietydepressionchart/{{id}}" routerLinkActive="activebutton" >Anxiety Depression Charts</button>
+      <button mat-menu-item>Anxiety Depression Table</button>
+    </mat-menu>
+  </mat-toolbar>
 </div>
 <router-outlet></router-outlet>

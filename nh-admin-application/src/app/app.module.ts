@@ -24,9 +24,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 //Pagination and sorting
@@ -43,7 +46,6 @@ import { PatientOverviewNavBarComponent } from './patient-overview-nav-bar/patie
     AppComponent,
     TopNavBarComponent,
     OverviewComponent,
-
     PatientsComponent,
     AnxietyDepressionChartComponent,
     PatientOverviewNavBarComponent,
@@ -63,7 +65,10 @@ import { PatientOverviewNavBarComponent } from './patient-overview-nav-bar/patie
     MatSortModule,
     MatMenuModule,
     FlexLayoutModule,
-    
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgxEchartsModule.forRoot({
       /**
        * This will import all modules from echarts.
@@ -73,7 +78,7 @@ import { PatientOverviewNavBarComponent } from './patient-overview-nav-bar/patie
       echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
     })
   ],
-  exports:[MatToolbarModule,MatFormFieldModule, MatButtonModule,MatMenuModule],
+  exports:[MatToolbarModule,MatFormFieldModule, MatButtonModule,MatMenuModule,MatDatepickerModule],
   providers: [DataService, ChartService],
   bootstrap: [AppComponent]
 })

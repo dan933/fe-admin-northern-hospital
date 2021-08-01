@@ -21,7 +21,7 @@ export class DataService {
 
 //anxiety and depression endpoints
   getAnxiety(id:string){
-    let output:any = this.http.get(`${url}/anxietydepression/find/questionare_date/true/id/${id}?startDate=2020-06-18T00:50:12.000Z`)
+    let output:any = this.http.get(`${url}/anxietydepression/find/questionare_date/true/id/${id}?startDate=2020-06-18T00:50:12.000Z&endDate=2025-06-09`)
     return output
   }
 
