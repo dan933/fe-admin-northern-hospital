@@ -20,6 +20,22 @@ export class ChartService {
     return `${day}-${month}-${year}`  
   }
 
+  formatFilterDate(input:HTMLInputElement, days:number){
+    let datePart:any = input.value.match(/\d+/g)
+    let year = datePart[2]
+    let month = datePart[1]
+    let day = datePart[0]
+
+    let output:any = `${month}-${day}-${year}` 
+
+    output = new Date(output)
+    output.setDate(output.getDate() + days)
+
+    
+
+    return output
+  }
+
   echartsFormat(input:any,column:string){
 
     // X and Y Axis Initialisation
