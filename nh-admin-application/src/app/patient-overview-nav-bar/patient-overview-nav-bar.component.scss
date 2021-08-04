@@ -1,6 +1,7 @@
 .mat-toolbar button
 {
     background-color: white;
+    color: black;
     font-weight: bolder;
 }
 
@@ -12,6 +13,12 @@
 .mat-toolbar
 {
     display: flex;
+    min-width: 475px;
+}
+
+a
+{
+    margin: 10px;
 }
 
   

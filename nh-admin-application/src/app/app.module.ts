@@ -41,6 +41,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { AnxietyDepressionChartComponent } from './anxiety-depression-chart/anxiety-depression-chart.component';
 import { PatientOverviewNavBarComponent } from './patient-overview-nav-bar/patient-overview-nav-bar.component';
+import { PainMeasureChartComponent } from './pain-measure-chart/pain-measure-chart.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { PatientOverviewNavBarComponent } from './patient-overview-nav-bar/patie
     PatientsComponent,
     AnxietyDepressionChartComponent,
     PatientOverviewNavBarComponent,
+    PainMeasureChartComponent,
   ],
   imports: [
     BrowserModule,
