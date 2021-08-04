@@ -10,6 +10,7 @@ import { DataService } from '../services/data.service';
 export class PatientOverviewNavBarComponent implements OnInit {
   id:string=""
   name:any[]=[{surname:"", firstname:""}]
+  heading:string = ""
 
   constructor(
     private route: ActivatedRoute,
@@ -17,13 +18,15 @@ export class PatientOverviewNavBarComponent implements OnInit {
     ) {
     this.route.params.subscribe( params => 
       this.id = params.id)
+      
+      this.dataService.getPatientName(this.id)
+      .subscribe((data:any) => {
+        this.name = data
+      })
    }
 
   ngOnInit(): void {
-    this.dataService.getPatientName(this.id)
-    .subscribe((data:any) => {
-      this.name = data
-    })
+    
   }
 
 }

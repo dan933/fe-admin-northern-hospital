@@ -36,7 +36,7 @@ export class ChartService {
     return output
   }
 
-  echartsFormat(input:any,column:string){
+  echartsFormat(input:any,column:string, chartType:string){
 
     // X and Y Axis Initialisation
     let xData = []
@@ -66,7 +66,7 @@ export class ChartService {
     let output:any = 
     {
       title: {
-        text:`Question ${column.toUpperCase()} Results`,
+        text:`${column.toUpperCase()}`,
         left: 'center'
       },
       tooltip: {
@@ -85,7 +85,7 @@ export class ChartService {
       series: [
         {
           data: yData,
-          type: 'scatter',
+          type: chartType,
         },
       ],
       dataZoom: [

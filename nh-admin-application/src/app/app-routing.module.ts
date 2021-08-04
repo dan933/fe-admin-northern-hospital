@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { OverviewComponent } from './overview/overview.component';
 import { PatientsComponent } from './patients/patients.component';
 import { AnxietyDepressionChartComponent } from './anxiety-depression-chart/anxiety-depression-chart.component';
+import { PainMeasureChartComponent } from './pain-measure-chart/pain-measure-chart.component';
 
 const routes: Routes = [
   {path:'overview/anxietydepressionchart/:id', component:AnxietyDepressionChartComponent},
+  {path:'overview/painmeasurechart/:id', component:PainMeasureChartComponent},
   {path:'overview', component:OverviewComponent},
   {path:'patients', component:PatientsComponent},
   {path:'', redirectTo:'overview', pathMatch:'full'}

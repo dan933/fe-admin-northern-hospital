@@ -30,4 +30,9 @@ export class DataService {
     let output:any = this.http.get(`${url}/patients/name/id/${id}`)
     return output;
   }
+
+  getPainMeasure(id:string, startDate:any, endDate:any){
+    let output:any = this.http.get(`${url}/painmeasure/find/questionare_date/true/id/${id}?startDate=${startDate}&endDate=${endDate}`)
+    return output;
+  }
 }

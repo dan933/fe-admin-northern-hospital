@@ -1,0 +1,7 @@
+.chart-container{
+    display: grid;  
+    row-gap: 5px; 
+    column-gap:5px; 
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    grid-template-rows: repeat(1, 600px);    
+  }
