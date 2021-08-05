@@ -42,6 +42,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { AnxietyDepressionChartComponent } from './anxiety-depression-chart/anxiety-depression-chart.component';
 import { PatientOverviewNavBarComponent } from './patient-overview-nav-bar/patient-overview-nav-bar.component';
 import { PainMeasureChartComponent } from './pain-measure-chart/pain-measure-chart.component';
+import { AnxietyDepressionTableComponent } from './anxiety-depression-table/anxiety-depression-table.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { PainMeasureChartComponent } from './pain-measure-chart/pain-measure-cha
     AnxietyDepressionChartComponent,
     PatientOverviewNavBarComponent,
     PainMeasureChartComponent,
+    AnxietyDepressionTableComponent,
   ],
   imports: [
     BrowserModule,

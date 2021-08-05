@@ -5,6 +5,11 @@
   <mat-toolbar>
     <a mat-raised-button routerLink="/overview/anxietydepressionchart/{{id}}" routerLinkActive="activebutton" >Anxiety Depression Graph</a>
     <a mat-raised-button routerLink="/overview/painmeasurechart/{{id}}" routerLinkActive="activebutton" >Pain Measure Graph</a>
+    <button mat-raised-button [matMenuTriggerFor]="menu">Tables</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item class="menu-item">All Questions</button>
+      <button mat-menu-item class="menu-item">Anxiety Depression</button>
+    </mat-menu>
   </mat-toolbar>
 </div>
 <router-outlet></router-outlet>

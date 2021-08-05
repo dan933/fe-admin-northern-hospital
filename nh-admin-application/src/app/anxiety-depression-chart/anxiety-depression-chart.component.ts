@@ -73,21 +73,16 @@ export class AnxietyDepressionChartComponent implements OnInit {
     private chartService: ChartService
     ) { 
     this.route.params.subscribe( params => 
-    this.id = params.id
-  )
+    this.id = params.id)
   }
   
 
 
   ngOnInit(): void {
-
-    this.dataService.getPatientName(this.id)
-      .subscribe((data:any) => {
-      this.name = data    
-    })
     
-    this.dataService.getAnxiety(this.id,this.lastYear,this.today)
+    this.dataService.getAnxietyChart(this.id,this.lastYear,this.today)
     .subscribe((data:any) => {
+      console.log(data)
       this.dOneOptions = this.chartService.echartsFormat(data,'d1','scatter');
       this.dTwoOptions = this.chartService.echartsFormat(data,'d2','scatter');
       this.dThreeOptions = this.chartService.echartsFormat(data,'d3','scatter');
@@ -112,7 +107,7 @@ export class AnxietyDepressionChartComponent implements OnInit {
     
     if (dateRangeStart.value != "" && dateRangeEnd.value != "")
     {
-      this.dataService.getAnxiety(this.id,this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1))
+      this.dataService.getAnxietyChart(this.id,this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1))
       .subscribe((data:any) => {
         this.dOneOptions = this.chartService.echartsFormat(data,'d1','scatter');
         this.dTwoOptions = this.chartService.echartsFormat(data,'d2','scatter');

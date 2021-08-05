@@ -57,12 +57,8 @@ export class PainMeasureChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataService.getPatientName(this.id)
-      .subscribe((data:any) => {
-      this.name = data    
-    })
-
-    this.dataService.getPainMeasure(this.id,this.lastYear,this.today)
+    
+    this.dataService.getPainMeasureChart(this.id,this.lastYear,this.today)
     .subscribe((data:any) => {
       console.log(data)
       this.painMeasureOptions = this.chartService.echartsFormat(data,'painmeasure','line');
@@ -74,7 +70,7 @@ export class PainMeasureChartComponent implements OnInit {
     
     if (dateRangeStart.value != "" && dateRangeEnd.value != "")
     {
-      this.dataService.getPainMeasure(this.id, this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1))
+      this.dataService.getPainMeasureChart(this.id, this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1))
       .subscribe((data:any) => {
         this.painMeasureOptions = this.chartService.echartsFormat(data,'painmeasure','line');
       })
