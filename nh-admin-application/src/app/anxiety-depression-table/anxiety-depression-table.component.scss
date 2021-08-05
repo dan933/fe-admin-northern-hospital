@@ -1,5 +1,14 @@
+#table-div
+{
+  height: 100vh;
+  width: 99vw;
+  overflow: auto;
+}
+
 table {
-    width:100%;
+    width:100vw;
+    height: 100vh;
+    overflow:auto;
   }
 
   .mat-column-select {
