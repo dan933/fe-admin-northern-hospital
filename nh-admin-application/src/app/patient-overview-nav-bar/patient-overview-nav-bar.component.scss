@@ -8,13 +8,14 @@
 {
     background-color: white;
     color: black;
-    font-weight: bolder;
 }
 
 
 
 .mat-toolbar
 {
+    border-radius: 5px;
+    background-color: #636569;
     display: flex;
     min-width: 475px;
 }
@@ -24,12 +25,6 @@ a, .mat-raised-button
     margin: 10px;
 }
 
-
 .mat-toolbar a:hover, a:hover, .mat-toolbar button:hover, .menu-item:hover{
     background-color: lightgray;
-}
-
-// ::ng-deep .mat-menu-content{
-//     background-color:red;
-//   }
-  
+} 

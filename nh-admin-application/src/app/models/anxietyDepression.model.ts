@@ -1,12 +1,5 @@
 export interface anxietyDepression {
-    a1:string,
-    a2:string,
-    a3:string,
-    a4:string,
-    a5:string,
-    a6:string,
-    a7:string,
-    a8:string,
+    questionare_date:Date,
     d1:string,
     d2:string,
     d3:string,
@@ -15,5 +8,12 @@ export interface anxietyDepression {
     d6:string,
     d7:string,
     d8:string,
-    questionare_date:Date
+    a1:string,
+    a2:string,
+    a3:string,
+    a4:string,
+    a5:string,
+    a6:string,
+    a7:string,
+    a8:string    
 }

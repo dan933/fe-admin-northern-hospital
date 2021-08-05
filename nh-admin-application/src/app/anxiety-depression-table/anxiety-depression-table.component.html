@@ -1,1 +1,258 @@
-<p>anxiety-depression-table works!</p>
+<app-patient-overview-nav-bar></app-patient-overview-nav-bar>
+<!-- source: https://www.youtube.com/watch?v=2OHbjep_WjQ&t=639s&ab_channel=freeCodeCamp.org -->
+<div id="table-div">
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)=sortData($event)>
+  
+   <!-- Table Columns -->
+        <!-- questionare_date Column -->
+        <ng-container matColumnDef="questionare_date">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef class="table-headers">Date</th>
+          <td mat-cell *matCellDef="let element"> {{element.questionare_date}} </td>
+        </ng-container>
+      
+        <!-- d1 Column -->
+        <ng-container matColumnDef="d1">
+          <th mat-sort-header *matHeaderCellDef class="table-headers"> D1</th>
+          <td mat-cell *matCellDef="let element"> {{element.d1}}</td>
+        </ng-container>
+      
+        <!-- d2 Column -->
+        <ng-container matColumnDef="d2">
+          <th mat-sort-header *matHeaderCellDef class="table-headers"> D2 </th>
+          <td mat-cell *matCellDef="let element"> {{element.d2}} </td>
+        </ng-container>
+      
+        <!-- d3 Column -->
+        <ng-container matColumnDef="d3">
+          <th mat-sort-header *matHeaderCellDef class="table-headers"> D3</th>
+          <td mat-cell *matCellDef="let element"> {{element.d3}} </td>
+        </ng-container>
+  
+        <!-- d4 Column -->
+        <ng-container matColumnDef="d4">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> D4 </th>
+            <td mat-cell *matCellDef="let element"> {{element.d4}} </td>
+          </ng-container>
+  
+          <!-- d5 Column -->
+        <ng-container matColumnDef="d5">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> D5</th>
+            <td mat-cell *matCellDef="let element"> {{element.d5}} </td>
+          </ng-container>
+  
+          <!-- d6 column -->
+          <ng-container matColumnDef="d6">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> D6</th>
+            <td mat-cell *matCellDef="let element"> {{element.d6}} </td>
+          </ng-container>
+
+          <!-- d7 column -->
+          <ng-container matColumnDef="d7">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> D7</th>
+            <td mat-cell *matCellDef="let element"> {{element.d7}} </td>
+          </ng-container>
+
+          <!-- d8 column -->
+          <ng-container matColumnDef="d8">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> D8</th>
+            <td mat-cell *matCellDef="let element"> {{element.d8}} </td>
+          </ng-container>
+
+          <!-- a1 column -->
+          <ng-container matColumnDef="a1">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> A1</th>
+            <td mat-cell *matCellDef="let element"> {{element.a1}} </td>
+          </ng-container>
+
+          <!-- a2 column -->
+          <ng-container matColumnDef="a2">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> A2</th>
+            <td mat-cell *matCellDef="let element"> {{element.a2}} </td>
+          </ng-container>
+
+          <!-- a3 column -->
+          <ng-container matColumnDef="a3">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> A3</th>
+            <td mat-cell *matCellDef="let element"> {{element.a3}} </td>
+          </ng-container>
+
+          <!-- a4 column -->
+          <ng-container matColumnDef="a4">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> A4</th>
+            <td mat-cell *matCellDef="let element"> {{element.a4}} </td>
+          </ng-container>
+
+          <!-- a5 column -->
+          <ng-container matColumnDef="a5">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> A5</th>
+            <td mat-cell *matCellDef="let element"> {{element.a5}} </td>
+          </ng-container>
+
+          <!-- a6 column -->
+          <ng-container matColumnDef="a6">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> A6</th>
+            <td mat-cell *matCellDef="let element"> {{element.a6}} </td>
+          </ng-container>
+
+          <!-- a7 column -->
+          <ng-container matColumnDef="a7">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> A7</th>
+            <td mat-cell *matCellDef="let element"> {{element.a7}} </td>
+          </ng-container>
+
+          <!-- a8 column -->
+          <ng-container matColumnDef="a8">
+            <th mat-sort-header *matHeaderCellDef class="table-headers"> A8</th>
+            <td mat-cell *matCellDef="let element"> {{element.a8}} </td>
+          </ng-container>
+          
+            <!-- Filter row -->
+          <ng-container matColumnDef="questionare_date-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
+              
+              <mat-form-field appearance="outline">
+                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                  <input matStartDate formControlName="start" placeholder="Start date" #dateRangeStart>
+                  <input matEndDate formControlName="end" placeholder="End date" #dateRangeEnd (dateChange)="saveDate(dateRangeStart, dateRangeEnd)">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              
+                <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+              </mat-form-field>
+             
+            </th>
+          </ng-container>
+  
+          <ng-container matColumnDef="d1-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
+              
+                <input type="text"  (keyup)="applyFilter($event,0)" placeholder="filter" #input>
+              
+            </th>
+          </ng-container>
+  
+          <ng-container matColumnDef="d2-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
+              
+                <input type="text"  (keyup)="applyFilter($event,1)" placeholder="filter" #input>
+            
+            </th>
+          </ng-container>
+  
+          <ng-container matColumnDef="d3-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
+              
+                <input type="number" (keyup)="applyFilter($event,2)" placeholder="filter" #input autocomplete="off">
+              
+            </th>
+          </ng-container>
+  
+          <ng-container matColumnDef="d4-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
+              
+                <input  type="number" (keyup)="applyFilter($event,3)" placeholder="filter" #input autocomplete="off">
+              
+            </th>
+          </ng-container>
+  
+          <ng-container matColumnDef="d5-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
+             
+                <input type="number" (keyup)="applyFilter($event,4)" placeholder="filter" #input autocomplete="off">
+              
+            </th>
+          </ng-container>
+  
+          <ng-container matColumnDef="d6-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+                <input type="number" (keyup)="applyFilter($event,5)" placeholder="filter" #input autocomplete="off">
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="d7-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+                <input type="number" (keyup)="applyFilter($event,6)" placeholder="filter" #input autocomplete="off">
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="d8-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+                <input type="number" (keyup)="applyFilter($event,7)" placeholder="filter" #input autocomplete="off">
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="a1-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+                <input type="number" (keyup)="applyFilter($event,8)" placeholder="filter" #input autocomplete="off">
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="a2-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+                <input type="number" (keyup)="applyFilter($event,9)" placeholder="filter" #input autocomplete="off">
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="a3-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+                <input type="number" (keyup)="applyFilter($event,10)" placeholder="filter" #input autocomplete="off">
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="a4-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+                <input type="number" (keyup)="applyFilter($event,11)" placeholder="filter" #input autocomplete="off">
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="a5-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+                <input type="number" (keyup)="applyFilter($event,12)" placeholder="filter" #input autocomplete="off">
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="a6-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+                <input type="number" (keyup)="applyFilter($event,13)" placeholder="filter" #input autocomplete="off">
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="a7-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+                <input type="number" (keyup)="applyFilter($event,14)" placeholder="filter" #input autocomplete="off">
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="a8-filter">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
+                <input type="number" (keyup)="applyFilter($event,15)" placeholder="filter" #input autocomplete="off">
+            </th>
+          </ng-container>
+          
+  
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnFilters; sticky:true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="overview-rows"></tr>
+      </table>
+    
+      <mat-paginator
+        [length]="numberOfRecords"
+        [pageIndex]="pageNumber"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[10, 50, 100]"
+        [length]="10"
+        (page) = pageChange($event)
+        showFirstLastButtons
+        #paginator
+      >
+      </mat-paginator>
+    </div>
+      <div style="height: 200px;"></div>
+        
+  <!-- 
+    problem need to add a border top line or remove the header bottom line
+  
+  solution https://stackoverflow.com/questions/60260534/how-to-add-filter-row-inside-material-table/64746552-->

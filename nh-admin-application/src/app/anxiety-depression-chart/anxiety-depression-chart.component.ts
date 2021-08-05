@@ -82,7 +82,6 @@ export class AnxietyDepressionChartComponent implements OnInit {
     
     this.dataService.getAnxietyChart(this.id,this.lastYear,this.today)
     .subscribe((data:any) => {
-      console.log(data)
       this.dOneOptions = this.chartService.echartsFormat(data,'d1','scatter');
       this.dTwoOptions = this.chartService.echartsFormat(data,'d2','scatter');
       this.dThreeOptions = this.chartService.echartsFormat(data,'d3','scatter');

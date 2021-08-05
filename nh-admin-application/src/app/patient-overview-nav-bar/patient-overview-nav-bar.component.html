@@ -1,16 +1,17 @@
 
 <div style="padding-top: 30px; padding-left: 35px; padding-right: 35px; font-weight: bolder;">
     <h1>URN: {{id}}<br>{{name[0].firstname}} {{name[0].surname}} Summary</h1>
-
-  <mat-toolbar>
+    
+   <mat-toolbar>
     <a mat-raised-button routerLink="/overview/anxietydepressionchart/{{id}}" routerLinkActive="activebutton" >Anxiety Depression Graph</a>
     <a mat-raised-button routerLink="/overview/painmeasurechart/{{id}}" routerLinkActive="activebutton" >Pain Measure Graph</a>
     <button mat-raised-button [matMenuTriggerFor]="menu">Tables</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item class="menu-item">All Questions</button>
-      <button mat-menu-item class="menu-item">Anxiety Depression</button>
+      <button mat-menu-item routerLink="/overview/anxietydepressiontable/{{id}}" routerLinkActive="activebutton" class="menu-item">Anxiety Depression</button>
     </mat-menu>
   </mat-toolbar>
+ 
 </div>
 <router-outlet></router-outlet>
 

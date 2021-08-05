@@ -60,7 +60,6 @@ export class PainMeasureChartComponent implements OnInit {
     
     this.dataService.getPainMeasureChart(this.id,this.lastYear,this.today)
     .subscribe((data:any) => {
-      console.log(data)
       this.painMeasureOptions = this.chartService.echartsFormat(data,'painmeasure','line');
     })
 

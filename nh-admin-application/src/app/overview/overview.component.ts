@@ -57,7 +57,6 @@ export class OverviewComponent implements OnInit{
       console.log(error)
       alert('api is down')
     })
-    
   } 
   
   pageChange(PageEvent:any) {
@@ -83,7 +82,7 @@ export class OverviewComponent implements OnInit{
         .subscribe((data:any) => {
         this.dataSource = data.patients
         this.numberOfRecords = data.totalItems
-    })
+        })
         return;
       }
       this.dataSource = data.sort((a, b) => {
@@ -222,10 +221,4 @@ export class OverviewComponent implements OnInit{
       this.numberOfRecords = data.totalItems
     })     
   }
-
-
-}
-
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

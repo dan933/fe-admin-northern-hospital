@@ -1,0 +1,46 @@
+table {
+    width:100%;
+  }
+
+  .mat-column-select {
+    overflow: initial;
+  }  
+  
+   .mat-header-cell
+  {
+    border: 1px solid transparent;
+  }
+  
+  
+  th
+  {
+    padding-top:2px;
+    font-weight: bold;
+    color:black;
+    font-size:25px;
+  }
+  
+  .mat-header-cell input
+  {
+    font-size: 25px;
+    width:150px;
+    border-radius: 4px;
+    margin: 10px;
+  }
+  
+  td
+  {
+    font-size: 25px;
+  }
+  
+  .mat-paginator
+  {
+    font-size:20px;
+    color: black;
+    
+  }
+  
+  .mat-paginator ::ng-deep .mat-select-value, ::ng-deep .mat-option-text
+  {
+    font-size: 20px;
+  }

@@ -5,6 +5,13 @@ import {Sort} from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
+//Date range picker
+import {FormGroup, FormControl} from '@angular/forms';
+import * as _moment from 'moment';
+import { MY_DATE_FORMATS } from '../services/my-date-formats';
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+
 @Component({
   selector: 'app-anxiety-depression-table',
   templateUrl: './anxiety-depression-table.component.html',
@@ -13,6 +20,14 @@ import { ActivatedRoute } from '@angular/router';
 export class AnxietyDepressionTableComponent implements OnInit {
 
   id:string=""
+
+  today = new Date(Date.now())
+  lastYear = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000)
+
+  range = new FormGroup({
+    start: new FormControl(this.lastYear),
+    end: new FormControl(this.today)
+  });
 
   constructor(
     private router:Router,
@@ -24,34 +39,345 @@ export class AnxietyDepressionTableComponent implements OnInit {
   }
 
   numberOfRecords:number = 0
-  searchd1 = ""
-  searchd2 = ""
-  searchd3 = ""
-  searchd4 = ""
-  searchd5 = ""
-  searchd6 = ""
-  searchd7 = ""
-  searchd8 = ""
-  searcha1 = ""
-  searcha2 = ""
-  searcha3 = ""
-  searcha4 = ""
-  searcha5 = ""
-  searcha6 = ""
-  searcha7 = ""
-  searcha8 = ""
+  searchFilter:any[] = ["","","","","","","","","","","","","","","",""]
   pageSize = 10
   pageNumber = 0
   sort = 'questionare_date'
   ascDesc = 'true'
 
   dataSource:anxietyDepression[] = []
-  displayedColumns:string[] = ['questionare_date','d1', 'd2','d3','d4','d5','d6','d7','d8','a1','a2','a3','a4','a5','a6','a7','a8'];
-  displayedColumnFilters:string[] = ['questionare_date-filter','d1-filter', 'd2-filter','d3-filter','d4-filter','d5-filter','d6-filter','d7-filter','d8-filter','a1-filter','a2-filter','a3-filter','a4-filter','a5-filter','a6-filter','a7-filter','a8-filter'];
+  displayedColumns:string[] = [
+    'questionare_date','d1', 'd2','d3','d4','d5','d6','d7',
+    'd8','a1','a2','a3','a4','a5','a6','a7','a8'];
+  displayedColumnFilters:string[] = [
+    'questionare_date-filter','d1-filter', 'd2-filter','d3-filter','d4-filter',
+    'd5-filter','d6-filter','d7-filter','d8-filter','a1-filter','a2-filter',
+    'a3-filter','a4-filter','a5-filter','a6-filter','a7-filter','a8-filter'];
 
   ngOnInit(): void {
-    this.dataService.getAnxietyTable(this.id,this.sort,this.ascDesc,this.searchd1,this.searchd2,this.searchd3,this.searchd4,this.searchd5,this.searchd6,this.searchd7,this.searchd8,this.searcha1,this.searcha2,this.searcha3,this.searcha4,this.searcha5,this.searcha6,this.searcha7,this.searcha8,this.pageNumber,this.pageSize)
-    
+    this.dataService.getAnxietyTable(
+      this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+      this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+      this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+      this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+      .subscribe((data:any) => {
+        console.log(data)
+        this.dataSource = data.anxiety
+        this.numberOfRecords = data.totalItems
+      },
+      (error:any) => {
+        console.log(error)
+        alert('api is down')
+      })
   }
 
+  saveDate(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement){
+    
+    if (dateRangeStart.value != "" && dateRangeEnd.value != "")
+    {
+      this.dataService.getAnxietyTable(
+        this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+        this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+        this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+        this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+        .subscribe((data:any) => {
+          this.dataSource = data.anxiety
+          this.numberOfRecords = data.totalItems
+        },
+        (error:any) => {
+          console.log(error)
+          alert('api is down')
+        })
+    }
+  }
+
+  pageChange(PageEvent:any) {
+    this.pageSize = PageEvent.pageSize
+    this.pageNumber = PageEvent.pageIndex
+
+    this.dataService.getAnxietyTable(
+      this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+      this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+      this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+      this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+      .subscribe((data:any) => {
+        this.dataSource = data.anxiety
+        this.numberOfRecords = data.totalItems
+      },
+      (error:any) => {
+        console.log(error)
+        alert('api is down')
+      })
+  }
+
+  sortData(sort:Sort) {
+    const data = this.dataSource.slice();
+    if (!sort.active || sort.direction === '') {
+
+      this.dataService.getAnxietyTable(
+        this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+        this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+        this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+        this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+        .subscribe((data:any) => {
+          this.dataSource = data.anxiety
+          this.numberOfRecords = data.totalItems
+        },
+        (error:any) => {
+          console.log(error)
+          alert('api is down')
+        })
+      return;
+    }
+    this.dataSource = data.sort((a,b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'a1':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'a3':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'a4':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'a5':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'a6':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'a7':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'a8':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'd1':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'd2':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'd3':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'd4':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'd5':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'd6':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'd7':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'd8':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+        case 'questionare_date':
+          return this.dataService.getAnxietyTable(
+            this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+            this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+            this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+            this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+            .subscribe((data:any) => {
+              this.dataSource = data.anxiety
+              this.numberOfRecords = data.totalItems
+            },
+            (error:any) => {
+              console.log(error)
+              alert('api is down')
+            })
+      }
+    })
+  }
+
+  applyFilter(event:Event,index:number) {
+    this.pageNumber = 0
+    this.searchFilter[index] = (event.target as HTMLInputElement).value;
+
+    this.dataService.getAnxietyTable(
+      this.id,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+      this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
+      this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
+      this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+      .subscribe((data:any) => {
+        this.dataSource = data.anxiety
+        this.numberOfRecords = data.totalItems
+      },
+      (error:any) => {
+        console.log(error)
+        alert('api is down')
+      })
+    
+     
+  }
 }
