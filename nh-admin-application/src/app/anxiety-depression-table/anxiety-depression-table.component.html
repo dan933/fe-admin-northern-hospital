@@ -110,7 +110,7 @@
           <ng-container matColumnDef="questionare_date-filter" sticky>
             <th mat-header-cell *matHeaderCellDef id="dateFilter">
               
-              <mat-form-field appearance="outline">
+              <mat-form-field appearance="outline" style="padding-bottom: 0px;">
                 <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
                   <input matStartDate formControlName="start" placeholder="Start date" #dateRangeStart>
                   <input matEndDate formControlName="end" placeholder="End date" #dateRangeEnd (dateChange)="saveDate(dateRangeStart, dateRangeEnd)">
