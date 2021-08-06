@@ -29,3 +29,10 @@ mat-toolbar-row button:hover
 {  
   background-color: #636569;
 }
+
+@media only screen and (max-width: 281px) {
+  .nav-bar
+  {  
+    width: 340px;
+  }
+}
