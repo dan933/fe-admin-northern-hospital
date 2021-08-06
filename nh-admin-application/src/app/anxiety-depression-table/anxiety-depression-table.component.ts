@@ -76,8 +76,14 @@ export class AnxietyDepressionTableComponent implements OnInit {
       this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],this.searchFilter[13],
       this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
       .subscribe((data:any) => {
-        console.log(data)
         this.dataSource = data.anxiety
+
+        for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+        
         this.numberOfRecords = data.totalItems
       },
       (error:any) => {
@@ -97,6 +103,17 @@ export class AnxietyDepressionTableComponent implements OnInit {
         this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
         .subscribe((data:any) => {
           this.dataSource = data.anxiety
+
+          for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+          for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
           this.numberOfRecords = data.totalItems
         },
         (error:any) => {
@@ -117,6 +134,11 @@ export class AnxietyDepressionTableComponent implements OnInit {
       this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
       .subscribe((data:any) => {
         this.dataSource = data.anxiety
+        for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
         this.numberOfRecords = data.totalItems
       },
       (error:any) => {
@@ -136,6 +158,12 @@ export class AnxietyDepressionTableComponent implements OnInit {
         this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
         .subscribe((data:any) => {
           this.dataSource = data.anxiety
+
+          for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
           this.numberOfRecords = data.totalItems
         },
         (error:any) => {
@@ -155,6 +183,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+              
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -169,6 +204,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
                 this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
                 .subscribe((data:any) => {
                   this.dataSource = data.anxiety
+
+                  for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
                   this.numberOfRecords = data.totalItems
                 },
                 (error:any) => {
@@ -183,6 +225,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -197,6 +246,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -211,6 +267,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -225,6 +288,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -239,6 +309,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -253,6 +330,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -267,6 +351,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -281,6 +372,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -295,6 +393,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -309,6 +414,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -323,6 +435,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -337,6 +456,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -351,6 +477,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -365,6 +498,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {
@@ -379,6 +519,13 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
               this.dataSource = data.anxiety
+
+              for(let row in this.dataSource)
+        {
+          console.log(this.chartService.formatDate(String(this.dataSource[row].questionare_date)))
+          this.dataSource[row].questionare_date = this.chartService.formatDate(String(this.dataSource[row].questionare_date))
+        }
+        
               this.numberOfRecords = data.totalItems
             },
             (error:any) => {

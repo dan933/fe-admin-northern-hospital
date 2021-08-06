@@ -1,5 +1,5 @@
 export interface anxietyDepression {
-    questionare_date:Date,
+    questionare_date:string,
     d1:string,
     d2:string,
     d3:string,
