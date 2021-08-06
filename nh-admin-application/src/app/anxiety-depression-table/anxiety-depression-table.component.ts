@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { ChartService } from '../services/chart.service';
 import { anxietyDepression } from '../models/anxietyDepression.model';
 import {Sort} from '@angular/material/sort';
 import { Router } from '@angular/router';
@@ -44,7 +45,8 @@ export class AnxietyDepressionTableComponent implements OnInit {
   constructor(
     private router:Router,
     private route: ActivatedRoute,
-    private dataService : DataService
+    private dataService : DataService,
+    private chartService: ChartService
   ) { 
     this.route.params.subscribe( params => 
       this.id = params.id)
@@ -89,7 +91,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
     if (dateRangeStart.value != "" && dateRangeEnd.value != "")
     {
       this.dataService.getAnxietyTable(
-        this.id,this.lastYear,this.today,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
+        this.id,this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1),this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
         this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
         this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
         this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
