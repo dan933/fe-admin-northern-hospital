@@ -11,7 +11,9 @@ export class ChartService {
 
   //source https://stackoverflow.com/questions/2086744/javascript-function-to-convert-date-yyyy-mm-dd-to-dd-mm-yy
   
-  // this needs to be looked at getting wrong date
+  
+  
+  //todo fix dates for anxiety chart
   formatDate(input:string){
     input = input.slice(0,10)
     let datePart:any = input.match(/\d+/g)
@@ -22,6 +24,23 @@ export class ChartService {
     return `${day}-${month}-${year}`  
   }
 
+  //format date for anxiety table
+  formatDateColumn(date:Date)
+  {
+    let day:any = date.getDate();
+    day = String(day)
+    day = day.length == 2 ? day : `0${day}`
+
+    let month:any = date.getMonth();
+    month = String(month + 1)
+    month = month.length == 2 ? month : `0${month}`
+
+    let year:any = date.getFullYear();
+    
+    return `${day}-${month}-${year}`
+  }
+
+  //date input filter reformat for api
   formatFilterDate(input:HTMLInputElement, days:number){
     let datePart:any = input.value.match(/\d+/g)
     let year = datePart[2]
@@ -32,7 +51,13 @@ export class ChartService {
 
     output = new Date(output)
     output.setDate(output.getDate() + days)
-    
+
+    day = output.getDate()
+    month = output.getMonth() + 1
+    year = output.getFullYear()
+
+    output = `${year}-${month}-${day}`
+
     return output
   }
 
