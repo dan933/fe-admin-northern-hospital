@@ -10,6 +10,8 @@ export class ChartService {
   constructor() { }
 
   //source https://stackoverflow.com/questions/2086744/javascript-function-to-convert-date-yyyy-mm-dd-to-dd-mm-yy
+  
+  // this needs to be looked at getting wrong date
   formatDate(input:string){
     input = input.slice(0,10)
     let datePart:any = input.match(/\d+/g)
@@ -30,9 +32,7 @@ export class ChartService {
 
     output = new Date(output)
     output.setDate(output.getDate() + days)
-
     
-
     return output
   }
 
