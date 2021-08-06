@@ -1,15 +1,29 @@
 #table-div
 {
-  height: 100vh;
+  height: 99vh;
   width: 99vw;
   overflow: auto;
+
 }
 
 table {
-    width:100vw;
-    height: 100vh;
+    
     overflow:auto;
   }
+
+@media only screen and (max-width: 778px) {
+  table
+  {
+    zoom:60%;
+  }
+}
+
+@media only screen and (max-width: 281px) {
+  table
+  {
+    zoom:30%;
+  }
+}
 
   .mat-column-select {
     overflow: initial;
@@ -29,12 +43,24 @@ table {
     font-size:25px;
   }
   
-  .mat-header-cell input
+  .columnInputFilter
   {
     font-size: 25px;
-    width:150px;
-    border-radius: 4px;
-    margin: 10px;
+    width: 100px;
+    height: 55px;
+  }
+
+  .columnHeader
+  {
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    padding-right: 10px;
+  }
+
+  #dateFilter
+  {
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    padding-right: 10px;
+    height: 15px;
   }
   
   td
