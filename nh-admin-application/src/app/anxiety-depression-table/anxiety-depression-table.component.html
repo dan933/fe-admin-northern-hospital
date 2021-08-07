@@ -115,7 +115,7 @@
                   <input matStartDate formControlName="start" placeholder="Start date" #dateRangeStart>
                   <input matEndDate formControlName="end" placeholder="End date" #dateRangeEnd (dateChange)="saveDate(dateRangeStart, dateRangeEnd)">
                 </mat-date-range-input>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>      
                 <mat-date-range-picker touchUi #picker></mat-date-range-picker>
               
                 <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
@@ -240,17 +240,38 @@
     
       <mat-toolbar>
         <mat-toolbar-row id="bottom-toolbar">
-          <mat-paginator style="display: flex;"
-        [length]="numberOfRecords"
-        [pageIndex]="pageNumber"
-        [pageSize]="pageSize"
-        [pageSizeOptions]="[10, 50, 100]"
-        [length]="10"
-        (page) = pageChange($event)
-        showFirstLastButtons
-        #paginator
-        ></mat-paginator>
-        <mat-icon title="Export as CSV">save_alt</mat-icon>
+          <mat-paginator
+          [length]="numberOfRecords"
+          [pageIndex]="pageNumber"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="[10, 50, 100]"
+          [length]="10"
+          (page) = pageChange($event)
+          showFirstLastButtons
+          #paginator
+          ></mat-paginator>
+          
+          <!-- sources https://stackoverflow.com/questions/52315739/include-buttons-and-paginator-in-the-material-table-footer/52317531
+          https://stackoverflow.com/questions/45166951/change-angular-material-datepicker-icon-->
+
+          <mat-form-field appearance="fill" class="example-form-field">
+            <mat-label>Export to CSV</mat-label>
+            <mat-date-range-input [rangePicker]="rangePicker">
+              <input matStartDate placeholder="Start date">
+              <input matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="rangePicker">
+              <mat-icon matDatepickerToggleIcon title="Export as CSV">save_alt</mat-icon>
+            </mat-datepicker-toggle>
+            
+            <mat-date-range-picker #rangePicker>
+              <mat-date-range-picker-actions>
+                <button mat-button matDateRangePickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDateRangePickerApply>Download</button>
+              </mat-date-range-picker-actions>
+            </mat-date-range-picker>
+          </mat-form-field>
+
         </mat-toolbar-row>
       </mat-toolbar>
       
