@@ -29,11 +29,14 @@ export class DataService {
     let output:any = this.http.get(`${url}/anxietydepression/filter/${sort}/${ascDesc}/id/${id}?startDate=${startDate}&endDate=${endDate}&searchd1=${searchd1}&searchd2=${searchd2}&searchd3=${searchd3}&searchd4=${searchd4}&searchd5=${searchd5}&searchd6=${searchd6}&searchd7=${searchd7}&searchd8=${searchd8}&searcha1=${searcha1}&searcha2=${searcha2}&searcha3=${searcha3}&searcha4=${searcha4}&searcha5=${searcha5}&searcha6=${searcha6}&searcha7=${searcha7}&searcha8=${searcha8}&page=${page}&size=${size}`)
     return output
   }
-
   //http://localhost:3000/api/anxietydepression/filter/d1/true/id/2?startDate=2020-06-18T00:50:12.000Z&endDate=2025-01-01T00:50:12.000Z&page=0&size=10&searchd1=&searchd2=&searchd3=&searchd4=&searchd5=&searchd6=&searchd7=&searchd8=&searcha1=&searcha2=&searcha3=&searcha4=&searcha5=&searcha6=&searcha7=&searcha8=
 
 
- 
+  getAnxietyDownload(id:string,startDate:any,endDate:any){
+    let output:any = `${url}/anxietydepression/download/${id}?startDate=${startDate}&endDate=${endDate}`
+    return output
+  }
+  //http://localhost:3000/api/anxietydepression/download/3?startDate=2021-06-16&endDate=2021-06-17
 
   //get patient name
   getPatientName(id:string){

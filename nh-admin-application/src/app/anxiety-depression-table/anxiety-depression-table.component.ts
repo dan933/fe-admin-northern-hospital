@@ -42,6 +42,11 @@ export class AnxietyDepressionTableComponent implements OnInit {
     end: new FormControl(this.today)
   });
 
+  rangeDownload = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  })
+
   constructor(
     private router:Router,
     private route: ActivatedRoute,
@@ -99,7 +104,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
     {
       this.today = this.chartService.formatFilterDate(dateRangeEnd,0)
       
-      this.lastYear = this.chartService.formatFilterDate(dateRangeStart,0)
+      this.lastYear = this.chartService.formatFilterDate(dateRangeStart,1)
       
 
       this.dataService.getAnxietyTable(
@@ -123,6 +128,15 @@ export class AnxietyDepressionTableComponent implements OnInit {
           console.log(error)
           alert('api is down')
         })
+    }
+  }
+
+  downloadData(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement){
+    if (dateRangeStart.value != "" && dateRangeEnd.value != "")
+    {
+      
+      let url:string = this.dataService.getAnxietyDownload(this.id,this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1))
+      window.open(url,'_blank');
     }
   }
 
