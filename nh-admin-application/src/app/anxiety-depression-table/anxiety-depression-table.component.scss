@@ -67,6 +67,12 @@ table
     padding-right: 10px;
     height: 15px;
   }
+
+  #dateFilterBottom
+  {
+    font-size: 17px;
+    margin-left: 10px;
+  }
   
   td
   {
@@ -82,8 +88,9 @@ table
   #bottom-toolbar
   {
     width: 900px;
-    margin-top:30px;
+    margin-top:15px;
   }
+
 
   .mat-paginator ::ng-deep .mat-select-value, ::ng-deep .mat-option-text
   {
