@@ -73,15 +73,19 @@ table
     font-size: 25px;
   }
   
-  .mat-paginator
+  .mat-toolbar .mat-toolbar-row .mat-paginator
   {
     font-size:20px;
-    color: black;
-    width:900px;
-    
+    color: black;    
   }
   
+  #bottom-toolbar
+  {
+    width: 800px;
+  }
+
   .mat-paginator ::ng-deep .mat-select-value, ::ng-deep .mat-option-text
   {
     font-size: 20px;
+    color:black;
   }

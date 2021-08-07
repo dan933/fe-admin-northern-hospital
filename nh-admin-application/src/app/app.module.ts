@@ -30,6 +30,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -74,6 +75,7 @@ import { AnxietyDepressionTableComponent } from './anxiety-depression-table/anxi
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
     NgxEchartsModule.forRoot({
       /**
        * This will import all modules from echarts.
@@ -83,7 +85,7 @@ import { AnxietyDepressionTableComponent } from './anxiety-depression-table/anxi
       echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
     })
   ],
-  exports:[MatToolbarModule,MatFormFieldModule, MatButtonModule,MatMenuModule,MatDatepickerModule],
+  exports:[MatToolbarModule,MatFormFieldModule, MatButtonModule,MatMenuModule,MatDatepickerModule,MatIconModule],
   providers: [DataService, ChartService],
   bootstrap: [AppComponent]
 })

@@ -238,7 +238,9 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="overview-rows"></tr>
       </table>
     
-      <mat-paginator style="display: flex;"
+      <mat-toolbar>
+        <mat-toolbar-row id="bottom-toolbar">
+          <mat-paginator style="display: flex;"
         [length]="numberOfRecords"
         [pageIndex]="pageNumber"
         [pageSize]="pageSize"
@@ -247,8 +249,11 @@
         (page) = pageChange($event)
         showFirstLastButtons
         #paginator
-      >
-      </mat-paginator>
+        ></mat-paginator>
+        <mat-icon title="Export as CSV">save_alt</mat-icon>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      
     </div>        
   <!-- 
     problem need to add a border top line or remove the header bottom line
