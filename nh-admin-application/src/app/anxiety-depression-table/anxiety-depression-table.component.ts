@@ -604,6 +604,12 @@ export class AnxietyDepressionTableComponent implements OnInit {
       this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
       .subscribe((data:any) => {
         this.dataSource = data.anxiety
+          //reformat date
+          for(let row in this.dataSource)
+          {
+            this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+            this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+          }
         
         this.numberOfRecords = data.totalItems
       },
