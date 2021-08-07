@@ -78,7 +78,7 @@ export class ChartService {
     for (let row in input)
     { 
 
-      date = this.formatDate(input[row][questionareDate])
+      date = input[row][questionareDate]
       
 
       //add Y Axis Data

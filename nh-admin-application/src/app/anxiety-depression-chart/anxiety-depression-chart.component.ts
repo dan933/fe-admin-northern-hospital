@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { ChartService } from '../services/chart.service';
+import { anxietyDepression } from '../models/anxietyDepression.model';
 
 //echarts
 import { EChartsOption } from 'echarts';
@@ -75,6 +76,8 @@ export class AnxietyDepressionChartComponent implements OnInit {
     this.route.params.subscribe( params => 
     this.id = params.id)
   }
+
+  dataSource:anxietyDepression[] = []
   
 
 
@@ -82,22 +85,31 @@ export class AnxietyDepressionChartComponent implements OnInit {
     
     this.dataService.getAnxietyChart(this.id,this.lastYear,this.today)
     .subscribe((data:any) => {
-      this.dOneOptions = this.chartService.echartsFormat(data,'d1','scatter');
-      this.dTwoOptions = this.chartService.echartsFormat(data,'d2','scatter');
-      this.dThreeOptions = this.chartService.echartsFormat(data,'d3','scatter');
-      this.dFourOptions = this.chartService.echartsFormat(data,'d4','scatter');
-      this.dFiveOptions = this.chartService.echartsFormat(data,'d5','scatter');
-      this.dSixOptions = this.chartService.echartsFormat(data,'d6','scatter');
-      this.dSevenOptions = this.chartService.echartsFormat(data,'d7','scatter');
-      this.dEightOptions = this.chartService.echartsFormat(data,'d8','scatter');
-      this.aOneOptions = this.chartService.echartsFormat(data,'a1','scatter');
-      this.aTwoOptions = this.chartService.echartsFormat(data,'a2','scatter');
-      this.aThreeOptions = this.chartService.echartsFormat(data,'a3','scatter');
-      this.aFourOptions = this.chartService.echartsFormat(data,'a4','scatter');
-      this.aFiveOptions = this.chartService.echartsFormat(data,'a5','scatter');
-      this.aSixOptions = this.chartService.echartsFormat(data,'a6','scatter');
-      this.aSevenOptions = this.chartService.echartsFormat(data,'a7','scatter');
-      this.aEightOptions = this.chartService.echartsFormat(data,'a8','scatter');
+      this.dataSource = data
+
+      //reformat date
+      for(let row in this.dataSource)
+      {
+        this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+        this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+      } 
+       
+      this.dOneOptions = this.chartService.echartsFormat(this.dataSource,'d1','scatter');
+      this.dTwoOptions = this.chartService.echartsFormat(this.dataSource,'d2','scatter');
+      this.dThreeOptions = this.chartService.echartsFormat(this.dataSource,'d3','scatter');
+      this.dFourOptions = this.chartService.echartsFormat(this.dataSource,'d4','scatter');
+      this.dFiveOptions = this.chartService.echartsFormat(this.dataSource,'d5','scatter');
+      this.dSixOptions = this.chartService.echartsFormat(this.dataSource,'d6','scatter');
+      this.dSevenOptions = this.chartService.echartsFormat(this.dataSource,'d7','scatter');
+      this.dEightOptions = this.chartService.echartsFormat(this.dataSource,'d8','scatter');
+      this.aOneOptions = this.chartService.echartsFormat(this.dataSource,'a1','scatter');
+      this.aTwoOptions = this.chartService.echartsFormat(this.dataSource,'a2','scatter');
+      this.aThreeOptions = this.chartService.echartsFormat(this.dataSource,'a3','scatter');
+      this.aFourOptions = this.chartService.echartsFormat(this.dataSource,'a4','scatter');
+      this.aFiveOptions = this.chartService.echartsFormat(this.dataSource,'a5','scatter');
+      this.aSixOptions = this.chartService.echartsFormat(this.dataSource,'a6','scatter');
+      this.aSevenOptions = this.chartService.echartsFormat(this.dataSource,'a7','scatter');
+      this.aEightOptions = this.chartService.echartsFormat(this.dataSource,'a8','scatter');
     })
   }
 
@@ -107,23 +119,32 @@ export class AnxietyDepressionChartComponent implements OnInit {
     if (dateRangeStart.value != "" && dateRangeEnd.value != "")
     {
       this.dataService.getAnxietyChart(this.id,this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1))
-      .subscribe((data:any) => {
-        this.dOneOptions = this.chartService.echartsFormat(data,'d1','scatter');
-        this.dTwoOptions = this.chartService.echartsFormat(data,'d2','scatter');
-        this.dThreeOptions = this.chartService.echartsFormat(data,'d3','scatter');
-        this.dFourOptions = this.chartService.echartsFormat(data,'d4','scatter');
-        this.dFiveOptions = this.chartService.echartsFormat(data,'d5','scatter');
-        this.dSixOptions = this.chartService.echartsFormat(data,'d6','scatter');
-        this.dSevenOptions = this.chartService.echartsFormat(data,'d7','scatter');
-        this.dEightOptions = this.chartService.echartsFormat(data,'d8','scatter');
-        this.aOneOptions = this.chartService.echartsFormat(data,'a1','scatter');
-        this.aTwoOptions = this.chartService.echartsFormat(data,'a2','scatter');
-        this.aThreeOptions = this.chartService.echartsFormat(data,'a3','scatter');
-        this.aFourOptions = this.chartService.echartsFormat(data,'a4','scatter');
-        this.aFiveOptions = this.chartService.echartsFormat(data,'a5','scatter');
-        this.aSixOptions = this.chartService.echartsFormat(data,'a6','scatter');
-        this.aSevenOptions = this.chartService.echartsFormat(data,'a7','scatter');
-        this.aEightOptions = this.chartService.echartsFormat(data,'a8','scatter');
+      .subscribe((data:any) => { 
+        this.dataSource = data
+
+      //reformat date
+      for(let row in this.dataSource)
+      {
+        this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+        this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+      } 
+
+      this.dOneOptions = this.chartService.echartsFormat(this.dataSource,'d1','scatter');
+      this.dTwoOptions = this.chartService.echartsFormat(this.dataSource,'d2','scatter');
+      this.dThreeOptions = this.chartService.echartsFormat(this.dataSource,'d3','scatter');
+      this.dFourOptions = this.chartService.echartsFormat(this.dataSource,'d4','scatter');
+      this.dFiveOptions = this.chartService.echartsFormat(this.dataSource,'d5','scatter');
+      this.dSixOptions = this.chartService.echartsFormat(this.dataSource,'d6','scatter');
+      this.dSevenOptions = this.chartService.echartsFormat(this.dataSource,'d7','scatter');
+      this.dEightOptions = this.chartService.echartsFormat(this.dataSource,'d8','scatter');
+      this.aOneOptions = this.chartService.echartsFormat(this.dataSource,'a1','scatter');
+      this.aTwoOptions = this.chartService.echartsFormat(this.dataSource,'a2','scatter');
+      this.aThreeOptions = this.chartService.echartsFormat(this.dataSource,'a3','scatter');
+      this.aFourOptions = this.chartService.echartsFormat(this.dataSource,'a4','scatter');
+      this.aFiveOptions = this.chartService.echartsFormat(this.dataSource,'a5','scatter');
+      this.aSixOptions = this.chartService.echartsFormat(this.dataSource,'a6','scatter');
+      this.aSevenOptions = this.chartService.echartsFormat(this.dataSource,'a7','scatter');
+      this.aEightOptions = this.chartService.echartsFormat(this.dataSource,'a8','scatter');
       })
     }
       
