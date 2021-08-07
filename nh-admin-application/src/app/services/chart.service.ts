@@ -117,22 +117,22 @@ export class ChartService {
         {
             type: 'slider',
             xAxisIndex: 0,
-            filterMode: 'none'
+            filterMode: 'filter'
         },
         {
             type: 'slider',
             yAxisIndex: 0,
-            filterMode: 'none'
+            filterMode: 'filter'
         },
         {
             type: 'inside',
             xAxisIndex: 0,
-            filterMode: 'none'
+            filterMode: 'filter'
         },
         {
             type: 'inside',
             yAxisIndex: 0,
-            filterMode: 'none'
+            filterMode: 'filter'
         }
       ],
     };

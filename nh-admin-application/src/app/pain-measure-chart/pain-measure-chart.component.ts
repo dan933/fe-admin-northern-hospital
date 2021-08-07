@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../services/data.service';
-import { ChartService } from '../services/chart.service'
+import { ChartService } from '../services/chart.service';
+import { painMeasure } from '../models/painMeasure.model';
 
 //echarts
 import { EChartsOption } from 'echarts';
@@ -56,11 +57,22 @@ export class PainMeasureChartComponent implements OnInit {
     )
   }
 
+  dataSource:painMeasure[] = []
+
   ngOnInit(): void {
     
     this.dataService.getPainMeasureChart(this.id,this.lastYear,this.today)
     .subscribe((data:any) => {
-      this.painMeasureOptions = this.chartService.echartsFormat(data,'painmeasure','line');
+      this.dataSource = data
+
+      //reformat date
+      for(let row in this.dataSource)
+      {
+        this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+        this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+      } 
+
+      this.painMeasureOptions = this.chartService.echartsFormat(this.dataSource,'painmeasure','line');
     })
 
   }
@@ -71,7 +83,16 @@ export class PainMeasureChartComponent implements OnInit {
     {
       this.dataService.getPainMeasureChart(this.id, this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1))
       .subscribe((data:any) => {
-        this.painMeasureOptions = this.chartService.echartsFormat(data,'painmeasure','line');
+        this.dataSource = data
+
+        //reformat date
+        for(let row in this.dataSource)
+        {
+          this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+          this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+        } 
+
+        this.painMeasureOptions = this.chartService.echartsFormat(this.dataSource,'painmeasure','line');
       })
     }
   }
