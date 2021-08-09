@@ -80,8 +80,8 @@ export class AnxietyDepressionTableComponent implements OnInit {
       this.searchFilter[6],this.searchFilter[7], this.searchFilter[8],this.searchFilter[9],
       this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],this.searchFilter[13],
       this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
-      .subscribe((data:any) => {
-        this.dataSource = data.anxiety
+      .subscribe((data:any) => {        
+        this.dataSource = data.rows
 
         //reformat date
         for(let row in this.dataSource)
@@ -113,7 +113,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
         this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
         this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
         .subscribe((data:any) => {
-          this.dataSource = data.anxiety
+          this.dataSource = data.rows
           
           //reformat date
           for(let row in this.dataSource)
@@ -150,7 +150,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
       this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
       this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
       .subscribe((data:any) => {
-        this.dataSource = data.anxiety
+        this.dataSource = data.rows
 
         //reformat date
         for(let row in this.dataSource)
@@ -181,7 +181,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
         this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
         this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
         .subscribe((data:any) => {
-          this.dataSource = data.anxiety
+          this.dataSource = data.rows
 
           //reformat date
           for(let row in this.dataSource)
@@ -213,7 +213,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -240,7 +240,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
                 this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
                 this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
                 .subscribe((data:any) => {
-                  this.dataSource = data.anxiety
+                  this.dataSource = data.rows
 
                   //reformat date
           for(let row in this.dataSource)
@@ -268,7 +268,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -296,7 +296,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -323,7 +323,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -351,7 +351,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -378,7 +378,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -405,7 +405,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -433,7 +433,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -461,7 +461,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -489,7 +489,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -517,7 +517,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -545,7 +545,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -573,7 +573,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -601,7 +601,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -630,7 +630,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
               //reformat date
           for(let row in this.dataSource)
@@ -658,7 +658,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
             this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
             this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
-              this.dataSource = data.anxiety
+              this.dataSource = data.rows
 
 
               //reformat date
@@ -690,7 +690,7 @@ export class AnxietyDepressionTableComponent implements OnInit {
       this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
       this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
       .subscribe((data:any) => {
-        this.dataSource = data.anxiety
+        this.dataSource = data.rows
           //reformat date
           for(let row in this.dataSource)
           {

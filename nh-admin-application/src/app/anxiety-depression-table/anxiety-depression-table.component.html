@@ -238,8 +238,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="overview-rows"></tr>
       </table>
     
-      <mat-toolbar>
-        <mat-toolbar-row id="bottom-toolbar">
+      <mat-toolbar id="bottom-toolbar">
+        <mat-toolbar-row id="bottom-toolbar-row">
           <mat-paginator
           [length]="numberOfRecords"
           [pageIndex]="pageNumber"

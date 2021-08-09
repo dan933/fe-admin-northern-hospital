@@ -84,11 +84,17 @@ table
     font-size:20px;
     color: black;    
   }
-  
+
   #bottom-toolbar
+  {
+    background-color: white;
+  }
+  
+  #bottom-toolbar-row
   {
     width: 900px;
     margin-top:15px;
+    background-color: white;
   }
 
 

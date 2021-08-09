@@ -50,7 +50,7 @@ export class OverviewComponent implements OnInit{
   this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe(
     (data:any) => {
-      this.dataSource = data.patients
+      this.dataSource = data.rows
       this.numberOfRecords = data.totalItems    
     },
     (error:any) => {

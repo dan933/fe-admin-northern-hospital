@@ -48,4 +48,10 @@ export class DataService {
     let output:any = this.http.get(`${url}/painmeasure/find/questionare_date/true/id/${id}?startDate=${startDate}&endDate=${endDate}`)
     return output;
   }
+
+  getPainMeasureTable(id:string,startDate:any, endDate:any,sort:string,ascDesc:string,searchpainmeasure:string,page:number, size:number){
+    let output:any = this.http.get(`${url}/painmeasure/filter/${sort}/${ascDesc}/id/${id}?startDate=${startDate}&endDate=${endDate}&painmeasure=${searchpainmeasure}&page=${page}&size=${size}`)
+    return output;
+  }
+  //http://localhost:3000/api/painmeasure/filter/d1/true/id/2?startDate=2020-06-18T00:50:12.000Z&endDate=2025-01-01T00:50:12.000Z&painmeasure=&page=0&size=10
 }
