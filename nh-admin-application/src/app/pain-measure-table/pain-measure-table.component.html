@@ -59,8 +59,9 @@
           showFirstLastButtons
           #paginator
           ></mat-paginator>
-
-          <mat-form-field appearance="fill" id="dateFilterBottom">
+        </mat-toolbar-row>
+        <mat-toolbar-row style="margin-top: 50px;">
+            <mat-form-field appearance="fill" id="dateFilterBottom">
             <mat-label>Export to CSV</mat-label>
             <mat-date-range-input [formGroup]="rangeDownload" [rangePicker]="rangeDownloadPicker">
               <input matStartDate placeholder="Start date" #dateRangeDownloadStart>
@@ -77,7 +78,7 @@
               </mat-date-range-picker-actions>
             </mat-date-range-picker>
           </mat-form-field>
-<!-- todo download input date range -->
         </mat-toolbar-row>
+        
     </mat-toolbar>
 </div>
