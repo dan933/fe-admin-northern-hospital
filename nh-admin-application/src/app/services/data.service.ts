@@ -53,5 +53,10 @@ export class DataService {
     let output:any = this.http.get(`${url}/painmeasure/filter/${sort}/${ascDesc}/id/${id}?startDate=${startDate}&endDate=${endDate}&searchpainmeasure=${searchpainmeasure}&page=${page}&size=${size}`)
     return output;
   }
+
+  getPainMeasureDownload(id:string,startDate:any,endDate:any){
+    let output:any = `${url}/painmeasure/download/${id}?startDate=${startDate}&endDate=${endDate}`
+    return output
+  }
   //http://localhost:3000/api/painmeasure/filter/questionare_date/false/id/3?startDate=Mon%20Aug%2010%202020%2011:04:01%20GMT+1000%20(Australian%20Eastern%20Standard%20Time)&endDate=Tue%20Aug%2010%202021%2011:04:01%20GMT+1000%20(Australian%20Eastern%20Standard%20Time)&searchpainmeasure=&page=0&size=10
 }

@@ -224,9 +224,15 @@ export class PainMeasureTableComponent implements OnInit {
     })
   }
 
-  //todo download data
+  downloadData(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement){
+    if (dateRangeStart.value != "" && dateRangeEnd.value != "")
+    {
+      
+      let url:string = this.dataService.getPainMeasureDownload(this.id,this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1))
+      window.open(url,'_blank');
+    }
+  }
 
-  //todo apply filter
   applyFilter(event:Event,index:number) {
     this.pageNumber = 0
     this.searchFilter = (event.target as HTMLInputElement).value;

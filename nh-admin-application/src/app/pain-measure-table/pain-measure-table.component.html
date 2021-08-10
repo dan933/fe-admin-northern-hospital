@@ -59,6 +59,24 @@
           showFirstLastButtons
           #paginator
           ></mat-paginator>
+
+          <mat-form-field appearance="fill" id="dateFilterBottom">
+            <mat-label>Export to CSV</mat-label>
+            <mat-date-range-input [formGroup]="rangeDownload" [rangePicker]="rangeDownloadPicker">
+              <input matStartDate placeholder="Start date" #dateRangeDownloadStart>
+              <input matEndDate placeholder="End date" #dateRangeDownloadEnd (dateChange)="downloadData(dateRangeDownloadStart, dateRangeDownloadEnd)">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="rangeDownloadPicker">
+              <mat-icon matDatepickerToggleIcon title="Export as CSV">save_alt</mat-icon>
+            </mat-datepicker-toggle>
+            
+            <mat-date-range-picker #rangeDownloadPicker>
+              <mat-date-range-picker-actions>
+                <button mat-button matDateRangePickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDateRangePickerApply>Download</button>
+              </mat-date-range-picker-actions>
+            </mat-date-range-picker>
+          </mat-form-field>
 <!-- todo download input date range -->
         </mat-toolbar-row>
     </mat-toolbar>
