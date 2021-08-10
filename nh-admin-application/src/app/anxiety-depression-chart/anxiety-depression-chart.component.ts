@@ -51,22 +51,6 @@ export class AnxietyDepressionChartComponent implements OnInit {
 
   //charts d1 to a8 questions
   dOneOptions: EChartsOption = {}
-  dTwoOptions:EChartsOption = {}
-  dThreeOptions:EChartsOption = {}
-  dFourOptions:EChartsOption = {}
-  dFiveOptions:EChartsOption = {}
-  dSixOptions:EChartsOption = {}
-  dSevenOptions:EChartsOption = {}
-  dEightOptions:EChartsOption = {}
-  aOneOptions:EChartsOption = {}
-  aTwoOptions:EChartsOption = {}
-  aThreeOptions:EChartsOption = {}
-  aFourOptions:EChartsOption = {}
-  aFiveOptions:EChartsOption = {}
-  aSixOptions:EChartsOption = {}
-  aSevenOptions:EChartsOption = {}
-  aEightOptions:EChartsOption = {}
-
 
   constructor(
     private route: ActivatedRoute,
@@ -94,22 +78,8 @@ export class AnxietyDepressionChartComponent implements OnInit {
         this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
       } 
        
-      this.dOneOptions = this.chartService.echartsFormat(this.dataSource,'d1','scatter');
-      this.dTwoOptions = this.chartService.echartsFormat(this.dataSource,'d2','scatter');
-      this.dThreeOptions = this.chartService.echartsFormat(this.dataSource,'d3','scatter');
-      this.dFourOptions = this.chartService.echartsFormat(this.dataSource,'d4','scatter');
-      this.dFiveOptions = this.chartService.echartsFormat(this.dataSource,'d5','scatter');
-      this.dSixOptions = this.chartService.echartsFormat(this.dataSource,'d6','scatter');
-      this.dSevenOptions = this.chartService.echartsFormat(this.dataSource,'d7','scatter');
-      this.dEightOptions = this.chartService.echartsFormat(this.dataSource,'d8','scatter');
-      this.aOneOptions = this.chartService.echartsFormat(this.dataSource,'a1','scatter');
-      this.aTwoOptions = this.chartService.echartsFormat(this.dataSource,'a2','scatter');
-      this.aThreeOptions = this.chartService.echartsFormat(this.dataSource,'a3','scatter');
-      this.aFourOptions = this.chartService.echartsFormat(this.dataSource,'a4','scatter');
-      this.aFiveOptions = this.chartService.echartsFormat(this.dataSource,'a5','scatter');
-      this.aSixOptions = this.chartService.echartsFormat(this.dataSource,'a6','scatter');
-      this.aSevenOptions = this.chartService.echartsFormat(this.dataSource,'a7','scatter');
-      this.aEightOptions = this.chartService.echartsFormat(this.dataSource,'a8','scatter');
+      this.dOneOptions = this.chartService.echartsAnxietyFormat(this.dataSource);
+      
     })
   }
 
@@ -130,21 +100,7 @@ export class AnxietyDepressionChartComponent implements OnInit {
       } 
 
       this.dOneOptions = this.chartService.echartsFormat(this.dataSource,'d1','scatter');
-      this.dTwoOptions = this.chartService.echartsFormat(this.dataSource,'d2','scatter');
-      this.dThreeOptions = this.chartService.echartsFormat(this.dataSource,'d3','scatter');
-      this.dFourOptions = this.chartService.echartsFormat(this.dataSource,'d4','scatter');
-      this.dFiveOptions = this.chartService.echartsFormat(this.dataSource,'d5','scatter');
-      this.dSixOptions = this.chartService.echartsFormat(this.dataSource,'d6','scatter');
-      this.dSevenOptions = this.chartService.echartsFormat(this.dataSource,'d7','scatter');
-      this.dEightOptions = this.chartService.echartsFormat(this.dataSource,'d8','scatter');
-      this.aOneOptions = this.chartService.echartsFormat(this.dataSource,'a1','scatter');
-      this.aTwoOptions = this.chartService.echartsFormat(this.dataSource,'a2','scatter');
-      this.aThreeOptions = this.chartService.echartsFormat(this.dataSource,'a3','scatter');
-      this.aFourOptions = this.chartService.echartsFormat(this.dataSource,'a4','scatter');
-      this.aFiveOptions = this.chartService.echartsFormat(this.dataSource,'a5','scatter');
-      this.aSixOptions = this.chartService.echartsFormat(this.dataSource,'a6','scatter');
-      this.aSevenOptions = this.chartService.echartsFormat(this.dataSource,'a7','scatter');
-      this.aEightOptions = this.chartService.echartsFormat(this.dataSource,'a8','scatter');
+      
       })
     }
       
