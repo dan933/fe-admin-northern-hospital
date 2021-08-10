@@ -5,3 +5,15 @@
     grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
     grid-template-rows: repeat(1, 600px);    
   }
+
+  .dateRange
+  {
+    margin-right:10px;
+    background-color:rgb(236, 236, 236);
+  }
+
+  .activebutton
+  {
+    background-color: black;
+    color: white;
+  }

@@ -97,4 +97,56 @@ export class PainMeasureChartComponent implements OnInit {
     }
   }
 
+  saveRange(days:number){
+    let startRange:any;
+    let endRange:any = new Date()
+
+    startRange = new Date(Date.now() - days * 24 * 60 * 60 * 1000)
+    let day:any = startRange.getDate()
+    day = String(day)
+    day = day.length == 2 ? day : `0${day}`
+
+    let month:any = startRange.getMonth()
+    month = String(month + 1)
+    month = month.length == 2 ? month : `0${month}`
+
+    let year:any = startRange.getFullYear();
+
+    startRange = `${year}-${month}-${day}`
+
+    endRange.setDate(endRange.getDate()+1)
+
+    day = endRange.getDate()
+    day = String(day)
+    day = day.length == 2 ? day : `0${day}`
+
+    month = endRange.getMonth()
+    month = String(month + 1)
+    month = month.length == 2 ? month : `0${month}`
+
+    year = endRange.getFullYear();
+
+    endRange = `${year}-${month}-${day}`
+
+    this.today = endRange
+    this.lastYear = startRange
+
+
+    this.dataService.getPainMeasureChart(this.id, startRange , endRange)
+      .subscribe((data:any) => {
+        this.dataSource = data
+
+        //reformat date
+        for(let row in this.dataSource)
+        {
+          this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+          this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+        } 
+
+        this.painMeasureOptions = this.chartService.echartsFormat(this.dataSource,'painmeasure','line');
+      })
+      
+    
+  }
+
 }
