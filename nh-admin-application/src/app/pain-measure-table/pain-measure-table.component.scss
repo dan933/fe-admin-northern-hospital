@@ -1,0 +1,104 @@
+#table-div
+{
+  margin-left: 10px;
+  height: 99vh;
+  width: 98vw;
+  overflow: auto;
+}
+
+table
+  {
+    overflow:auto;
+  }
+
+@media only screen and (max-width: 778px) {
+  table
+  {
+    zoom:60%;
+  }
+}
+
+@media only screen and (max-width: 281px) {
+  table
+  {
+    zoom:40%;
+  }
+}
+  
+   .mat-header-cell
+  {
+    border: 1px solid transparent;
+  }
+  
+  
+  th
+  {
+    padding-top:5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    color:black;
+    font-size:25px;
+  }
+  
+  .columnInputFilter
+  {
+    font-size: 25px;
+    width: 100px;
+    height: 55px;
+  }
+
+  .columnHeader
+  {
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    padding-right: 10px;
+    padding-bottom: 22px;
+  }
+
+  .columnHeader input
+  {
+    width: 70px;
+  }
+
+  #dateFilter
+  {
+    font-size: 17px;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    padding-right: 10px;
+    height: 15px;
+  }
+
+  #dateFilterBottom
+  {
+    font-size: 17px;
+    margin-left: 10px;
+  }
+  
+  td
+  {
+    font-size: 25px;
+  }
+  
+  .mat-toolbar .mat-toolbar-row .mat-paginator
+  {
+    font-size:15px;
+    color: black;    
+  }
+
+  #bottom-toolbar
+  {
+    background-color: white;
+  }
+  
+  #bottom-toolbar-row
+  {
+    width: 900px;
+    margin-top:15px;
+    background-color: white;
+  }
+
+
+  .mat-paginator ::ng-deep .mat-select-value, ::ng-deep .mat-option-text
+  {
+    font-size: 15px;
+    color:black;
+  }

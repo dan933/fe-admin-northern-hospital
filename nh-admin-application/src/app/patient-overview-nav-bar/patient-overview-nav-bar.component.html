@@ -8,6 +8,7 @@
     <button mat-raised-button [matMenuTriggerFor]="menu">Tables</button>
     <mat-menu #menu="matMenu">
       <a mat-menu-item class="menu-item">All Questions</a>
+      <a mat-menu-item routerLink="/overview/painmeasuretable/{{id}}" routerLinkActive="activebutton" class="menu-item">Pain Measure</a>
       <a mat-menu-item routerLink="/overview/anxietydepressiontable/{{id}}" routerLinkActive="activebutton" class="menu-item">Anxiety Depression</a>
     </mat-menu>
   </mat-toolbar>

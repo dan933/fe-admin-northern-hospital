@@ -50,8 +50,8 @@ export class DataService {
   }
 
   getPainMeasureTable(id:string,startDate:any, endDate:any,sort:string,ascDesc:string,searchpainmeasure:string,page:number, size:number){
-    let output:any = this.http.get(`${url}/painmeasure/filter/${sort}/${ascDesc}/id/${id}?startDate=${startDate}&endDate=${endDate}&painmeasure=${searchpainmeasure}&page=${page}&size=${size}`)
+    let output:any = this.http.get(`${url}/painmeasure/filter/${sort}/${ascDesc}/id/${id}?startDate=${startDate}&endDate=${endDate}&searchpainmeasure=${searchpainmeasure}&page=${page}&size=${size}`)
     return output;
   }
-  //http://localhost:3000/api/painmeasure/filter/d1/true/id/2?startDate=2020-06-18T00:50:12.000Z&endDate=2025-01-01T00:50:12.000Z&painmeasure=&page=0&size=10
+  //http://localhost:3000/api/painmeasure/filter/questionare_date/false/id/3?startDate=Mon%20Aug%2010%202020%2011:04:01%20GMT+1000%20(Australian%20Eastern%20Standard%20Time)&endDate=Tue%20Aug%2010%202021%2011:04:01%20GMT+1000%20(Australian%20Eastern%20Standard%20Time)&searchpainmeasure=&page=0&size=10
 }

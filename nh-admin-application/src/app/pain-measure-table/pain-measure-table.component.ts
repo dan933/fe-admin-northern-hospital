@@ -31,6 +31,7 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
     {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS},
   ]
 })
+
 export class PainMeasureTableComponent implements OnInit {
 
   id:string=""
@@ -59,7 +60,7 @@ export class PainMeasureTableComponent implements OnInit {
   }
 
   numberOfRecords:number = 0
-  searchFilter:any[] = [""]
+  searchFilter:string = ""
   pageSize = 10
   pageNumber = 0
   sort = 'questionare_date'
@@ -70,7 +71,7 @@ export class PainMeasureTableComponent implements OnInit {
   displayedColumnFilters:string[] = ['questionare_date-filter','painmeasure-filter'];
 
   ngOnInit(): void {
-    this.dataService.getPainMeasureTable(this.id,this.lastYear,this.today,this.sort,this.ascDesc,this.searchFilter[0],this.pageNumber,this.pageSize)
+    this.dataService.getPainMeasureTable(this.id,this.lastYear,this.today,this.sort,this.ascDesc,this.searchFilter,this.pageNumber,this.pageSize)
     .subscribe((data:any) => {
       this.dataSource = data.rows
 
@@ -98,9 +99,10 @@ export class PainMeasureTableComponent implements OnInit {
       this.lastYear = this.chartService.formatFilterDate(dateRangeStart,1)
       
 
-      this.dataService.getPainMeasureTable(this.id,this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1),this.sort,this.ascDesc,this.searchFilter[0],this.pageNumber,this.pageSize)
+      this.dataService.getPainMeasureTable(this.id,this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1),this.sort,this.ascDesc,this.searchFilter,this.pageNumber,this.pageSize)
         .subscribe((data:any) => {
-          this.dataSource = data.anxiety
+          console.log(data)
+          this.dataSource = data.rows
           
           //reformat date
           for(let row in this.dataSource)
@@ -118,13 +120,134 @@ export class PainMeasureTableComponent implements OnInit {
     }
   }
 
+  pageChange(PageEvent:any) {
+    this.pageSize = PageEvent.pageSize
+    this.pageNumber = PageEvent.pageIndex
+
+    this.dataService.getPainMeasureTable(this.id,this.lastYear,this.today,this.sort,this.ascDesc,this.searchFilter,this.pageNumber,this.pageSize)
+    .subscribe((data:any) => {
+      this.dataSource = data.rows
+
+      //reformat date
+      for(let row in this.dataSource)
+      {
+        this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+        this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+      }
+
+      this.numberOfRecords = data.totalItems
+    },
+    (error:any) => {
+      console.log(error)
+      alert('api is down')
+    })
+    
+  }
+
+  sortData(sort:Sort) {
+    const data = this.dataSource.slice();
+    if (!sort.active || sort.direction === '') {
+
+      this.sort = 'questionare_date'
+      this.ascDesc = 'false'
+      this.pageNumber = 0
+
+      this.dataService.getPainMeasureTable(this.id,this.lastYear,this.today,this.sort,this.ascDesc,this.searchFilter,this.pageNumber,this.pageSize)
+      .subscribe((data:any) => {
+        this.dataSource = data.rows
+
+        //reformat date
+        for(let row in this.dataSource)
+        {
+          this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+          this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+        }
+
+        this.numberOfRecords = data.totalItems
+      },
+      (error:any) => {
+        console.log(error)
+        alert('api is down')
+      })
+      
+      return;
+    }
+    this.dataSource = data.sort((a,b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'painmeasure':
+          this.sort = 'painmeasure'
+          this.ascDesc = String(isAsc)
+          this.pageNumber = 0
+
+          return this.dataService.getPainMeasureTable(this.id,this.lastYear,this.today,this.sort,this.ascDesc,this.searchFilter,this.pageNumber,this.pageSize)
+          .subscribe((data:any) => {
+            this.dataSource = data.rows
+    
+            //reformat date
+            for(let row in this.dataSource)
+            {
+              this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+              this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+            }
+    
+            this.numberOfRecords = data.totalItems
+          },
+          (error:any) => {
+            console.log(error)
+            alert('api is down')
+          })
+
+        case 'questionare_date':
+          this.sort = 'questionare_date'
+          this.ascDesc = String(isAsc)
+          this.pageNumber = 0
+
+          return this.dataService.getPainMeasureTable(this.id,this.lastYear,this.today,this.sort,this.ascDesc,this.searchFilter[0],this.pageNumber,this.pageSize)
+          .subscribe((data:any) => {
+            this.dataSource = data.rows
+    
+            //reformat date
+            for(let row in this.dataSource)
+            {
+              this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+              this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+            }
+    
+            this.numberOfRecords = data.totalItems
+          },
+          (error:any) => {
+            console.log(error)
+            alert('api is down')
+          })
+      }
+    })
+  }
+
   //todo download data
 
-  //todo page change
-
-  //todo sort data
-
   //todo apply filter
+  applyFilter(event:Event,index:number) {
+    this.pageNumber = 0
+    this.searchFilter = (event.target as HTMLInputElement).value;
 
+    this.dataService.getPainMeasureTable(this.id,this.lastYear,this.today,this.sort,this.ascDesc,this.searchFilter,this.pageNumber,this.pageSize)
+      .subscribe((data:any) => {
+        this.dataSource = data.rows
 
+        //reformat date
+        for(let row in this.dataSource)
+        {
+          this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+          this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+        }
+
+        this.numberOfRecords = data.totalItems
+      },
+      (error:any) => {
+        console.log(error)
+        alert('api is down')
+      })     
+  }
+  
 }
