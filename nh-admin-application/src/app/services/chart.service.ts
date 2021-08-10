@@ -108,7 +108,10 @@ export class ChartService {
           d2Data
         ]
       },
-      legend: {
+      legend: {  
+        itemWidth:30,
+        itemHeight:30,
+        icon:'square',
         selected:{
           'D1':true,'D2':false}
       },
@@ -120,7 +123,7 @@ export class ChartService {
       yAxis: {},
       series: [{
         type: "scatter",
-        seriesLayoutBy: "row"
+        seriesLayoutBy: "row",
       }, {
         type:"scatter",
         seriesLayoutBy:"row",
