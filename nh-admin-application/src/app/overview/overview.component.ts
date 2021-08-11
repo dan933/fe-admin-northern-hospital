@@ -76,11 +76,11 @@ export class OverviewComponent implements OnInit{
 
 
     sortData(sort: Sort) {
-      const data = this.dataSource.slice();
+      const data = this.dataSource.slice();      
       if (!sort.active || sort.direction === '') {
-        this.dataService.getOverviewTable('patienthospitalnumber','true',this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+        this.dataService.getOverviewTable('patienthospitalnumber','true',this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,0,this.pageSize)
         .subscribe((data:any) => {
-        this.dataSource = data.patients
+        this.dataSource = data.rows
         this.numberOfRecords = data.totalItems
         })
         return;
@@ -88,18 +88,18 @@ export class OverviewComponent implements OnInit{
       this.dataSource = data.sort((a, b) => {
         const isAsc = sort.direction === 'asc';
         switch (sort.active) {
-          case 'patienthospitalnumber': 
+          case 'patienthospitalnumber':         
             return this.dataService.getOverviewTable('patienthospitalnumber',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
             this.ascDesc = String(isAsc)
-            this.dataSource = data.patients
+            this.dataSource = data.rows
             this.numberOfRecords = data.totalItems
             });
           case 'surname': 
             return this.dataService.getOverviewTable('surname',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
             this.ascDesc = String(isAsc)
-            this.dataSource = data.patients
+            this.dataSource = data.rows
             this.numberOfRecords = data.totalItems
             });
           case 'firstname': 
@@ -113,28 +113,28 @@ export class OverviewComponent implements OnInit{
             return this.dataService.getOverviewTable('question_id',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
             this.ascDesc = String(isAsc)
-            this.dataSource = data.patients
+            this.dataSource = data.rows
             this.numberOfRecords = data.totalItems
             });
           case 'painmeasure':
             return this.dataService.getOverviewTable('painmeasure',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
             this.ascDesc = String(isAsc)
-            this.dataSource = data.patients
+            this.dataSource = data.rows
             this.numberOfRecords = data.totalItems
             });
           case 'd1':
             return this.dataService.getOverviewTable('d1',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
             this.ascDesc = String(isAsc)
-            this.dataSource = data.patients
+            this.dataSource = data.rows
             this.numberOfRecords = data.totalItems
             });          
           case 'd2':
             return this.dataService.getOverviewTable('d2',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
             this.ascDesc = String(isAsc)
-            this.dataSource = data.patients
+            this.dataSource = data.rows
             this.numberOfRecords = data.totalItems
             });    
           default: return 0;
