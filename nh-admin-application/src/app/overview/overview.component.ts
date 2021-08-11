@@ -85,7 +85,7 @@ export class OverviewComponent implements OnInit{
         })
         return;
       }
-      this.dataSource = data.sort((a, b) => {
+      this.dataSource = data.sort(() => {
         const isAsc = sort.direction === 'asc';
         switch (sort.active) {
           case 'patienthospitalnumber':         
@@ -106,7 +106,7 @@ export class OverviewComponent implements OnInit{
             return this.dataService.getOverviewTable('firstname',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
             .subscribe((data:any) => {
             this.ascDesc = String(isAsc)
-            this.dataSource = data.patients
+            this.dataSource = data.rows
             this.numberOfRecords = data.totalItems
             });
           case 'question_id': 
