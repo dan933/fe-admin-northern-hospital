@@ -60,7 +60,6 @@ export class ChartService {
     year = output.getFullYear()
 
     output = `${year}-${month}-${day}`
-    console.log(output)
     return output
   }
 
