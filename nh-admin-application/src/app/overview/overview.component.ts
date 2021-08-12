@@ -22,6 +22,7 @@ export class OverviewComponent implements OnInit{
   
   //initialise variables
   numberOfRecords:number = 0
+  searchFilter:any[] = ["","","","","","",""]
   searchPatienthospitalnumber = ""
   searchSurname = ""
   searchFirstName = ""
@@ -213,9 +214,18 @@ export class OverviewComponent implements OnInit{
     })     
   }
 
+  applyFilter(event:Event,index:number) {
+    this.pageNumber = 0
+    this.searchFilter[index] = (event.target as HTMLInputElement).value;
+
+    this.getTableData();
+    
+     
+  }
+
 
   getTableData(){
-    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.pageNumber,this.pageSize)
     .subscribe(
       (data:any) => {
         this.dataSource = data.rows

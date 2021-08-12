@@ -49,7 +49,7 @@
           <ng-container matColumnDef="patienthospitalnumber-filter" sticky>
             <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
               
-                <input type="number"  (keyup)="applyIdFilter($event)" placeholder="filter" #input autocomplete="off">
+                <input type="number"  (input)="applyFilter($event,0)" placeholder="filter" #input autocomplete="off">
              
             </th>
           </ng-container>
@@ -57,7 +57,7 @@
           <ng-container matColumnDef="surname-filter" sticky>
             <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
               
-                <input type="text"  (keyup)="applySurnameFilter($event)" placeholder="filter" #input>
+                <input type="text"  (input)="applyFilter($event,1)" placeholder="filter" #input>
               
             </th>
           </ng-container>
@@ -65,7 +65,7 @@
           <ng-container matColumnDef="firstname-filter">
             <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
               
-                <input type="text"  (keyup)="applyFirstnameFilter($event)" placeholder="filter" #input>
+                <input type="text"  (input)="applyFilter($event,2)" placeholder="filter" #input>
             
             </th>
           </ng-container>
@@ -73,7 +73,7 @@
           <ng-container matColumnDef="question_id-filter">
             <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
               
-                <input type="number" (keyup)="applyQuestionIdFilter($event)" placeholder="filter" #input autocomplete="off">
+                <input type="number" (input)="applyFilter($event,3)" placeholder="filter" #input autocomplete="off">
               
             </th>
           </ng-container>
@@ -81,7 +81,7 @@
           <ng-container matColumnDef="painmeasure-filter">
             <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
               
-                <input  type="number" (keyup)="applyPainmeasureFilter($event)" placeholder="filter" #input autocomplete="off">
+                <input  type="number" (input)="applyFilter($event,4)" placeholder="filter" #input autocomplete="off">
               
             </th>
           </ng-container>
@@ -89,14 +89,14 @@
           <ng-container matColumnDef="d1-filter">
             <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">
              
-                <input type="number" (keyup)="applyD1Filter($event)" placeholder="filter" #input autocomplete="off">
+                <input type="number" (input)="applyFilter($event,5)" placeholder="filter" #input autocomplete="off">
               
             </th>
           </ng-container>
   
           <ng-container matColumnDef="d2-filter">
             <th mat-header-cell *matHeaderCellDef [ngStyle]="{'border-bottom':'1px solid rgba(0,0,0,.12)'}">                     
-                <input type="number" (keyup)="applyD2Filter($event)" placeholder="filter" #input autocomplete="off">
+                <input type="number" (input)="applyFilter($event,6)" placeholder="filter" #input autocomplete="off">
             </th>
           </ng-container>
           
