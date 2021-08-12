@@ -109,9 +109,9 @@
       <mat-toolbar id="bottom-toolbar">
         <mat-toolbar-row id="bottom-toolbar-row">
           <mat-paginator
-        [length]="numberOfRecords"
-        [pageIndex]="pageNumber"
-        [pageSize]="pageSize"
+        [length]="page.numberOfRecords"
+        [pageIndex]="page.pageNumber"
+        [pageSize]="page.pageSize"
         [pageSizeOptions]="[10, 50, 100]"
         [length]="10"
         (page) = pageChange($event)

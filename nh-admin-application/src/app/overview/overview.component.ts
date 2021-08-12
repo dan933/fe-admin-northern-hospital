@@ -20,22 +20,17 @@ export class OverviewComponent implements OnInit{
     
   }
   
-  //initialise variables
-  numberOfRecords:number = 0
+  //search filter for columns
   searchFilter:any[] = ["","","","","","",""]
-  searchPatienthospitalnumber = ""
-  searchSurname = ""
-  searchFirstName = ""
-  searchQuestionId = ""
-  searchPainMeasure = ""
-  searchd1 = ""
-  searchd2 = ""
-  pageSize = 3
-  pageNumber = 0
+
+
+  //page object 
+  page = {pageSize:10,pageNumber:0,numberOfRecords:0}
+
   sort = 'patienthospitalnumber'
   ascDesc = 'true'
 
-
+  //object to hold table data
   dataSource:overview[] = []
 
   
@@ -53,9 +48,10 @@ export class OverviewComponent implements OnInit{
     this.getTableData()
   } 
   
+  //next, previous, first and last page navigation
   pageChange(PageEvent:any) {
-    this.pageSize = PageEvent.pageSize
-    this.pageNumber = PageEvent.pageIndex
+    this.page.pageSize = PageEvent.pageSize
+    this.page.pageNumber = PageEvent.pageIndex
 
     this.getTableData()
   }
@@ -64,14 +60,14 @@ export class OverviewComponent implements OnInit{
     //Pagination similar to the NBA website
     //e.g select which page you want
 
-
+    //sort columns
     sortData(sort: Sort) {
       const data = this.dataSource.slice();      
       if (!sort.active || sort.direction === '') {
 
         this.sort = 'patienthospitalnumber';
         this.ascDesc = 'true';
-        this.pageNumber = 0;
+        this.page.pageNumber = 0;
 
         this.getTableData()
         
@@ -84,7 +80,7 @@ export class OverviewComponent implements OnInit{
           
         this.sort = 'patienthospitalnumber';
         this.ascDesc = String(isAsc);
-        this.pageNumber = 0;
+        this.page.pageNumber = 0;
 
         this.getTableData();
         return; 
@@ -92,130 +88,56 @@ export class OverviewComponent implements OnInit{
         case 'surname': 
           this.sort = 'surname';
           this.ascDesc = String(isAsc);
-          this.pageNumber = 0;   
+          this.page.pageNumber = 0;   
 
           return this.getTableData();
 
         case 'firstname': 
           this.sort = 'firstname';
           this.ascDesc = String(isAsc);
-          this.pageNumber = 0;   
+          this.page.pageNumber = 0;   
 
           return this.getTableData();
 
         case 'question_id': 
           this.sort = 'question_id';
           this.ascDesc = String(isAsc);
-          this.pageNumber = 0;   
+          this.page.pageNumber = 0;   
 
           return this.getTableData();
         
         case 'painmeasure':
           this.sort = 'painmeasure';
           this.ascDesc = String(isAsc);
-          this.pageNumber = 0;   
+          this.page.pageNumber = 0;   
 
           return this.getTableData();
         
         case 'd1':
           this.sort = 'd1';
           this.ascDesc = String(isAsc);
-          this.pageNumber = 0;   
+          this.page.pageNumber = 0;   
 
           return this.getTableData();   
           
         case 'd2':
           this.sort = 'd1';
           this.ascDesc = String(isAsc);
-          this.pageNumber = 0;   
+          this.page.pageNumber = 0;   
 
           return this.getTableData(); 
         default: return 0;
         }
     }
 
+  //route to the patients individual page
   getPatientOverview(id:any)
   {
     this.router.navigate([`/overview/anxietydepressionchart/${id}`]);
   }
 
-  //TODO Create one function to work with all input fields
-
-  applyIdFilter(event:Event) {
-    this.pageNumber = 0
-    this.searchPatienthospitalnumber = (event.target as HTMLInputElement).value;
-    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-  .subscribe((data:any) => {
-      this.dataSource = data.rows
-      this.numberOfRecords = data.totalItems
-    })
-     
-  }
-
-  applySurnameFilter(event:Event) {
-    this.pageNumber = 0
-    this.searchSurname = (event.target as HTMLInputElement).value;
-    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-  .subscribe((data:any) => {
-      this.dataSource = data.rows
-      this.numberOfRecords = data.totalItems
-    })
-     
-  }
-
-  applyFirstnameFilter(event:Event) {
-    this.pageNumber = 0
-    this.searchFirstName = (event.target as HTMLInputElement).value;
-    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-  .subscribe((data:any) => {
-      this.dataSource = data.rows
-      this.numberOfRecords = data.totalItems
-    })
-     
-  }
-
-  applyQuestionIdFilter(event:Event) {
-    this.pageNumber = 0
-    this.searchQuestionId = (event.target as HTMLInputElement).value;
-    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-  .subscribe((data:any) => {
-      this.dataSource = data.rows
-      this.numberOfRecords = data.totalItems
-    })     
-  }
-
-  applyPainmeasureFilter(event:Event) {
-    this.pageNumber = 0
-    this.searchPainMeasure = (event.target as HTMLInputElement).value;
-    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-  .subscribe((data:any) => {
-      this.dataSource = data.rows
-      this.numberOfRecords = data.totalItems
-    })     
-  }
-
-  applyD1Filter(event:Event) {
-    this.pageNumber = 0
-    this.searchd1 = (event.target as HTMLInputElement).value;
-    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-  .subscribe((data:any) => {
-      this.dataSource = data.rows
-      this.numberOfRecords = data.totalItems
-    })     
-  }
-
-  applyD2Filter(event:Event) {
-    this.pageNumber = 0
-    this.searchd2 = (event.target as HTMLInputElement).value;
-    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-  .subscribe((data:any) => {
-      this.dataSource = data.rows
-      this.numberOfRecords = data.totalItems
-    })     
-  }
-
   applyFilter(event:Event,index:number) {
-    this.pageNumber = 0
+    this.page.pageNumber = 0
     this.searchFilter[index] = (event.target as HTMLInputElement).value;
 
     this.getTableData();
@@ -225,11 +147,11 @@ export class OverviewComponent implements OnInit{
 
 
   getTableData(){
-    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.pageNumber,this.pageSize)
+    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.page.pageNumber,this.page.pageSize)
     .subscribe(
       (data:any) => {
         this.dataSource = data.rows
-        this.numberOfRecords = data.totalItems    
+        this.page.numberOfRecords = data.totalItems    
       },
       (error:any) => {
         console.log(error)
