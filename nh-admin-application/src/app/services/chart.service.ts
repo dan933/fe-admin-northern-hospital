@@ -46,18 +46,21 @@ export class ChartService {
     let year = datePart[2]
     let month = datePart[1]
     let day = datePart[0]
+    
 
     let output:any = `${month}-${day}-${year}` 
 
     output = new Date(output)
     output.setDate(output.getDate() + days)
 
+    
+
     day = output.getDate()
     month = output.getMonth() + 1
     year = output.getFullYear()
 
     output = `${year}-${month}-${day}`
-
+    console.log(output)
     return output
   }
 

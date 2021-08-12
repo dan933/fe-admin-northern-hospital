@@ -37,8 +37,8 @@ export class PainMeasureChartComponent implements OnInit {
   id:string=""
   name:any[]=[]
   
-  today = new Date(Date.now())
-  lastYear = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000)
+  today:any = new Date(Date.now()).toISOString().slice(0,10);  
+  lastYear:any = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000).toISOString().slice(0,10);
 
   range = new FormGroup({
     start: new FormControl(this.lastYear),
@@ -76,39 +76,9 @@ export class PainMeasureChartComponent implements OnInit {
   }
 
   saveRange(days:number){
-    let startRange:any;
-    let endRange:any = new Date()
+    this.today = new Date().toISOString().slice(0,10)
+    this.lastYear = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString().slice(0,10)
 
-    startRange = new Date(Date.now() - days * 24 * 60 * 60 * 1000)
-    let day:any = startRange.getDate()
-    day = String(day)
-    day = day.length == 2 ? day : `0${day}`
-
-    let month:any = startRange.getMonth()
-    month = String(month + 1)
-    month = month.length == 2 ? month : `0${month}`
-
-    let year:any = startRange.getFullYear();
-
-    startRange = `${year}-${month}-${day}`
-
-    endRange.setDate(endRange.getDate()+1)
-
-    day = endRange.getDate()
-    day = String(day)
-    day = day.length == 2 ? day : `0${day}`
-
-    month = endRange.getMonth()
-    month = String(month + 1)
-    month = month.length == 2 ? month : `0${month}`
-
-    year = endRange.getFullYear();
-
-    endRange = `${year}-${month}-${day}`
-
-    this.today = endRange
-    this.lastYear = startRange
-    
     this.getChart();
   }
 

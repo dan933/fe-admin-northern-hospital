@@ -36,8 +36,8 @@ export class PainMeasureTableComponent implements OnInit {
 
   id:string=""
 
-  today = new Date(Date.now())
-  lastYear = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000)
+  today:any = new Date(Date.now()).toISOString().slice(0,10);  
+  lastYear:any = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000).toISOString().slice(0,10);
 
   range = new FormGroup({
     start: new FormControl(this.lastYear),
@@ -70,7 +70,8 @@ export class PainMeasureTableComponent implements OnInit {
   displayedColumns:string[] = ['questionare_date','painmeasure'];
   displayedColumnFilters:string[] = ['questionare_date-filter','painmeasure-filter'];
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    console.log(this.today)
     this.createChart()
   }
 
@@ -78,9 +79,9 @@ export class PainMeasureTableComponent implements OnInit {
     
     if (dateRangeStart.value != "" && dateRangeEnd.value != "")
     {
-      this.today = this.chartService.formatFilterDate(dateRangeEnd,0)
+      this.today = this.chartService.formatFilterDate(dateRangeEnd,1)
       
-      this.lastYear = this.chartService.formatFilterDate(dateRangeStart,1)
+      this.lastYear = this.chartService.formatFilterDate(dateRangeStart,0)
       
       this.createChart();
 

@@ -74,60 +74,18 @@ export class AnxietyDepressionTableComponent implements OnInit {
     'a3-filter','a4-filter','a5-filter','a6-filter','a7-filter','a8-filter'];
 
   ngOnInit(): void {
-    this.dataService.getAnxietyTable(
-      this.id,this.lastYear,this.today,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],
-      this.searchFilter[2], this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],
-      this.searchFilter[6],this.searchFilter[7], this.searchFilter[8],this.searchFilter[9],
-      this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],this.searchFilter[13],
-      this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
-      .subscribe((data:any) => {        
-        this.dataSource = data.rows
-
-        //reformat date
-        for(let row in this.dataSource)
-        {
-          this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
-          this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
-        }
-
-        this.numberOfRecords = data.totalItems
-      },
-      (error:any) => {
-        console.log(error)
-        alert('api is down')
-      })
+    this.createChart();
   }
 
   saveDate(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement){
     
     if (dateRangeStart.value != "" && dateRangeEnd.value != "")
     {
-      this.today = this.chartService.formatFilterDate(dateRangeEnd,0)
+      this.lastYear = this.chartService.formatFilterDate(dateRangeStart,0)
       
-      this.lastYear = this.chartService.formatFilterDate(dateRangeStart,1)
+      this.today = this.chartService.formatFilterDate(dateRangeEnd,1)
       
-
-      this.dataService.getAnxietyTable(
-        this.id,this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1),this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],this.searchFilter[2],
-        this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],this.searchFilter[6],this.searchFilter[7],
-        this.searchFilter[8],this.searchFilter[9],this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],
-        this.searchFilter[13],this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
-        .subscribe((data:any) => {
-          this.dataSource = data.rows
-          
-          //reformat date
-          for(let row in this.dataSource)
-        {
-          this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
-          this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
-        }        
-         
-          this.numberOfRecords = data.totalItems
-        },
-        (error:any) => {
-          console.log(error)
-          alert('api is down')
-        })
+      this.createChart();
     }
   }
 
@@ -706,5 +664,30 @@ export class AnxietyDepressionTableComponent implements OnInit {
       })
     
      
+  }
+
+  createChart(){
+    this.dataService.getAnxietyTable(
+      this.id,this.lastYear,this.today,this.sort,this.ascDesc,this.searchFilter[0],this.searchFilter[1],
+      this.searchFilter[2], this.searchFilter[3],this.searchFilter[4],this.searchFilter[5],
+      this.searchFilter[6],this.searchFilter[7], this.searchFilter[8],this.searchFilter[9],
+      this.searchFilter[10],this.searchFilter[11],this.searchFilter[12],this.searchFilter[13],
+      this.searchFilter[14],this.searchFilter[15],this.pageNumber,this.pageSize)
+      .subscribe((data:any) => {        
+        this.dataSource = data.rows
+
+        //reformat date
+        for(let row in this.dataSource)
+        {
+          this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+          this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+        }
+
+        this.numberOfRecords = data.totalItems
+      },
+      (error:any) => {
+        console.log(error)
+        alert('api is down')
+      })
   }
 }
