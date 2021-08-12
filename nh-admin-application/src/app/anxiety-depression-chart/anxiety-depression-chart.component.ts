@@ -36,6 +36,7 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 export class AnxietyDepressionChartComponent implements OnInit {
   //Patient summary heading
   id:string=""
+
   name:any[]=[]
   
   today = new Date(Date.now())
@@ -66,7 +67,58 @@ export class AnxietyDepressionChartComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getChart();
+  }
+
+  // source https://stackoverflow.com/questions/63823557/angular-material-datepickerrange-get-value-on-change
+  saveDate(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement){
     
+    if (dateRangeStart.value != "" && dateRangeEnd.value != "")
+    {
+      this.lastYear = this.chartService.formatFilterDate(dateRangeStart,0)
+      this.today = this.chartService.formatFilterDate(dateRangeEnd,1)
+      
+      this.getChart();
+    }
+  }
+
+  saveRange(days:number){
+    let startRange:any;
+    let endRange:any = new Date()
+
+    startRange = new Date(Date.now() - days * 24 * 60 * 60 * 1000)
+    let day:any = startRange.getDate()
+    day = String(day)
+    day = day.length == 2 ? day : `0${day}`
+
+    let month:any = startRange.getMonth()
+    month = String(month + 1)
+    month = month.length == 2 ? month : `0${month}`
+
+    let year:any = startRange.getFullYear();
+
+    startRange = `${year}-${month}-${day}`
+
+    endRange.setDate(endRange.getDate()+1)
+
+    day = endRange.getDate()
+    day = String(day)
+    day = day.length == 2 ? day : `0${day}`
+
+    month = endRange.getMonth()
+    month = String(month + 1)
+    month = month.length == 2 ? month : `0${month}`
+
+    year = endRange.getFullYear();
+
+    endRange = `${year}-${month}-${day}`
+
+    this.today = endRange
+    this.lastYear = startRange
+    this.getChart();
+  }
+
+  getChart(){
     this.dataService.getAnxietyChart(this.id,this.lastYear,this.today)
     .subscribe((data:any) => {
       this.dataSource = data
@@ -81,28 +133,9 @@ export class AnxietyDepressionChartComponent implements OnInit {
       this.dOneOptions = this.chartService.echartsAnxietyFormat(this.dataSource);
       
     })
+
   }
 
-  // source https://stackoverflow.com/questions/63823557/angular-material-datepickerrange-get-value-on-change
-  saveDate(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement){
-    
-    if (dateRangeStart.value != "" && dateRangeEnd.value != "")
-    {
-      this.dataService.getAnxietyChart(this.id,this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1))
-      .subscribe((data:any) => { 
-        this.dataSource = data
+  
 
-      //reformat date
-      for(let row in this.dataSource)
-      {
-        this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
-        this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
-      } 
-
-      this.dOneOptions = this.chartService.echartsAnxietyFormat(this.dataSource);
-      
-      })
-    }
-      
-  }
 }

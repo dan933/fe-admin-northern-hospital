@@ -230,9 +230,7 @@ export class ChartService {
             filterMode: 'filter'
         }
       ],
-    }
-    console.log(questions.d1Data)
-    
+    }    
     return output;
   }
 

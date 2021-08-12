@@ -7,6 +7,12 @@
   padding: 16px;
 }
 
+.dateRange
+  {
+    margin-right:10px;
+    background-color:rgb(236, 236, 236);
+  }
+
 .container
 {
   height:100%;
@@ -21,12 +27,12 @@
     row-gap: 5px; 
     column-gap:5px; 
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    grid-template-rows: repeat(1, 400px); 
+    grid-template-rows: repeat(auto-fit, 500px); 
 }
 
 #chart
 {
-  margin-left: 10px;
+  margin-left: 4px;
 }
 
 @media only screen and (max-width: 281px) {
