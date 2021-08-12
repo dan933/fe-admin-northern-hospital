@@ -20,6 +20,7 @@ export class OverviewComponent implements OnInit{
     
   }
   
+  //initialise variables
   numberOfRecords:number = 0
   searchPatienthospitalnumber = ""
   searchSurname = ""
@@ -28,7 +29,7 @@ export class OverviewComponent implements OnInit{
   searchPainMeasure = ""
   searchd1 = ""
   searchd2 = ""
-  pageSize = 10
+  pageSize = 3
   pageNumber = 0
   sort = 'patienthospitalnumber'
   ascDesc = 'true'
@@ -38,36 +39,24 @@ export class OverviewComponent implements OnInit{
 
   
   
-
+  //table columns
   displayedColumns:string[] = ['patienthospitalnumber','surname', 'firstname','question_id','painmeasure','d1','d2'];
 
-  //Filter Columns
+  //Filter input Columns
   displayedColumnFilters:string[] = ['patienthospitalnumber-filter','surname-filter','firstname-filter','question_id-filter','painmeasure-filter','d1-filter','d2-filter'];
   
 
   //When component first loads
-  ngOnInit() {  
-  this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-  .subscribe(
-    (data:any) => {
-      this.dataSource = data.rows
-      this.numberOfRecords = data.totalItems    
-    },
-    (error:any) => {
-      console.log(error)
-      alert('api is down')
-    })
+  ngOnInit() {
+    //gets row data and the number of rows
+    this.getTableData()
   } 
   
   pageChange(PageEvent:any) {
     this.pageSize = PageEvent.pageSize
     this.pageNumber = PageEvent.pageIndex
 
-    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-    .subscribe((data:any) => {
-      this.dataSource = data.patients
-      this.numberOfRecords = data.totalItems
-    }) 
+    this.getTableData()
   }
   
   //Todo if have time
@@ -78,68 +67,70 @@ export class OverviewComponent implements OnInit{
     sortData(sort: Sort) {
       const data = this.dataSource.slice();      
       if (!sort.active || sort.direction === '') {
-        this.dataService.getOverviewTable('patienthospitalnumber','true',this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,0,this.pageSize)
-        .subscribe((data:any) => {
-        this.dataSource = data.rows
-        this.numberOfRecords = data.totalItems
-        })
+
+        this.sort = 'patienthospitalnumber';
+        this.ascDesc = 'true';
+        this.pageNumber = 0;
+
+        this.getTableData()
+        
         return;
       }
-      this.dataSource = data.sort(() => {
-        const isAsc = sort.direction === 'asc';
-        switch (sort.active) {
-          case 'patienthospitalnumber':         
-            return this.dataService.getOverviewTable('patienthospitalnumber',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-            .subscribe((data:any) => {
-            this.ascDesc = String(isAsc)
-            this.dataSource = data.rows
-            this.numberOfRecords = data.totalItems
-            });
-          case 'surname': 
-            return this.dataService.getOverviewTable('surname',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-            .subscribe((data:any) => {
-            this.ascDesc = String(isAsc)
-            this.dataSource = data.rows
-            this.numberOfRecords = data.totalItems
-            });
-          case 'firstname': 
-            return this.dataService.getOverviewTable('firstname',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-            .subscribe((data:any) => {
-            this.ascDesc = String(isAsc)
-            this.dataSource = data.rows
-            this.numberOfRecords = data.totalItems
-            });
-          case 'question_id': 
-            return this.dataService.getOverviewTable('question_id',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-            .subscribe((data:any) => {
-            this.ascDesc = String(isAsc)
-            this.dataSource = data.rows
-            this.numberOfRecords = data.totalItems
-            });
-          case 'painmeasure':
-            return this.dataService.getOverviewTable('painmeasure',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-            .subscribe((data:any) => {
-            this.ascDesc = String(isAsc)
-            this.dataSource = data.rows
-            this.numberOfRecords = data.totalItems
-            });
-          case 'd1':
-            return this.dataService.getOverviewTable('d1',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-            .subscribe((data:any) => {
-            this.ascDesc = String(isAsc)
-            this.dataSource = data.rows
-            this.numberOfRecords = data.totalItems
-            });          
-          case 'd2':
-            return this.dataService.getOverviewTable('d2',String(isAsc),this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
-            .subscribe((data:any) => {
-            this.ascDesc = String(isAsc)
-            this.dataSource = data.rows
-            this.numberOfRecords = data.totalItems
-            });    
-          default: return 0;
+
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'patienthospitalnumber':
+          
+        this.sort = 'patienthospitalnumber';
+        this.ascDesc = String(isAsc);
+        this.pageNumber = 0;
+
+        this.getTableData();
+        return; 
+
+        case 'surname': 
+          this.sort = 'surname';
+          this.ascDesc = String(isAsc);
+          this.pageNumber = 0;   
+
+          return this.getTableData();
+
+        case 'firstname': 
+          this.sort = 'firstname';
+          this.ascDesc = String(isAsc);
+          this.pageNumber = 0;   
+
+          return this.getTableData();
+
+        case 'question_id': 
+          this.sort = 'question_id';
+          this.ascDesc = String(isAsc);
+          this.pageNumber = 0;   
+
+          return this.getTableData();
+        
+        case 'painmeasure':
+          this.sort = 'painmeasure';
+          this.ascDesc = String(isAsc);
+          this.pageNumber = 0;   
+
+          return this.getTableData();
+        
+        case 'd1':
+          this.sort = 'd1';
+          this.ascDesc = String(isAsc);
+          this.pageNumber = 0;   
+
+          return this.getTableData();   
+          
+        case 'd2':
+          this.sort = 'd1';
+          this.ascDesc = String(isAsc);
+          this.pageNumber = 0;   
+
+          return this.getTableData(); 
+        default: return 0;
         }
-      })
     }
 
   getPatientOverview(id:any)
@@ -154,7 +145,7 @@ export class OverviewComponent implements OnInit{
     this.searchPatienthospitalnumber = (event.target as HTMLInputElement).value;
     this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
-      this.dataSource = data.patients
+      this.dataSource = data.rows
       this.numberOfRecords = data.totalItems
     })
      
@@ -165,7 +156,7 @@ export class OverviewComponent implements OnInit{
     this.searchSurname = (event.target as HTMLInputElement).value;
     this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
-      this.dataSource = data.patients
+      this.dataSource = data.rows
       this.numberOfRecords = data.totalItems
     })
      
@@ -176,7 +167,7 @@ export class OverviewComponent implements OnInit{
     this.searchFirstName = (event.target as HTMLInputElement).value;
     this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
-      this.dataSource = data.patients
+      this.dataSource = data.rows
       this.numberOfRecords = data.totalItems
     })
      
@@ -187,7 +178,7 @@ export class OverviewComponent implements OnInit{
     this.searchQuestionId = (event.target as HTMLInputElement).value;
     this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
-      this.dataSource = data.patients
+      this.dataSource = data.rows
       this.numberOfRecords = data.totalItems
     })     
   }
@@ -197,7 +188,7 @@ export class OverviewComponent implements OnInit{
     this.searchPainMeasure = (event.target as HTMLInputElement).value;
     this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
-      this.dataSource = data.patients
+      this.dataSource = data.rows
       this.numberOfRecords = data.totalItems
     })     
   }
@@ -207,7 +198,7 @@ export class OverviewComponent implements OnInit{
     this.searchd1 = (event.target as HTMLInputElement).value;
     this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
-      this.dataSource = data.patients
+      this.dataSource = data.rows
       this.numberOfRecords = data.totalItems
     })     
   }
@@ -217,8 +208,23 @@ export class OverviewComponent implements OnInit{
     this.searchd2 = (event.target as HTMLInputElement).value;
     this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
   .subscribe((data:any) => {
-      this.dataSource = data.patients
+      this.dataSource = data.rows
       this.numberOfRecords = data.totalItems
     })     
+  }
+
+
+  getTableData(){
+    this.dataService.getOverviewTable(this.sort,this.ascDesc,this.searchPatienthospitalnumber,this.searchSurname,this.searchFirstName,this.searchQuestionId,this.searchPainMeasure,this.searchd1,this.searchd2,this.pageNumber,this.pageSize)
+    .subscribe(
+      (data:any) => {
+        this.dataSource = data.rows
+        this.numberOfRecords = data.totalItems    
+      },
+      (error:any) => {
+        console.log(error)
+        alert('api is down')
+      })
+    //Todo make function to avoid repeating code
   }
 }
