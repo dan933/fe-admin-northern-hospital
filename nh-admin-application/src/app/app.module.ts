@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 //routing
@@ -46,6 +46,11 @@ import { PainMeasureChartComponent } from './pain-measure-chart/pain-measure-cha
 import { AnxietyDepressionTableComponent } from './anxiety-depression-table/anxiety-depression-table.component';
 import { PainMeasureTableComponent } from './pain-measure-table/pain-measure-table.component';
 
+//keycloak
+import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
+import { initializer } from './util/app-init';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +67,7 @@ import { PainMeasureTableComponent } from './pain-measure-table/pain-measure-tab
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    KeycloakAngularModule,
     MatTableModule,
     MatToolbarModule,
     MatPaginatorModule,
@@ -88,7 +94,13 @@ import { PainMeasureTableComponent } from './pain-measure-table/pain-measure-tab
     })
   ],
   exports:[MatToolbarModule,MatFormFieldModule, MatButtonModule,MatMenuModule,MatDatepickerModule,MatIconModule],
-  providers: [DataService, ChartService],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+		  useFactory: initializer,
+		  deps: [KeycloakService],
+		  multi: true
+    },DataService, ChartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
