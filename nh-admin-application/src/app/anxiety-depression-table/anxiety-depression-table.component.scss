@@ -93,13 +93,14 @@ table
   
   #bottom-toolbar-row
   {
-    width: 2000px;
+    width: 1000px;
     margin-top:15px;
     background-color: white;
   }
 
   .mat-paginator ::ng-deep .mat-select-value, ::ng-deep .mat-option-text
   {
+    
     font-size: 20px;
     color:black;
   }
