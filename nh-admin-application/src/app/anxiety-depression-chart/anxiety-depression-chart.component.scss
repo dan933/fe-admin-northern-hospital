@@ -1,16 +1,33 @@
 
 //source:https://www.google.com/amp/s/www.freecodecamp.org/news/how-to-make-your-html-responsive-by-adding-a-single-line-of-css-2a62de81e431/amp/
-.chart-container{
-  display: grid;  
-  row-gap: 5px; 
-  column-gap:5px; 
-  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-  grid-template-rows: repeat(1, 600px);    
+
+#patient-overview-navbar
+{
+  margin: 20px;
+  padding: 16px;
 }
 
 .container
 {
-  height: 100vh;
-  width:100vw;
+  height:100%;
+  width:99vw;
   overflow: auto;
+  margin-bottom: 20px;
+}
+
+#chart-container
+{
+  width:90%;
+}
+
+#chart
+{
+  margin-left: 10px;
+}
+
+@media only screen and (max-width: 281px) {
+  .container
+  {
+    width:120vw
+  }
 }
