@@ -1,15 +1,16 @@
 #table-div
 {
-  margin-left: 10px;
+  
   height: 99vh;
-  width: 98vw;
+  width: 99vw;
   overflow: auto;
 }
 
 table
-  {
-    overflow:auto;
-  }
+{
+  margin-left: 10px;
+}
+
 
 @media only screen and (max-width: 778px) {
   table
@@ -96,9 +97,8 @@ table
     background-color: white;
   }
 
-
   .mat-paginator ::ng-deep .mat-select-value, ::ng-deep .mat-option-text
   {
-    font-size: 20px;
+    font-size: 15px;
     color:black;
   }

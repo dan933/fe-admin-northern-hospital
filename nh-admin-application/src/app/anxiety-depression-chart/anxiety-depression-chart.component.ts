@@ -99,7 +99,7 @@ export class AnxietyDepressionChartComponent implements OnInit {
         this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
       } 
 
-      this.dOneOptions = this.chartService.echartsFormat(this.dataSource,'d1','scatter');
+      this.dOneOptions = this.chartService.echartsAnxietyFormat(this.dataSource);
       
       })
     }

@@ -2,8 +2,8 @@
     display: grid;  
     row-gap: 5px; 
     column-gap:5px; 
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-    grid-template-rows: repeat(1, 600px);    
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-rows: repeat(1, 400px);    
   }
 
   .dateRange
@@ -17,3 +17,11 @@
     background-color: black;
     color: white;
   }
+
+#container
+{
+  height:100%;
+  width:99vw;
+  overflow: auto;
+  margin-bottom: 20px;
+}
