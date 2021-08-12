@@ -225,18 +225,8 @@ export class ChartService {
             filterMode: 'filter'
         },
         {
-            type: 'slider',
-            yAxisIndex: 0,
-            filterMode: 'filter'
-        },
-        {
             type: 'inside',
             xAxisIndex: 0,
-            filterMode: 'filter'
-        },
-        {
-            type: 'inside',
-            yAxisIndex: 0,
             filterMode: 'filter'
         }
       ],
