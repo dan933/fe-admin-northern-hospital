@@ -145,7 +145,6 @@ export class PainMeasureTableComponent implements OnInit {
   }
 
   sortData(sort:Sort) {
-    const data = this.dataSource.slice();
     if (!sort.active || sort.direction === '') {
 
       this.sort = 'questionare_date'
@@ -164,6 +163,7 @@ export class PainMeasureTableComponent implements OnInit {
         }
 
         this.numberOfRecords = data.totalItems
+        return;
       },
       (error:any) => {
         console.log(error)
@@ -172,9 +172,32 @@ export class PainMeasureTableComponent implements OnInit {
       
       return;
     }
-    this.dataSource = data.sort((a,b) => {
+
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
+        case 'questionare_date':
+          this.sort = 'questionare_date'
+          this.ascDesc = String(isAsc)
+          this.pageNumber = 0
+
+          return this.dataService.getPainMeasureTable(this.id,this.lastYear,this.today,this.sort,this.ascDesc,this.searchFilter,this.pageNumber,this.pageSize)
+          .subscribe((data:any) => {
+            console.log(this.today)
+            this.dataSource = data.rows
+    
+            //reformat date
+            for(let row in this.dataSource)
+            {
+              this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+              this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+            }
+    
+            this.numberOfRecords = data.totalItems
+          },
+          (error:any) => {
+            console.log(error)
+            alert('api is down')
+          })
         case 'painmeasure':
           this.sort = 'painmeasure'
           this.ascDesc = String(isAsc)
@@ -198,30 +221,8 @@ export class PainMeasureTableComponent implements OnInit {
             alert('api is down')
           })
 
-        case 'questionare_date':
-          this.sort = 'questionare_date'
-          this.ascDesc = String(isAsc)
-          this.pageNumber = 0
-
-          return this.dataService.getPainMeasureTable(this.id,this.lastYear,this.today,this.sort,this.ascDesc,this.searchFilter[0],this.pageNumber,this.pageSize)
-          .subscribe((data:any) => {
-            this.dataSource = data.rows
-    
-            //reformat date
-            for(let row in this.dataSource)
-            {
-              this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
-              this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
-            }
-    
-            this.numberOfRecords = data.totalItems
-          },
-          (error:any) => {
-            console.log(error)
-            alert('api is down')
-          })
+        
       }
-    })
   }
 
   downloadData(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement){
