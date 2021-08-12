@@ -1,14 +1,14 @@
 #table-div
 {
-  
   height: 99vh;
   width: 99vw;
   overflow: auto;
 }
 
+
 table
 {
-  margin-left: 10px;
+  padding-left: 16px;
 }
 
 
@@ -70,6 +70,7 @@ table
 
   #dateFilterBottom
   {
+    margin-top: 15px;
     font-size: 17px;
     margin-left: 10px;
   }
@@ -99,6 +100,6 @@ table
 
   .mat-paginator ::ng-deep .mat-select-value, ::ng-deep .mat-option-text
   {
-    font-size: 15px;
+    font-size: 20px;
     color:black;
   }
