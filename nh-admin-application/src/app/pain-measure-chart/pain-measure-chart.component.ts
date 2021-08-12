@@ -60,40 +60,18 @@ export class PainMeasureChartComponent implements OnInit {
   dataSource:painMeasure[] = []
 
   ngOnInit(): void {
-    
-    this.dataService.getPainMeasureChart(this.id,this.lastYear,this.today)
-    .subscribe((data:any) => {
-      this.dataSource = data
-
-      //reformat date
-      for(let row in this.dataSource)
-      {
-        this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
-        this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
-      } 
-
-      this.painMeasureOptions = this.chartService.echartsFormat(this.dataSource,'painmeasure','line');
-    })
-
+    this.getChart();
   }
 
   saveDate(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement){
     
     if (dateRangeStart.value != "" && dateRangeEnd.value != "")
     {
-      this.dataService.getPainMeasureChart(this.id, this.chartService.formatFilterDate(dateRangeStart,0), this.chartService.formatFilterDate(dateRangeEnd,1))
-      .subscribe((data:any) => {
-        this.dataSource = data
+      this.lastYear = this.chartService.formatFilterDate(dateRangeStart,0)
+      this.today = this.chartService.formatFilterDate(dateRangeEnd,1)
 
-        //reformat date
-        for(let row in this.dataSource)
-        {
-          this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
-          this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
-        } 
-
-        this.painMeasureOptions = this.chartService.echartsFormat(this.dataSource,'painmeasure','line');
-      })
+      this.getChart();
+      
     }
   }
 
@@ -130,23 +108,24 @@ export class PainMeasureChartComponent implements OnInit {
 
     this.today = endRange
     this.lastYear = startRange
-
-
-    this.dataService.getPainMeasureChart(this.id, startRange , endRange)
-      .subscribe((data:any) => {
-        this.dataSource = data
-
-        //reformat date
-        for(let row in this.dataSource)
-        {
-          this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
-          this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
-        } 
-
-        this.painMeasureOptions = this.chartService.echartsFormat(this.dataSource,'painmeasure','line');
-      })
-      
     
+    this.getChart();
+  }
+
+  getChart(){
+    this.dataService.getPainMeasureChart(this.id,this.lastYear,this.today)
+    .subscribe((data:any) => {
+      this.dataSource = data
+
+      //reformat date
+      for(let row in this.dataSource)
+      {
+        this.dataSource[row].questionare_date = new Date(this.dataSource[row].questionare_date)
+        this.dataSource[row].questionare_date = this.chartService.formatDateColumn(this.dataSource[row].questionare_date)
+      } 
+
+      this.painMeasureOptions = this.chartService.echartsFormat(this.dataSource,'painmeasure','line');
+    })
   }
 
 }

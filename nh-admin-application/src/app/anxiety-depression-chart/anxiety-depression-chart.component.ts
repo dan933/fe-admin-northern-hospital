@@ -135,7 +135,4 @@ export class AnxietyDepressionChartComponent implements OnInit {
     })
 
   }
-
-  
-
 }
