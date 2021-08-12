@@ -39,8 +39,8 @@ export class AnxietyDepressionChartComponent implements OnInit {
 
   name:any[]=[]
   
-  today = new Date(Date.now())
-  lastYear = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000)
+  today:any = new Date(Date.now()).toISOString().slice(0,10);  
+  lastYear:any = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000).toISOString().slice(0,10);
 
   range = new FormGroup({
     start: new FormControl(this.lastYear),
