@@ -1,6 +1,28 @@
-table {
-    width:100%;
+#table-div
+{  
+  height: 99vh;
+  width: 98vw;
+  overflow: auto;
+}
+
+table
+{
+  overflow:auto;
+}
+
+@media only screen and (max-width: 778px) {
+  table
+  {
+    zoom:60%;
   }
+}
+
+@media only screen and (max-width: 281px) {
+  table
+  {
+    zoom:40%;
+  }
+}
 
   .mat-column-select {
     overflow: initial;
@@ -19,6 +41,19 @@ table {
    .mat-header-cell
   {
     border: 1px solid transparent;
+  }
+
+
+  #bottom-toolbar
+  {
+    background-color: white;
+  }
+  
+  #bottom-toolbar-row
+  {
+    width: 900px;
+    margin-top:15px;
+    background-color: white;
   }
   
   
