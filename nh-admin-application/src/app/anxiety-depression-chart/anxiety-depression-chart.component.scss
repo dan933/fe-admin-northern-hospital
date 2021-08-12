@@ -7,3 +7,10 @@
   grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
   grid-template-rows: repeat(1, 600px);    
 }
+
+.container
+{
+  height: 100vh;
+  width:100vw;
+  overflow: auto;
+}
