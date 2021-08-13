@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopNavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+    private router: Router, private keycloakService: KeycloakService) { }
 
   ngOnInit(): void {
   }
+
+  logout() {
+    this.keycloakService.logout();
+  }
+
 
 }
