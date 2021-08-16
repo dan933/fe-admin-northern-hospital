@@ -4,6 +4,8 @@ import { overview } from '../models/overview.model';
 import {Sort} from '@angular/material/sort';
 import { Router } from '@angular/router';
 
+import { KeycloakService } from 'keycloak-angular';
+
 //source https://material.angular.io/components/paginator/examples
 
 
@@ -15,7 +17,8 @@ import { Router } from '@angular/router';
 export class OverviewComponent implements OnInit{
  
   constructor(
-    private router:Router,
+    protected router:Router,
+    protected keycloakAngular: KeycloakService,
     private dataService : DataService ) {
     
   }
@@ -32,8 +35,6 @@ export class OverviewComponent implements OnInit{
 
   //object to hold table data
   dataSource:overview[] = []
-
-  
   
   //table columns
   displayedColumns:string[] = ['patienthospitalnumber','surname', 'firstname','question_id','painmeasure','d1','d2'];
@@ -44,6 +45,7 @@ export class OverviewComponent implements OnInit{
 
   //When component first loads
   ngOnInit() {
+    
     //gets row data and the number of rows
     this.getTableData()
   } 

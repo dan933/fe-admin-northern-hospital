@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+//auth token
+import { KeycloakService } from 'keycloak-angular';
+
 const url = 'http://localhost:3000/api'
 
 @Injectable({
@@ -10,10 +13,23 @@ const url = 'http://localhost:3000/api'
 @Injectable()
 export class DataService {
 
- constructor(private http:HttpClient) { }
+ constructor(
+   private http:HttpClient,
+   protected keycloakAngular: KeycloakService) { }
+
+   getToken(){
+    try {
+      let token:any = this.keycloakAngular.getKeycloakInstance().idToken;      
+      return token;
+    } catch (e){
+      console.log('Failed to load token', e);
+    }
+   }
 
  //get overview data 
-   getOverviewTable(sort:string,ascDesc:string,searchPatienthospitalnumber:string,searchSurname:string,searchFirstName:string,searchQuestionId:string,searchPainMeasure:string,searchd1:string,searchd2:string,page:number, size:number){
+   getOverviewTable(sort:string,ascDesc:string,searchPatienthospitalnumber:string,searchSurname:string,searchFirstName:string,searchQuestionId:string,searchPainMeasure:string,searchd1:string,searchd2:string,page:number, size:number){    //loads JWT token todo add to utils and use token for api authorization ect
+    let token = this.getToken()
+    console.log(token)
     let output:any = this.http.get(`${url}/overview/filter/${sort}/${ascDesc}?searchPatienthospitalnumber=${searchPatienthospitalnumber}&searchSurname=${searchSurname}&searchFirstName=${searchFirstName}&searchQuestionId=${searchQuestionId}&searchPainMeasure=${searchPainMeasure}&searchd1=${searchd1}&searchd2=${searchd2}&page=${page}&size=${size}`)
     return output
     //http://localhost:3000/api/overview/filter?searchPatienthospitalnumber=&searchSurname=&searchFirstName=&searchQuestionId=&searchPainMeasure=&searchd1=&searchd2=&size=30  
@@ -21,11 +37,15 @@ export class DataService {
 
 //anxiety and depression endpoints
   getAnxietyChart(id:string, startDate:any, endDate:any){
+    let token = this.getToken()
+    console.log(token)
     let output:any = this.http.get(`${url}/anxietydepression/find/questionare_date/true/id/${id}?startDate=${startDate}&endDate=${endDate}`)
     return output
   }
 
   getAnxietyTable(id:string,startDate:any, endDate:any,sort:string,ascDesc:string,searchd1:string,searchd2:string,searchd3:string,searchd4:string,searchd5:string,searchd6:string,searchd7:string,searchd8:string, searcha1:string, searcha2:string, searcha3:string, searcha4:string, searcha5:string, searcha6:string, searcha7:string,searcha8:string,page:number, size:number){
+    let token = this.getToken()
+    console.log(token)
     let output:any = this.http.get(`${url}/anxietydepression/filter/${sort}/${ascDesc}/id/${id}?startDate=${startDate}&endDate=${endDate}&searchd1=${searchd1}&searchd2=${searchd2}&searchd3=${searchd3}&searchd4=${searchd4}&searchd5=${searchd5}&searchd6=${searchd6}&searchd7=${searchd7}&searchd8=${searchd8}&searcha1=${searcha1}&searcha2=${searcha2}&searcha3=${searcha3}&searcha4=${searcha4}&searcha5=${searcha5}&searcha6=${searcha6}&searcha7=${searcha7}&searcha8=${searcha8}&page=${page}&size=${size}`)
     return output
   }
@@ -33,6 +53,8 @@ export class DataService {
 
 
   getAnxietyDownload(id:string,startDate:any,endDate:any){
+    let token = this.getToken()
+    console.log(token)
     let output:any = `${url}/anxietydepression/download/${id}?startDate=${startDate}&endDate=${endDate}`
     return output
   }
@@ -40,21 +62,29 @@ export class DataService {
 
   //get patient name
   getPatientName(id:string){
+    let token = this.getToken()
+    console.log(token)
     let output:any = this.http.get(`${url}/patients/name/id/${id}`)
     return output;
   }
 
   getPainMeasureChart(id:string, startDate:any, endDate:any){
+    let token = this.getToken()
+    console.log(token)
     let output:any = this.http.get(`${url}/painmeasure/find/questionare_date/true/id/${id}?startDate=${startDate}&endDate=${endDate}`)
     return output;
   }
 
   getPainMeasureTable(id:string,startDate:any, endDate:any,sort:string,ascDesc:string,searchpainmeasure:string,page:number, size:number){
+    let token = this.getToken()
+    console.log(token)
     let output:any = this.http.get(`${url}/painmeasure/filter/${sort}/${ascDesc}/id/${id}?startDate=${startDate}&endDate=${endDate}&searchpainmeasure=${searchpainmeasure}&page=${page}&size=${size}`)
     return output;
   }
 
   getPainMeasureDownload(id:string,startDate:any,endDate:any){
+    let token = this.getToken()
+    console.log(token)
     let output:any = `${url}/painmeasure/download/${id}?startDate=${startDate}&endDate=${endDate}`
     return output
   }
