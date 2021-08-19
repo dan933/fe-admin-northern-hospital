@@ -18,7 +18,8 @@ export class TopNavBarComponent implements OnInit {
 
   async logout() {
     let url:string = "http://localhost:3000/logout"
-      window.open(url,'_self');
+    window.open(url,'_self');
+
     await this.keycloakService.logout();
     this.keycloakService.clearToken();
     
