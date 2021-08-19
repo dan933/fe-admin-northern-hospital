@@ -53,8 +53,6 @@ export class DataService {
 
 
   getAnxietyDownload(id:string,startDate:any,endDate:any){
-    let token = this.getToken()
-    console.log(token)
     let output:any = `${url}/anxietydepression/download/${id}?startDate=${startDate}&endDate=${endDate}`
     return output
   }

@@ -16,8 +16,12 @@ export class TopNavBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logout() {
-    this.keycloakService.logout();
+  async logout() {
+    let url:string = "http://localhost:3000/logout"
+      window.open(url,'_self');
+    await this.keycloakService.logout();
+    this.keycloakService.clearToken();
+    
   }
 
 
