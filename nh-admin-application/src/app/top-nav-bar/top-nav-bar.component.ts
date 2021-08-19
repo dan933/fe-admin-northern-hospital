@@ -21,8 +21,7 @@ export class TopNavBarComponent implements OnInit {
     window.open(url,'_self');
 
     await this.keycloakService.logout();
-    this.keycloakService.clearToken();
-    
+    this.keycloakService.clearToken();    
   }
 
 

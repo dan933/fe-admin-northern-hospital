@@ -7,7 +7,7 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
             await keycloak.init({
                 config: {
                     url: "http://localhost:8080/auth",
-                    realm: "application",
+                    realm: "application",                    
                     clientId:"nh-frontend" 
                 },
               loadUserProfileAtStartUp: true,

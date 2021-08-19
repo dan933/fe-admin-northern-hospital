@@ -71,7 +71,6 @@ export class PainMeasureTableComponent implements OnInit {
   displayedColumnFilters:string[] = ['questionare_date-filter','painmeasure-filter'];
 
   ngOnInit(): void { 
-    console.log(this.today)
     this.createChart()
   }
 

@@ -1,10 +1,14 @@
-#table-div
+#container
 {
   height: 99vh;
   width: 100vw;
   overflow: auto;
 }
 
+#table-container
+{
+  margin-left: 25px;
+}
 
 @media only screen and (max-width: 778px) {
   table
@@ -83,12 +87,13 @@
 
   #bottom-toolbar
   {
+    width: 10000px;
     background-color: white;
   }
   
   #bottom-toolbar-row
   {
-    width: 900px;
+    width: 1000px;
     margin-top:20px;
     background-color: white;
   }
